@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 import pytest
 from Test.PageObject import login_page
 from Common.parse_csv import parse_csv
@@ -6,12 +7,17 @@ from Common.parse_csv import parse_csv
 data = parse_csv("Data/test_001_login.csv")
 url = "https://sso.sohu-inc.com/login?" \
       "service=http://opt.mrd.sohuno.com:10020/operation/ssoValidate?returnUrl=/jina/news/index"
+chrome_webdriver_path = "chromedriver"
+chrome_options = Options()
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('blink-settings=imagesEnabled=false')
 
 
 @pytest.mark.parametrize(("username", "password", "status"), data)
 class TestLogin():
     def setup(self):
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Chrome(executable_path=chrome_webdriver_path, chrome_options=chrome_options)
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.driver.get(url)
