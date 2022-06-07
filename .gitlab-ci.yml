@@ -26,6 +26,7 @@ job_login:
 #  services:
 #    - name: selenium/standalone-chrome:latest
   script:
+    - curl -x 10.16.70.111:80 opt.mrd.sohuno.com
     - pytest --alluredir=Report/report
   only:
     - master

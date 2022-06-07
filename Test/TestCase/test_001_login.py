@@ -16,7 +16,7 @@ chrome_options.add_argument('blink-settings=imagesEnabled=false')
 @pytest.mark.parametrize(("username", "password", "status"), data)
 class TestLogin():
     def setup(self):
-        self.driver = webdriver.Chrome(chrome_options=chrome_options)
+        self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.driver.get(url)
