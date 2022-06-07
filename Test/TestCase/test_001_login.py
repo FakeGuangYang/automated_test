@@ -5,19 +5,19 @@ from Test.PageObject import login_page
 from Common.parse_csv import parse_csv
 from selenium.webdriver.common.by import By
 
-data = parse_csv("../../Data/test_001_login.csv")
+data = parse_csv("Data/test_001_login.csv")
 url = "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com/operation/ssoValidate?returnUrl=/"
 chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
-# chrome_options.add_argument('--headless')
+chrome_options.add_argument('--headless')
 chrome_options.add_argument('blink-settings=imagesEnabled=false')
 
 
 @pytest.mark.parametrize(("username", "password", "status"), data)
 class TestLogin():
     def setup(self):
-        # self.driver = webdriver.Chrome(options=chrome_options)
-        self.driver = webdriver.Firefox(options=chrome_options)
+        self.driver = webdriver.Chrome(options=chrome_options)
+        # self.driver = webdriver.Firefox(options=chrome_options)
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.driver.get(url)
