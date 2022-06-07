@@ -10,7 +10,7 @@ stages:
 before_script:
   - python --version
   - pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-#  - apt-get install libxss1 libappindicator1 libindicator7
+  - apt-get update
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - dpkg -i google-chrome*.deb
   - apt-get install -f
