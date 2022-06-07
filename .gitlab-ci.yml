@@ -34,11 +34,13 @@ job_login:
     - smc-runner
 
 job_fail:
+  stage: fail
   script:
     - echo "Automated test failed."
   when: on_failure
 
 job_success:
+  stage: success
   script:
     - echo "Automated test finished."
   when: on_success
