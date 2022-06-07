@@ -12,7 +12,7 @@ before_script:
   - pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
   - apt-get update
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - dpkg -i google-chrome*.deb
+  - dpkg -i google-chrome*.deb --force
   - apt-get install -f
   - google-chrome --version
   - wget -N http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
