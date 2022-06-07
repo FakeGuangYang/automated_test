@@ -121,3 +121,83 @@ console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message f
 JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeError: gRecipeManager is null
 JavaScript error: http://opt.mrd.sohuno.com/operation/plugins/morrisjs/morris.js, line 1656: Error: Graph placeholder not found.
 1654592137502	Marionette	INFO	Stopped listening on port 49757
+1654592595468	geckodriver	INFO	Listening on 127.0.0.1:60538
+1654592598570	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--no-sandbox" "--headless" "blink-settings=imagesEnabled=false" "--remote-debugging-port" "60539" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\GUANGY~1\\AppData\\Local\\Temp\\rust_mozprofileiR6eWU"
+*** You are running in headless mode.
+1654592598936	Marionette	INFO	Marionette enabled
+WebDriver BiDi listening on ws://localhost:60539
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\GUANGY~1\\AppData\\Local\\Temp\\rust_mozprofileiR6eWU\\search.json.mozlz4", (void 0)))
+1654592599750	Marionette	INFO	Listening on port 60559
+DevTools listening on ws://localhost:60539/devtools/browser/d8e7dd3b-d39c-4887-be21-e9d56383833f
+Read port: 60559
+1654592599801	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://sso.sohu-inc.com"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://sso.sohu-inc.com"
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeError: gRecipeManager is null
+1654592600629	Marionette	INFO	Stopped listening on port 60559
+console.error: Region.jsm: "Error fetching region" (new TypeError("NetworkError when attempting to fetch resource.", ""))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 419))
+
+###!!! [Parent][PImageBridgeParent] Error: RunMessage(msgname=PImageBridge::Msg_WillClose) Channel closing: too late to send/recv, messages will be lost
+
+1654592601131	geckodriver	INFO	Listening on 127.0.0.1:60577
+1654592604217	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--no-sandbox" "--headless" "blink-settings=imagesEnabled=false" "--remote-debugging-port" "60578" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\GUANGY~1\\AppData\\Local\\Temp\\rust_mozprofile023cqX"
+*** You are running in headless mode.
+1654592604650	Marionette	INFO	Marionette enabled
+WebDriver BiDi listening on ws://localhost:60578
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\GUANGY~1\\AppData\\Local\\Temp\\rust_mozprofile023cqX\\search.json.mozlz4", (void 0)))
+1654592605491	Marionette	INFO	Listening on port 60598
+DevTools listening on ws://localhost:60578/devtools/browser/ebf91f01-8049-49a7-811f-792bfbf7b69b
+Read port: 60598
+1654592605526	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://sso.sohu-inc.com"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://sso.sohu-inc.com"
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeError: gRecipeManager is null
+JavaScript error: http://opt.mrd.sohuno.com/operation/plugins/morrisjs/morris.js, line 1656: Error: Graph placeholder not found.
+1654592606615	Marionette	INFO	Stopped listening on port 60598
+console.error: Region.jsm: "Error fetching region" (new TypeError("NetworkError when attempting to fetch resource.", ""))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 419))
+
+###!!! [Parent][PImageBridgeParent] Error: RunMessage(msgname=PImageBridge::Msg_WillClose) Channel closing: too late to send/recv, messages will be lost
+
+1654592677409	geckodriver	INFO	Listening on 127.0.0.1:60671
+1654592680496	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--no-sandbox" "blink-settings=imagesEnabled=false" "--remote-debugging-port" "60672" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\GUANGY~1\\AppData\\Local\\Temp\\rust_mozprofilew0QOSc"
+1654592680870	Marionette	INFO	Marionette enabled
+WebDriver BiDi listening on ws://localhost:60672
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\GUANGY~1\\AppData\\Local\\Temp\\rust_mozprofilew0QOSc\\search.json.mozlz4", (void 0)))
+1654592682066	Marionette	INFO	Listening on port 60694
+DevTools listening on ws://localhost:60672/devtools/browser/5dcc01b5-b5a7-49e4-94d7-e29e13012bcd
+Read port: 60694
+1654592682142	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://sso.sohu-inc.com"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://sso.sohu-inc.com"
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeError: gRecipeManager is null
+1654592683136	Marionette	INFO	Stopped listening on port 60694
+console.error: services.settings: 
+  main/query-stripping Signature failed  TypeError: NetworkError: Network request failed
+console.error: Region.jsm: "Error fetching region" (new TypeError("NetworkError when attempting to fetch resource.", ""))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 419))
+1654592683555	geckodriver	INFO	Listening on 127.0.0.1:60710
+1654592686629	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--no-sandbox" "blink-settings=imagesEnabled=false" "--remote-debugging-port" "60711" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\GUANGY~1\\AppData\\Local\\Temp\\rust_mozprofileCXxnhk"
+1654592686986	Marionette	INFO	Marionette enabled
+WebDriver BiDi listening on ws://localhost:60711
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\GUANGY~1\\AppData\\Local\\Temp\\rust_mozprofileCXxnhk\\search.json.mozlz4", (void 0)))
+1654592688170	Marionette	INFO	Listening on port 60730
+DevTools listening on ws://localhost:60711/devtools/browser/5d62e018-ed08-4332-83df-60513029ca20
+Read port: 60730
+1654592688260	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://sso.sohu-inc.com"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://sso.sohu-inc.com"
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeError: gRecipeManager is null
+JavaScript error: http://opt.mrd.sohuno.com/operation/plugins/morrisjs/morris.js, line 1656: Error: Graph placeholder not found.
+1654592689633	Marionette	INFO	Stopped listening on port 60730
+console.error: Region.jsm: "Error fetching region" (new TypeError("NetworkError when attempting to fetch resource.", ""))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 419))
+console.error: services.settings: 
+  main/query-stripping Signature failed  TypeError: NetworkError: Network request failed
+JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 71: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+
+###!!! [Parent][PGPUParent] Error: RunMessage(msgname=PGPU::Msg_ShutdownVR) Channel closing: too late to send/recv, messages will be lost
+
