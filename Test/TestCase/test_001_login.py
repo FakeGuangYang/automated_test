@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options
 import pytest
 from Test.PageObject import login_page
 from Common.parse_csv import parse_csv
