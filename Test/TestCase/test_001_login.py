@@ -28,10 +28,8 @@ class TestLogin():
             text = login_page.LoginOper(self.driver).get_login_failed_info()
             assert text == '登录失败！请输入有效的用户名/密码。'
         elif status == '1':
-            text = self.driver.find_element_by_class_name('email').text
-            print("name = ", self.driver.find_element(By.CLASS_NAME, 'email').text)
-            print(self.driver.page_source)
-            assert text == "guangyang219579@sohu-inc.com"
+            text = self.driver.page_source
+            assert "guangyang219579@sohu-inc.com" in text
             # text = self.driver.page_source
             # assert text == "guangyang219579@sohu-inc.com"
             # print(text)
