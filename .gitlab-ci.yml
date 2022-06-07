@@ -1,46 +1,24 @@
+# python-chromedriver source for this test, including python and chrome driver.
 image: joyzoursky/python-chromedriver:latest
 
 stages:
   - build
   - test
-  - fail
-  - success
   - deploy
 
 before_script:
   - python --version
+  # use https://pypi.tuna.tsinghua.edu.cn/simple for quicker downloading.
   - pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+  # change nameserver to intranet environment for successfully login operation.
   - echo "nameserver  10.2.166.106" > /etc/resolv.conf
-#  - apt-get update
-#  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-#  - dpkg -i google-chrome*.deb --force
-#  - apt-get install -f
-#  - google-chrome --version
-#  - wget -N http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
-#  - apt-get install unzip
-#  - unzip chromedriver_linux64.zip
-#  - mv chromedriver /usr/local/share/chromedriver
-#  - ln -s /usr/local/share/chromedriver /usr/bin/chromedriver
   - echo "Automated test starting..."
 
 job_login:
-#  services:
-#    - name: selenium/standalone-chrome:latest
   script:
     - pytest --alluredir=Report/report
   only:
     - master
+  # need to add tags when running script.
   tags:
     - smc-runner
-
-#job_fail:
-#  stage: fail
-#  script:
-#    - echo "Automated test failed."
-#  when: on_failure
-#
-#job_success:
-#  stage: success
-#  script:
-#    - echo "Automated test finished."
-#  when: on_success
