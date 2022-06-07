@@ -3,16 +3,29 @@ image: python:3.10.4
 stages:
   - build
   - test
+  - fail
+  - success
   - deploy
 
-job 1:
-  before_script:
-    - echo "Automated test for 'login page' starting..."
+before_script:
+  - python --version
+  - pip install -r requirements.txt
+  - echo "Automated test starting..."
+
+job_login:
   script:
     - pytest --alluredir=Report/report
-  after_script:
-    - echo "Automated test for 'login page' finished."
   only:
     - master
   tags:
     - smc-runner
+
+job_fail:
+  script:
+    - echo "Automated test failed."
+  when: on_failure
+
+job_success:
+  script:
+    - echo "Automated test finished."
+  when: on_success
