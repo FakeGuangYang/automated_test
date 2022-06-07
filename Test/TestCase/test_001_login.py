@@ -5,8 +5,7 @@ from Test.PageObject import login_page
 from Common.parse_csv import parse_csv
 
 data = parse_csv("Data/test_001_login.csv")
-url = "https://sso.sohu-inc.com/login?" \
-      "service=http://opt.mrd.sohuno.com:10020/operation/ssoValidate?returnUrl=/jina/news/index"
+url = "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com/operation/ssoValidate?returnUrl=/"
 chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--headless')
