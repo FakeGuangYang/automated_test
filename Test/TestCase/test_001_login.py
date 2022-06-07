@@ -9,13 +9,13 @@ url = "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com/operatio
 chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--headless')
-# chrome_options.add_argument('blink-settings=imagesEnabled=false')
+chrome_options.add_argument('blink-settings=imagesEnabled=false')
 
 
 @pytest.mark.parametrize(("username", "password", "status"), data)
 class TestLogin():
     def setup(self):
-        self.driver = webdriver.Chrome(options=chrome_options)
+        self.driver = webdriver.Chrome()
         # self.driver = webdriver.Firefox()
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
