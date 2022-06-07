@@ -89,3 +89,35 @@ console.error: services.settings:
   main/query-stripping Signature failed  TypeError: NetworkError: Network request failed
 console.log: "RemoteSettingsWorker error: Error: Can't import when we've started shutting down."
 JavaScript error: resource://gre/modules/TerminatorTelemetry.jsm, line 71: AbortError: IOUtils: Shutting down and refusing additional I/O tasks
+1654592125347	geckodriver	INFO	Listening on 127.0.0.1:49689
+1654592128431	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "49690" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\GUANGY~1\\AppData\\Local\\Temp\\rust_mozprofileheRMVp"
+1654592128763	Marionette	INFO	Marionette enabled
+WebDriver BiDi listening on ws://localhost:49690
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\GUANGY~1\\AppData\\Local\\Temp\\rust_mozprofileheRMVp\\search.json.mozlz4", (void 0)))
+1654592130013	Marionette	INFO	Listening on port 49714
+DevTools listening on ws://localhost:49690/devtools/browser/de6ff08b-f400-4ae5-b5be-7bab76bc718a
+Read port: 49714
+1654592130072	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://sso.sohu-inc.com"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://sso.sohu-inc.com"
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeError: gRecipeManager is null
+1654592131085	Marionette	INFO	Stopped listening on port 49714
+console.error: Region.jsm: "Error fetching region" (new TypeError("NetworkError when attempting to fetch resource.", ""))
+console.error: Region.jsm: "Failed to fetch region" (new Error("NO_RESULT", "resource://gre/modules/Region.jsm", 419))
+
+###!!! [Parent][PGPUParent] Error: RunMessage(msgname=PGPU::Msg_ShutdownVR) Channel closing: too late to send/recv, messages will be lost
+
+1654592131521	geckodriver	INFO	Listening on 127.0.0.1:49731
+1654592134595	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "49732" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\GUANGY~1\\AppData\\Local\\Temp\\rust_mozprofileiPjSdf"
+1654592134922	Marionette	INFO	Marionette enabled
+WebDriver BiDi listening on ws://localhost:49732
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\GUANGY~1\\AppData\\Local\\Temp\\rust_mozprofileiPjSdf\\search.json.mozlz4", (void 0)))
+1654592136096	Marionette	INFO	Listening on port 49757
+Read port: 49757
+1654592136122	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://localhost:49732/devtools/browser/4b64cdc2-9397-4e6b-8217-6aac3b08fa94
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://sso.sohu-inc.com"
+console.warn: LoginRecipes: "getRecipes: falling back to a synchronous message for:" "https://sso.sohu-inc.com"
+JavaScript error: resource://gre/modules/LoginManagerParent.jsm, line 136: TypeError: gRecipeManager is null
+JavaScript error: http://opt.mrd.sohuno.com/operation/plugins/morrisjs/morris.js, line 1656: Error: Graph placeholder not found.
+1654592137502	Marionette	INFO	Stopped listening on port 49757
