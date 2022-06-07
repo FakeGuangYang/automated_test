@@ -10,7 +10,7 @@ stages:
 before_script:
   - python --version
   - pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-  - apt-get install libxss1 libappindicator1 libindicator7
+#  - apt-get install libxss1 libappindicator1 libindicator7
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - dpkg -i google-chrome*.deb
   - apt-get install -f
@@ -23,8 +23,8 @@ before_script:
   - echo "Automated test starting..."
 
 job_login:
-  services:
-    - name: selenium/standalone-chrome:latest
+#  services:
+#    - name: selenium/standalone-chrome:latest
   script:
     - pytest --alluredir=Report/report
   only:
