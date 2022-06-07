@@ -23,7 +23,7 @@ class LoginPage(object):
 
     def find_login_name(self):
         # find and return login name element
-        ele = self.driver.find_element(By.XPATH, '//div[@class="info-container"]/div[@class="email"]')
+        ele = self.driver.find_element(By.XPATH, '//div[@class="info-container"]/div[@class="name"]')
         return ele
 
     def find_login_failed_info(self):
