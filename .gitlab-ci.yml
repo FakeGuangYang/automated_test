@@ -1,0 +1,18 @@
+image: python:3.10.4
+
+stages:
+  - build
+  - test
+  - deploy
+
+job 1:
+  before_script:
+    - echo "Automated test for 'login page' starting..."
+  script:
+    - pytest --alluredir=Report/report
+  after_script:
+    - echo "Automated test for 'login page' finished."
+  only:
+    - master
+  tags:
+    - smc-runner
