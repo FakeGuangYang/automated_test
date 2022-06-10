@@ -307,7 +307,7 @@ class ScheduledPushingOper(object):
     # 输入结束分钟
     def input_end_time_minute(self):
         minute = Select(self.scheduled_pushing_page.find_start_minute_input()).first_selected_option.text
-        minute = str(int(minute) + 1)
+        minute = str(int(minute) + 5)
         Select(self.scheduled_pushing_page.find_end_minute_input()).select_by_value(minute)
 
     # 点击保存按钮

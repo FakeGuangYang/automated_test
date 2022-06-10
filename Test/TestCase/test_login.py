@@ -34,11 +34,8 @@ class TestLogin():
             assert text == '登录失败！请输入有效的用户名/密码。'
         # TODO: 使用"find_element"方法取到的用户名是空，后续需要研究原因(可能是因为需要sleep?)
         elif status == '1':
-            # page_source = self.driver.page_source
-            # assert "guangyang219579@sohu-inc.com" in page_source
-            sleep(10)
-            login_name = login_page.LoginOper(self.driver).get_login_name()
-            assert login_name == "guangyang219579"
+            page_source = self.driver.page_source
+            assert "guangyang219579@sohu-inc.com" in page_source
         else:
             print("ERROR: Status can only be 0 or 1.")
 
