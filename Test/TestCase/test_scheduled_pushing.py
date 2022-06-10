@@ -32,7 +32,7 @@ password = parse_yml("Config/login.yml", 'loginInfo', 'password')
 
 class TestScheduledPushing():
     def setup(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.driver.get(login_url)
