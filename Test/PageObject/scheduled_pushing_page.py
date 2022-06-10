@@ -363,6 +363,7 @@ class ScheduledPushingScenarios(object):
     # 增加一条新数据
     def add_modal(self, cids, oid, channel_value, location, weight, remark):
         self.scheduled_pushing_oper.click_add_modal_button()
+        sleep(5)
         self.scheduled_pushing_oper.click_cids_label()
         self.scheduled_pushing_oper.input_new_oid(oid)
         self.scheduled_pushing_oper.input_cids(cids)
@@ -378,6 +379,7 @@ class ScheduledPushingScenarios(object):
     # 编辑之前新增的数据，只改备注
     def modify_modal(self, remark):
         self.scheduled_pushing_oper.click_table_edit_button()
+        sleep(5)
         self.scheduled_pushing_oper.input_remark(remark)
         self.scheduled_pushing_oper.click_save_button()
 
