@@ -98,7 +98,7 @@ class ScheduledPushing(object):
     def find_start_hour_input(self):
         ele = self.driver.find_element(By.XPATH,
                                        '//*[@class="calendar left"]/*[@class="daterangepicker_input"]/'
-                                       '*[@class="calendar-time"]/div/*[@class="hourselect"]')
+                                       '*[@class="calendar-time"]/div/*[@class="hourselect"]')[-1]
         return ele
 
     # "开始时间分钟"元素
