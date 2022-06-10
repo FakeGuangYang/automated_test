@@ -11,23 +11,23 @@ from Common.parse_csv import parse_csv
 from Common.parse_yml import parse_yml
 from time import sleep
 
-# # 在Linux运行时需要添加Chrome options
-# chrome_options = Options()
-# chrome_options.add_argument('--no-sandbox')
-# chrome_options.add_argument('--headless')
-# chrome_options.add_argument('blink-settings=imagesEnabled=false')
+# 在Linux运行时需要添加Chrome options
+chrome_options = Options()
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('blink-settings=imagesEnabled=false')
 
 # 引用测试数据
-add_modal_data = parse_csv("../../Data/test_add_modal.csv")
-modify_modal_data = parse_csv("../../Data/test_modify_modal.csv")
+add_modal_data = parse_csv("Data/test_add_modal.csv")
+modify_modal_data = parse_csv("Data/test_modify_modal.csv")
 # 登录页url
 login_url = "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com:10020/operation/ssoValidate?returnUrl=/"
 # 定投管理页url
-host = parse_yml("../../Config/login.yml", 'websites', 'host')
+host = parse_yml("Config/login.yml", 'websites', 'host')
 url = "http://" + host + "/operation/delivery/toTargetedDeliveryList"
 # 登录信息
-username = parse_yml("../../Config/login.yml", 'loginInfo', 'username')
-password = parse_yml("../../Config/login.yml", 'loginInfo', 'password')
+username = parse_yml("Config/login.yml", 'loginInfo', 'username')
+password = parse_yml("Config/login.yml", 'loginInfo', 'password')
 
 
 class TestScheduledPushing():
