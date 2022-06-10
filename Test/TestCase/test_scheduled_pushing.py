@@ -57,7 +57,7 @@ class TestScheduledPushing():
         # 校验
         assert content_type == "普通"
         assert table_oid == oid
-        assert title == "今日早资讯2022-5-27"
+        assert title == "【社会主义核心价值观】友善 公民道德的基石"
         assert delivery_position == location
         assert table_remark == remark
         assert status == "已投放"
