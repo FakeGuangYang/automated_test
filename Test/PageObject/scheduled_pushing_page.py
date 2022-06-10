@@ -372,6 +372,7 @@ class ScheduledPushingScenarios(object):
         self.scheduled_pushing_oper.input_weight(weight)
         self.scheduled_pushing_oper.input_remark(remark)
         self.scheduled_pushing_oper.click_delivery_time()
+        sleep(5)
         self.scheduled_pushing_oper.input_end_time_hour()
         self.scheduled_pushing_oper.input_end_time_minute()
         self.scheduled_pushing_oper.click_save_button()
