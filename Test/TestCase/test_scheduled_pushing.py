@@ -21,7 +21,7 @@ chrome_options.add_argument('blink-settings=imagesEnabled=false')
 add_modal_data = parse_csv("Data/test_add_modal.csv")
 modify_modal_data = parse_csv("Data/test_modify_modal.csv")
 # 登录页url
-login_url = "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com:10020/operation/ssoValidate?returnUrl=/"
+login_url = "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com/operation/ssoValidate?returnUrl=/"
 # 定投管理页url
 host = parse_yml("Config/login.yml", 'websites', 'host')
 url = "http://" + host + "/operation/delivery/toTargetedDeliveryList"
@@ -32,7 +32,7 @@ password = parse_yml("Config/login.yml", 'loginInfo', 'password')
 
 class TestScheduledPushing():
     def setup(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.driver.get(login_url)
