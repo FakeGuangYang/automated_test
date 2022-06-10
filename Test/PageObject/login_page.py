@@ -1,65 +1,76 @@
+# -*- utf-8 -*-
+# @Create Data: 2022/5/25 13:28
+# @Author: guangyang219579
+# @File: login_page.py
+
 from selenium.webdriver.common.by import By
 
 
-# Login page objects
+# 登录页元素
 class LoginPage(object):
     def __init__(self, driver):
         self.driver = driver
 
+    # "用户名输入框"元素
     def find_username(self):
-        # find and return username element
         ele = self.driver.find_element(By.ID, 'userName')
         return ele
 
+    # "密码输入框"元素
     def find_password(self):
-        # find and return password element
         ele = self.driver.find_element(By.ID, 'pass')
         return ele
 
+    # "登录按钮"元素
     def find_login_button(self):
-        # find and return login button element
         ele = self.driver.find_element(By.ID, 'loginBtn')
         return ele
 
+    # "登录后登录名"元素
     def find_login_name(self):
-        # find and return login name element
         ele = self.driver.find_element(By.CLASS_NAME, 'email')
         return ele
 
+    # "登录报错错误信息"元素
     def find_login_failed_info(self):
-        # find and return login failed info element
         ele = self.driver.find_element(By.ID, 'myError')
         return ele
 
 
-# Login page operations
+# 登录页操作
 class LoginOper(object):
     def __init__(self, driver):
         self.login_page = LoginPage(driver)
 
+    # 输入用户名
     def input_username(self, username):
         self.login_page.find_username().clear()
         self.login_page.find_username().send_keys(username)
 
+    # 输入密码
     def input_password(self, password):
         self.login_page.find_password().clear()
         self.login_page.find_password().send_keys(password)
 
+    # 点击登录按钮
     def click_login_button(self):
         self.login_page.find_login_button().click()
 
+    # 获取登录名
     def get_login_name(self):
         return self.login_page.find_login_name().text
 
+    # 获取登录失败信息
     def get_login_failed_info(self):
         return self.login_page.find_login_failed_info().text
 
 
-# Login page scenarios
+# 登录页场景
 class LoginScenarios(object):
     def __init__(self, driver):
         self.login_oper = LoginOper(driver)
 
+    # 登录
     def login(self, username, password):
         self.login_oper.input_username(username)
         self.login_oper.input_password(password)

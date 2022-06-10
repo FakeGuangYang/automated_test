@@ -1,6 +1,6 @@
 websites:
-  host: "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com:10020/operation/ssoValidate?returnUrl=/jina/news/index"
+  host: "opt.mrd.sohuno.com:10020"
 
-logininfo:
+loginInfo:
   username: guangyang219579
   password: Liam0829!@#

@@ -1,4 +1,4 @@
-# python-chromedriver source for this test, including python and chrome driver.
+# python-chromedriver镜像包，包含python3.9以及chromedriver
 image: joyzoursky/python-chromedriver:latest
 
 stages:
@@ -8,9 +8,9 @@ stages:
 
 before_script:
   - python --version
-  # use https://pypi.tuna.tsinghua.edu.cn/simple for quicker downloading.
+  # 使用 https://pypi.tuna.tsinghua.edu.cn/simple 源以下载更快
   - pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-  # change nameserver to intranet environment for successfully login operation.
+  # 将nameserver改为内网环境来访问管理平台
   - echo "nameserver  10.2.166.106" > /etc/resolv.conf
   - echo "Automated test starting..."
 
@@ -19,6 +19,6 @@ job_login:
     - pytest --alluredir=Report/report
   only:
     - master
-  # need to add tags when running script.
+  # 在Gitlab运行时需要加下面的tag才能被捕捉到
   tags:
     - smc-runner
