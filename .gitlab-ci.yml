@@ -17,7 +17,7 @@ before_script:
 
 job_login_page:
   script:
-    - pytest "test_login.py" --alluredir=Report/report
+    - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
   only:
     - master
   # 在Gitlab运行时需要加下面的tag才能被捕捉到
@@ -26,7 +26,7 @@ job_login_page:
 
 job_scheduled_pushing_page:
   script:
-    - pytest "test_scheduled_pushing.py" --alluredir=Report/report
+    - pytest "Test/TestCase/test_scheduled_pushing.py" --alluredir=Report/report
   only:
     - master
   # 在Gitlab运行时需要加下面的tag才能被捕捉到
