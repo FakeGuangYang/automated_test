@@ -144,47 +144,47 @@ class TestAudioScheduledPushing():
         # TODO: 由于Linux机器的时间与现实时间差了8个小时，因此我们创建的新闻都是已过期状态，后续如果校正机器的时间，状态也需要修改
         assert status == "已投放:\n已过期"
 
-    @pytest.mark.parametrize("new_remark", modify_modal_data[0])
-    def test_modify_modal(self, new_remark):
-        # 进入音频定投页
-        self.driver.get(audio)
-        sleep(5)
-        # 做编辑数据操作，仅修改备注
-        scheduled_pushing_page.ScheduledPushingScenarios(self.driver).audio_modify_modal(new_remark)
-        sleep(5)
-        # 获取界面数据结果
-        table_remark = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_audio_remark()
-        status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_audio_status()
-        # 校验
-        assert table_remark == new_remark
-        # TODO: 由于Linux机器的时间与现实时间差了8个小时，因此我们创建的新闻都是已过期状态，后续如果校正机器的时间，状态也需要修改
-        assert status == "已投放:\n已过期"
-
-    def test_stop_delivery(self):
-        # 进入音频定投页
-        self.driver.get(audio)
-        sleep(5)
-        # 做取消投放操作
-        scheduled_pushing_page.ScheduledPushingScenarios(self.driver).audio_data_delivery()
-        sleep(5)
-        # 获取界面数据结果
-        status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_audio_status()
-        # 校验
-        # TODO: 由于Linux机器的时间与现实时间差了8个小时，因此我们创建的新闻都是已过期状态，后续如果校正机器的时间，状态也需要修改
-        assert status == "待投放:\n已过期"
-
-    def test_continue_delivery(self):
-        # 进入音频定投页
-        self.driver.get(audio)
-        sleep(5)
-        # 做投放操作
-        scheduled_pushing_page.ScheduledPushingScenarios(self.driver).audio_data_delivery()
-        sleep(5)
-        # 获取界面数据结果
-        status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_audio_status()
-        # 校验
-        # TODO: 由于Linux机器的时间与现实时间差了8个小时，因此我们创建的新闻都是已过期状态，后续如果校正机器的时间，状态也需要修改
-        assert status == "已投放:\n已过期"
+    # @pytest.mark.parametrize("new_remark", modify_modal_data[0])
+    # def test_modify_modal(self, new_remark):
+    #     # 进入音频定投页
+    #     self.driver.get(audio)
+    #     sleep(5)
+    #     # 做编辑数据操作，仅修改备注
+    #     scheduled_pushing_page.ScheduledPushingScenarios(self.driver).audio_modify_modal(new_remark)
+    #     sleep(5)
+    #     # 获取界面数据结果
+    #     table_remark = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_audio_remark()
+    #     status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_audio_status()
+    #     # 校验
+    #     assert table_remark == new_remark
+    #     # TODO: 由于Linux机器的时间与现实时间差了8个小时，因此我们创建的新闻都是已过期状态，后续如果校正机器的时间，状态也需要修改
+    #     assert status == "已投放:\n已过期"
+    #
+    # def test_stop_delivery(self):
+    #     # 进入音频定投页
+    #     self.driver.get(audio)
+    #     sleep(5)
+    #     # 做取消投放操作
+    #     scheduled_pushing_page.ScheduledPushingScenarios(self.driver).audio_data_delivery()
+    #     sleep(5)
+    #     # 获取界面数据结果
+    #     status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_audio_status()
+    #     # 校验
+    #     # TODO: 由于Linux机器的时间与现实时间差了8个小时，因此我们创建的新闻都是已过期状态，后续如果校正机器的时间，状态也需要修改
+    #     assert status == "待投放:\n已过期"
+    #
+    # def test_continue_delivery(self):
+    #     # 进入音频定投页
+    #     self.driver.get(audio)
+    #     sleep(5)
+    #     # 做投放操作
+    #     scheduled_pushing_page.ScheduledPushingScenarios(self.driver).audio_data_delivery()
+    #     sleep(5)
+    #     # 获取界面数据结果
+    #     status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_audio_status()
+    #     # 校验
+    #     # TODO: 由于Linux机器的时间与现实时间差了8个小时，因此我们创建的新闻都是已过期状态，后续如果校正机器的时间，状态也需要修改
+    #     assert status == "已投放:\n已过期"
 
     def teardown(self):
         self.driver.quit()
