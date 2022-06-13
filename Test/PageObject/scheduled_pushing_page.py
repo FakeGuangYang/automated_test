@@ -489,7 +489,7 @@ class ScheduledPushingScenarios(object):
     # 增加一条新数据
     def audio_add_modal(self, cids, uid, channel_value, location, weight, remark):
         self.scheduled_pushing_oper.click_add_modal_button()
-        sleep(5)
+        sleep(10)
         self.scheduled_pushing_oper.click_cids_label()
         self.scheduled_pushing_oper.input_new_uid(uid)
         self.scheduled_pushing_oper.input_cids(cids)
