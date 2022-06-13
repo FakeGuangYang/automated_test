@@ -61,7 +61,8 @@ class TestScheduledPushing():
         assert title == "【社会主义核心价值观】友善 公民道德的基石"
         assert delivery_position == location
         assert table_remark == remark
-        assert status == "已投放"
+        # TODO: 由于Linux机器的时间与现实时间差了8个小时，因此我们创建的新闻都是已过期状态，后续如果校正机器的时间，状态也需要修改
+        assert status == "已投放:\n已过期"
 
     @pytest.mark.parametrize("new_remark", modify_modal_data[0])
     def test_modify_modal(self, new_remark):
@@ -76,7 +77,8 @@ class TestScheduledPushing():
         status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_table_status()
         # 校验
         assert table_remark == new_remark
-        assert status == "已投放"
+        # TODO: 由于Linux机器的时间与现实时间差了8个小时，因此我们创建的新闻都是已过期状态，后续如果校正机器的时间，状态也需要修改
+        assert status == "已投放:\n已过期"
 
     def test_stop_delivery(self):
         # 进入定投管理页
@@ -88,7 +90,8 @@ class TestScheduledPushing():
         # 获取界面数据结果
         status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_table_status()
         # 校验
-        assert status == "待投放"
+        # TODO: 由于Linux机器的时间与现实时间差了8个小时，因此我们创建的新闻都是已过期状态，后续如果校正机器的时间，状态也需要修改
+        assert status == "待投放:\n已过期"
 
     def test_continue_delivery(self):
         # 进入定投管理页
@@ -100,7 +103,8 @@ class TestScheduledPushing():
         # 获取界面数据结果
         status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_table_status()
         # 校验
-        assert status == "已投放"
+        # TODO: 由于Linux机器的时间与现实时间差了8个小时，因此我们创建的新闻都是已过期状态，后续如果校正机器的时间，状态也需要修改
+        assert status == "已投放:\n已过期"
 
     def teardown(self):
         self.driver.quit()
