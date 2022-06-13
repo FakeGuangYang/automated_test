@@ -43,11 +43,11 @@ class TestScheduledPushing():
     def test_add_modal(self, cids, oid, channel_value, location, weight, remark):
         # 进入定投管理页
         self.driver.get(url)
-        sleep(10)
+        sleep(5)
         # 做添加数据操作
         scheduled_pushing_page.ScheduledPushingScenarios(self.driver).add_modal(cids, oid, channel_value, location,
                                                                                 weight, remark)
-        sleep(10)
+        sleep(5)
         # 获取界面数据结果
         content_type = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_table_content_type()
         table_oid = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_table_oid()
@@ -67,10 +67,10 @@ class TestScheduledPushing():
     def test_modify_modal(self, new_remark):
         # 进入定投管理页
         self.driver.get(url)
-        sleep(10)
+        sleep(5)
         # 做编辑数据操作，仅修改备注
         scheduled_pushing_page.ScheduledPushingScenarios(self.driver).modify_modal(new_remark)
-        sleep(10)
+        sleep(5)
         # 获取界面数据结果
         table_remark = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_table_remark()
         status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_table_status()
@@ -81,10 +81,10 @@ class TestScheduledPushing():
     def test_stop_delivery(self):
         # 进入定投管理页
         self.driver.get(url)
-        sleep(10)
+        sleep(5)
         # 做取消投放操作
         scheduled_pushing_page.ScheduledPushingScenarios(self.driver).data_delivery()
-        sleep(10)
+        sleep(5)
         # 获取界面数据结果
         status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_table_status()
         # 校验
@@ -93,10 +93,10 @@ class TestScheduledPushing():
     def test_continue_delivery(self):
         # 进入定投管理页
         self.driver.get(url)
-        sleep(10)
+        sleep(5)
         # 做投放操作
         scheduled_pushing_page.ScheduledPushingScenarios(self.driver).data_delivery()
-        sleep(10)
+        sleep(5)
         # 获取界面数据结果
         status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_table_status()
         # 校验

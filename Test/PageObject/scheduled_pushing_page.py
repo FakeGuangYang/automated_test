@@ -92,6 +92,7 @@ class ScheduledPushing(object):
     # "投放时间输入框"元素
     def find_delivery_time(self):
         ele = self.driver.find_element(By.ID, 'delivery_time')
+        print("page_source: ", self.driver.page_source)
         return ele
 
     # "开始时间小时"元素
@@ -302,12 +303,14 @@ class ScheduledPushingOper(object):
     # 输入结束小时
     def input_end_time_hour(self):
         hour = Select(self.scheduled_pushing_page.find_start_hour_input()).first_selected_option.text
+        print("hour: ", hour)
         Select(self.scheduled_pushing_page.find_end_hour_input()).select_by_value(hour)
 
     # 输入结束分钟
     def input_end_time_minute(self):
         minute = Select(self.scheduled_pushing_page.find_start_minute_input()).first_selected_option.text
         minute = str(int(minute) + 5)
+        print("minute: ", minute)
         Select(self.scheduled_pushing_page.find_end_minute_input()).select_by_value(minute)
 
     # 点击保存按钮
@@ -372,8 +375,9 @@ class ScheduledPushingScenarios(object):
         self.scheduled_pushing_oper.input_weight(weight)
         self.scheduled_pushing_oper.input_remark(remark)
         self.scheduled_pushing_oper.click_delivery_time()
-        sleep(5)
+        sleep(3)
         self.scheduled_pushing_oper.input_end_time_hour()
+        sleep(3)
         self.scheduled_pushing_oper.input_end_time_minute()
         self.scheduled_pushing_oper.click_save_button()
 
