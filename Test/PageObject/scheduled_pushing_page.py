@@ -15,7 +15,7 @@ from time import sleep
 class ScheduledPushing(object):
     def __init__(self, driver):
         self.driver = driver
-        self.oid = parse_csv("Data/test_add_modal.csv")[0][1]
+        self.oid = parse_csv("Data/test_news_add_modal.csv")[0][1]
 
     """
     以下为定投管理页面中的元素
@@ -49,7 +49,7 @@ class ScheduledPushing(object):
     # "搜索按钮"元素
     def find_search_content_button(self):
         ele = self.driver.find_element(By.ID, 'search_content')
-        return
+        return ele
 
     # "添加按钮"元素
     def find_add_modal_button(self):
@@ -132,6 +132,11 @@ class ScheduledPushing(object):
         ele = self.driver.find_element(By.CLASS_NAME, 'cancelBtn btn btn-sm btn-default')
         return ele
 
+    # "取消按钮"元素
+    def find_feed_uid_input(self):
+        ele = self.driver.find_element(By.ID, 'changeUid1')
+        return ele
+
     """
     以下为点击[添加]按钮后弹窗中"投放位置"卡片中的元素
     """
@@ -185,7 +190,7 @@ class ScheduledPushing(object):
         return ele
 
     """
-    以下为用于验证页面的元素
+    以下为新闻定投列表数据元素
     """
 
     # "数据内容类型"元素
@@ -233,6 +238,45 @@ class ScheduledPushing(object):
         ele = self.driver.find_element(By.XPATH, '//*[@id="layui-layer4"]/div')
         return ele
 
+    """
+    以下为音频定投列表数据元素
+    """
+
+    # "投放uid"元素
+    def find_feed_uid(self):
+        ele = self.driver.find_element(By.XPATH, '//*[@id="list_table"]/tbody/tr[1]/td[1]')
+        return ele
+
+    # "音频标题"元素
+    def find_audio_title(self):
+        ele = self.driver.find_element(By.XPATH, '//*[@id="list_table"]/tbody/tr[1]/td[2]')
+        return ele
+
+    # "投放位置"元素
+    def find_audio_delivery_position(self):
+        ele = self.driver.find_element(By.XPATH, '//*[@id="list_table"]/tbody/tr[1]/td[6]')
+        return ele
+
+    # "备注"元素
+    def find_audio_remark(self):
+        ele = self.driver.find_element(By.XPATH, '//*[@id="list_table"]/tbody/tr[1]/td[7]')
+        return ele
+
+    # "投放位置"元素
+    def find_audio_status(self):
+        ele = self.driver.find_element(By.XPATH, '//*[@id="list_table"]/tbody/tr[1]/td[8]')
+        return ele
+
+    # "投放/取消投放按钮"元素
+    def find_audio_delivery_button(self):
+        ele = self.driver.find_element(By.XPATH, '//*[@id="list_table"]/tbody/tr[1]/td[10]/div/button[1]')
+        return ele
+
+    # "编辑按钮"元素
+    def find_audio_edit_button(self):
+        ele = self.driver.find_element(By.XPATH, '//*[@id="list_table"]/tbody/tr[1]/td[10]/div/button[2]')
+        return ele
+
 
 # 定投管理页操作
 class ScheduledPushingOper(object):
@@ -273,6 +317,15 @@ class ScheduledPushingOper(object):
         self.scheduled_pushing_page.find_new_oid_input().clear()
         self.scheduled_pushing_page.find_new_oid_input().send_keys(Keys.CONTROL, 'v')
 
+    # 输入投放feed_uid
+    def input_new_uid(self, uid):
+        self.scheduled_pushing_page.find_cids_input().clear()
+        self.scheduled_pushing_page.find_cids_input().send_keys(uid)
+        self.scheduled_pushing_page.find_cids_input().send_keys(Keys.CONTROL, 'a')
+        self.scheduled_pushing_page.find_cids_input().send_keys(Keys.CONTROL, 'x')
+        self.scheduled_pushing_page.find_feed_uid_input().clear()
+        self.scheduled_pushing_page.find_feed_uid_input().send_keys(Keys.CONTROL, 'v')
+
     # 选择投放频道
     # 常用投放频道：{"首页": 1, "推荐": 13557}
     def select_channel(self, channel_value):
@@ -292,7 +345,7 @@ class ScheduledPushingOper(object):
     def input_remark(self, remark):
         self.scheduled_pushing_page.find_remark_input().clear()
         # 为了编辑的时候清除备注后能再次输入新备注，因此设置2s的停顿
-        sleep(2)
+        sleep(3)
         self.scheduled_pushing_page.find_remark_input().send_keys(remark)
 
     # 点击投放时间，打开日历
@@ -302,14 +355,12 @@ class ScheduledPushingOper(object):
     # 输入结束小时
     def input_end_time_hour(self):
         hour = Select(self.scheduled_pushing_page.find_start_hour_input()).first_selected_option.text
-        print("hour: ", hour)
         Select(self.scheduled_pushing_page.find_end_hour_input()).select_by_value(hour)
 
     # 输入结束分钟
     def input_end_time_minute(self):
         minute = Select(self.scheduled_pushing_page.find_start_minute_input()).first_selected_option.text
-        minute = str(int(minute) + 5)
-        print("minute: ", minute)
+        minute = str(int(minute) + 3)
         Select(self.scheduled_pushing_page.find_end_minute_input()).select_by_value(minute)
 
     # 点击保存按钮
@@ -323,6 +374,22 @@ class ScheduledPushingOper(object):
     # 点击编辑按钮
     def click_table_edit_button(self):
         return self.scheduled_pushing_page.find_table_edit_button().click()
+
+    # 输入操作人
+    def input_operator(self):
+        self.scheduled_pushing_page.find_operator().send_keys("guangyang219579")
+
+    # 点击搜索按钮
+    def click_search_content_button(self):
+        return self.scheduled_pushing_page.find_search_content_button().click()
+
+    # 点击投放/取消投放按钮
+    def click_audio_delivery_button(self):
+        return self.scheduled_pushing_page.find_audio_delivery_button().click()
+
+    # 点击编辑按钮
+    def click_audio_edit_button(self):
+        return self.scheduled_pushing_page.find_audio_edit_button().click()
 
     """
     以下操作用于验证操作结果是否正确
@@ -356,14 +423,38 @@ class ScheduledPushingOper(object):
     def get_success_toast(self):
         return self.scheduled_pushing_page.find_success_toast().text
 
+    # 取数据投放uid列内容
+    def get_audio_uid(self):
+        return self.scheduled_pushing_page.find_feed_uid().text
+
+    # 取数据音频标题列内容
+    def get_audio_title(self):
+        return self.scheduled_pushing_page.find_audio_title().text
+
+    # 取数据投放位置列内容
+    def get_audio_delivery_position(self):
+        return self.scheduled_pushing_page.find_audio_delivery_position().text
+
+    # 取数据备注列内容
+    def get_audio_remark(self):
+        return self.scheduled_pushing_page.find_audio_remark().text
+
+    # 取数据状态列内容
+    def get_audio_status(self):
+        return self.scheduled_pushing_page.find_audio_status().text
+
 
 # 定投管理场景
 class ScheduledPushingScenarios(object):
     def __init__(self, driver):
         self.scheduled_pushing_oper = ScheduledPushingOper(driver)
 
+    """
+    以下为新闻定投页场景
+    """
+
     # 增加一条新数据
-    def add_modal(self, cids, oid, channel_value, location, weight, remark):
+    def news_add_modal(self, cids, oid, channel_value, location, weight, remark):
         self.scheduled_pushing_oper.click_add_modal_button()
         sleep(5)
         self.scheduled_pushing_oper.click_cids_label()
@@ -381,12 +472,54 @@ class ScheduledPushingScenarios(object):
         self.scheduled_pushing_oper.click_save_button()
 
     # 编辑之前新增的数据，只改备注
-    def modify_modal(self, remark):
+    def news_modify_modal(self, remark):
         self.scheduled_pushing_oper.click_table_edit_button()
         sleep(5)
         self.scheduled_pushing_oper.input_remark(remark)
         self.scheduled_pushing_oper.click_save_button()
 
     # 数据投放/取消投放
-    def data_delivery(self):
+    def news_data_delivery(self):
         self.scheduled_pushing_oper.click_table_delivery_button()
+
+    """
+    以下为音频定投页场景
+    """
+
+    # 增加一条新数据
+    def audio_add_modal(self, cids, uid, channel_value, location, weight, remark):
+        self.scheduled_pushing_oper.click_add_modal_button()
+        sleep(5)
+        self.scheduled_pushing_oper.click_cids_label()
+        self.scheduled_pushing_oper.input_new_uid(uid)
+        self.scheduled_pushing_oper.input_cids(cids)
+        self.scheduled_pushing_oper.select_channel(channel_value)
+        self.scheduled_pushing_oper.input_location(location)
+        self.scheduled_pushing_oper.input_weight(weight)
+        self.scheduled_pushing_oper.input_remark(remark)
+        self.scheduled_pushing_oper.click_delivery_time()
+        sleep(3)
+        self.scheduled_pushing_oper.input_end_time_hour()
+        sleep(3)
+        self.scheduled_pushing_oper.input_end_time_minute()
+        self.scheduled_pushing_oper.click_save_button()
+        sleep(5)
+        self.scheduled_pushing_oper.input_operator()
+        self.scheduled_pushing_oper.click_search_content_button()
+
+    # 编辑之前新增的数据，只改备注
+    def audio_modify_modal(self, remark):
+        self.scheduled_pushing_oper.input_operator()
+        self.scheduled_pushing_oper.click_search_content_button()
+        sleep(3)
+        self.scheduled_pushing_oper.click_audio_edit_button()
+        sleep(3)
+        self.scheduled_pushing_oper.input_remark(remark)
+        self.scheduled_pushing_oper.click_save_button()
+
+    # 数据投放/取消投放
+    def audio_data_delivery(self):
+        self.scheduled_pushing_oper.input_operator()
+        self.scheduled_pushing_oper.click_search_content_button()
+        sleep(3)
+        self.scheduled_pushing_oper.click_audio_delivery_button()
