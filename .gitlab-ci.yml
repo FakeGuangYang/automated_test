@@ -3,7 +3,8 @@ image: joyzoursky/python-chromedriver:latest
 
 stages:
   - build
-  - test
+  - login
+  - scheduled_pushing
   - deploy
 
 before_script:
@@ -16,6 +17,7 @@ before_script:
   - echo "Automated test starting..."
 
 job_login_page:
+  stage: login
   script:
     - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
   only:
@@ -25,8 +27,9 @@ job_login_page:
     - smc-runner
 
 job_scheduled_pushing_page:
+  stage: scheduled_pushing
   script:
-    - pytest "Test/TestCase/test_scheduled_pushing.py" --alluredir=Report/report
+    - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
   only:
     - master
   # 在Gitlab运行时需要加下面的tag才能被捕捉到

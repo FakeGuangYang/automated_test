@@ -24,13 +24,13 @@ modify_modal_data = parse_csv("Data/test_modify_modal.csv")
 login_url = "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com/operation/ssoValidate?returnUrl=/"
 # 定投管理页url
 host = parse_yml("Config/login.yml", 'websites', 'host')
-url = "http://" + host + "/operation/delivery/toTargetedDeliveryList"
+news = "http://" + host + "/operation/delivery/toTargetedDeliveryList?type=news"
 # 登录信息
 username = parse_yml("Config/login.yml", 'loginInfo', 'username')
 password = parse_yml("Config/login.yml", 'loginInfo', 'password')
 
 
-class TestScheduledPushing():
+class TestNewsScheduledPushing():
     def setup(self):
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.maximize_window()
@@ -42,7 +42,7 @@ class TestScheduledPushing():
     @pytest.mark.parametrize(("cids", "oid", "channel_value", "location", "weight", "remark"), add_modal_data)
     def test_add_modal(self, cids, oid, channel_value, location, weight, remark):
         # 进入定投管理页
-        self.driver.get(url)
+        self.driver.get(news)
         sleep(5)
         # 做添加数据操作
         scheduled_pushing_page.ScheduledPushingScenarios(self.driver).add_modal(cids, oid, channel_value, location,
@@ -67,7 +67,7 @@ class TestScheduledPushing():
     @pytest.mark.parametrize("new_remark", modify_modal_data[0])
     def test_modify_modal(self, new_remark):
         # 进入定投管理页
-        self.driver.get(url)
+        self.driver.get(news)
         sleep(5)
         # 做编辑数据操作，仅修改备注
         scheduled_pushing_page.ScheduledPushingScenarios(self.driver).modify_modal(new_remark)
@@ -82,7 +82,7 @@ class TestScheduledPushing():
 
     def test_stop_delivery(self):
         # 进入定投管理页
-        self.driver.get(url)
+        self.driver.get(news)
         sleep(5)
         # 做取消投放操作
         scheduled_pushing_page.ScheduledPushingScenarios(self.driver).data_delivery()
@@ -95,7 +95,7 @@ class TestScheduledPushing():
 
     def test_continue_delivery(self):
         # 进入定投管理页
-        self.driver.get(url)
+        self.driver.get(news)
         sleep(5)
         # 做投放操作
         scheduled_pushing_page.ScheduledPushingScenarios(self.driver).data_delivery()
