@@ -282,7 +282,7 @@ class ScheduledPushing(object):
 class ScheduledPushingOper(object):
     def __init__(self, driver):
         self.scheduled_pushing_page = ScheduledPushing(driver)
-        self.wait = WebDriverWait(driver, 50)
+        self.wait = WebDriverWait(driver, 100)
 
     """
     以下操作用于场景中，模拟用户操作
