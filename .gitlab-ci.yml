@@ -3,7 +3,7 @@ image: joyzoursky/python-chromedriver:latest
 
 stages:
   - build
-#  - login
+  - login
   - scheduled_pushing
   - deploy
 
