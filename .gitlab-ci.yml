@@ -3,7 +3,7 @@ image: joyzoursky/python-chromedriver:latest
 
 stages:
   - build
-  - login
+#  - login
   - scheduled_pushing
   - deploy
 
@@ -16,15 +16,15 @@ before_script:
   - echo "nameserver  10.2.166.106" > /etc/resolv.conf
   - echo "Automated test starting..."
 
-job_login_page:
-  stage: login
-  script:
-    - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
-  only:
-    - dev
-  # 在Gitlab运行时需要加下面的tag才能被捕捉到
-  tags:
-    - smc-runner
+#job_login_page:
+#  stage: login
+#  script:
+#    - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
+#  only:
+#    - dev
+#  # 在Gitlab运行时需要加下面的tag才能被捕捉到
+#  tags:
+#    - smc-runner
 
 #job_scheduled_pushing_page_news:
 #  stage: scheduled_pushing
