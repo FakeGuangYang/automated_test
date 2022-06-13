@@ -92,7 +92,6 @@ class ScheduledPushing(object):
     # "投放时间输入框"元素
     def find_delivery_time(self):
         ele = self.driver.find_element(By.ID, 'delivery_time')
-        print("page_source: ", self.driver.page_source)
         return ele
 
     # "开始时间小时"元素

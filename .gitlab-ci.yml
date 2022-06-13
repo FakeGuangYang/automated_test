@@ -8,15 +8,25 @@ stages:
 
 before_script:
   - python --version
+  - echo $(date +%F%n%T)
   # 使用 https://pypi.tuna.tsinghua.edu.cn/simple 源以下载更快
   - pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
   # 将nameserver改为内网环境来访问管理平台
   - echo "nameserver  10.2.166.106" > /etc/resolv.conf
   - echo "Automated test starting..."
 
-job_login:
+job_login_page:
   script:
-    - pytest --alluredir=Report/report
+    - pytest "test_login.py" --alluredir=Report/report
+  only:
+    - master
+  # 在Gitlab运行时需要加下面的tag才能被捕捉到
+  tags:
+    - smc-runner
+
+job_scheduled_pushing_page:
+  script:
+    - pytest "test_scheduled_pushing.py" --alluredir=Report/report
   only:
     - master
   # 在Gitlab运行时需要加下面的tag才能被捕捉到
