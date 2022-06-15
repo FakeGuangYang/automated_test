@@ -15,7 +15,7 @@ before_script:
   - pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
   # 将nameserver改为内网环境来访问管理平台
   - echo "nameserver  10.2.166.106" > /etc/resolv.conf
-  - echo "Automated test starting..."
+  - echo "Test starting..."
 
 job_login_page:
   stage: login
