@@ -3,7 +3,7 @@ image: joyzoursky/python-chromedriver:latest
 
 stages:
   - build
-#  - login
+  - login
   - scheduled_pushing
   - deploy
 
@@ -15,10 +15,10 @@ before_script:
   - pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
   # 将nameserver改为内网环境来访问管理平台
   - echo "nameserver  10.2.166.106" > /etc/resolv.conf
-  - echo "Test starting..."
+  - echo "Automated test starting..."
 
 job_login_page:
-  stage: scheduled_pushing
+  stage: login
   script:
     - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
   only:
