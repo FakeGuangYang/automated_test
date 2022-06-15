@@ -25,7 +25,7 @@ job_login_page:
     - dev
   # 在Gitlab运行时需要加下面的tag才能被捕捉到
   tags:
-    - smc-runner
+    - smc-check
 
 job_scheduled_pushing_page_news:
   stage: scheduled_pushing
@@ -36,7 +36,7 @@ job_scheduled_pushing_page_news:
     - dev
   # 在Gitlab运行时需要加下面的tag才能被捕捉到
   tags:
-    - smc-runner
+    - smc-check
 
 job_scheduled_pushing_page_audio:
   stage: scheduled_pushing
@@ -47,4 +47,4 @@ job_scheduled_pushing_page_audio:
     - dev
   # 在Gitlab运行时需要加下面的tag才能被捕捉到
   tags:
-    - smc-runner
+    - smc-check
