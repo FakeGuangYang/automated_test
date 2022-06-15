@@ -1,11 +1,17 @@
 # python-chromedriver镜像包，包含python3.9以及chromedriver
-image: joyzoursky/python-chromedriver:latest
+#image: joyzoursky/python-chromedriver:latest
 
 stages:
   - build
   - login
   - scheduled_pushing
   - deploy
+
+build:
+  stage: build
+  script:
+    - docker pull joyzoursky/python-chromedriver:latest
+    - docker run -d -P --name=python-chromedriver --shm-size="500M" joyzoursky/python-chromedriver
 
 before_script:
   - python --version
