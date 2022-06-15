@@ -9,6 +9,7 @@ stages:
 
 before_script:
   - python --version
+  - df -h
   - echo $(date +%F%n%T)
   # 使用 https://pypi.tuna.tsinghua.edu.cn/simple 源以下载更快
   - pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
