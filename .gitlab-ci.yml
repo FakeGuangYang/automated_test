@@ -12,9 +12,6 @@ build:
   image: joyzoursky/python-chromedriver:latest
   script:
     - df -h
-    - docker run -d -P --name=hub --shm-size="500M" selenium/hub
-    - echo "-----------------------------------------------------"
-    - df -h
   only:
     - master
     - dev
