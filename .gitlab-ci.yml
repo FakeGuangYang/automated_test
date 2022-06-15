@@ -3,7 +3,7 @@ image: joyzoursky/python-chromedriver:latest
 
 stages:
   - build
-  - login
+#  - login
   - scheduled_pushing
   - deploy
 
@@ -18,7 +18,7 @@ before_script:
   - echo "Test starting..."
 
 job_login_page:
-  stage: login
+  stage: scheduled_pushing
   script:
     - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
   only:
