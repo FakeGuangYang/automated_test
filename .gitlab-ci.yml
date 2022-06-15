@@ -15,6 +15,12 @@ build:
     - docker run -d -P --name=hub --shm-size="500M" selenium/hub
     - echo "-----------------------------------------------------"
     - df -h
+  only:
+    - master
+    - dev
+  # 在Gitlab运行时需要加下面的tag才能被捕捉到
+  tags:
+    - smc-check
 
 before_script:
   - python --version
