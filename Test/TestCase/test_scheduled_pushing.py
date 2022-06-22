@@ -18,18 +18,18 @@ chrome_options.add_argument('--headless')
 chrome_options.add_argument('blink-settings=imagesEnabled=false')
 
 # 引用测试数据
-add_news_modal_data = parse_csv("Data/test_news_add_modal.csv")
-add_audio_modal_data = parse_csv("Data/test_audio_add_modal.csv")
-modify_modal_data = parse_csv("Data/test_modify_modal.csv")
+add_news_modal_data = parse_csv("../../Data/test_news_add_modal.csv")
+add_audio_modal_data = parse_csv("../../Data/test_audio_add_modal.csv")
+modify_modal_data = parse_csv("../../Data/test_modify_modal.csv")
 # 登录页url
-login_url = "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com/operation/ssoValidate?returnUrl=/"
+login_url = "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com:10020/operation/ssoValidate?returnUrl=/"
 # 定投管理页url
-host = parse_yml("Config/login.yml", 'websites', 'host')
+host = parse_yml("../../Config/login.yml", 'websites', 'host')
 news = "http://" + host + "/operation/delivery/toTargetedDeliveryList?type=news"
 audio = "http://" + host + "/operation/delivery/toTargetedDeliveryList?type=audio"
 # 登录信息
-username = parse_yml("Config/login.yml", 'loginInfo', 'username')
-password = parse_yml("Config/login.yml", 'loginInfo', 'password')
+username = parse_yml("../../Config/login.yml", 'loginInfo', 'username')
+password = parse_yml("../../Config/login.yml", 'loginInfo', 'password')
 
 
 class TestNewsScheduledPushing():
