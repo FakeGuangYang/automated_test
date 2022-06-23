@@ -29,7 +29,7 @@ password = parse_yml("Config/login.yml", 'loginInfo', 'password')
 
 class TestNewsScheduledPushing():
     def setup(self):
-        self.driver = webdriver.Chrome(chrome_options())
+        self.driver = webdriver.Chrome(options=chrome_options())
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.driver.get(login_url)
@@ -109,7 +109,7 @@ class TestNewsScheduledPushing():
 
 class TestAudioScheduledPushing():
     def setup(self):
-        self.driver = webdriver.Chrome(chrome_options())
+        self.driver = webdriver.Chrome(options=chrome_options())
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.driver.get(login_url)
