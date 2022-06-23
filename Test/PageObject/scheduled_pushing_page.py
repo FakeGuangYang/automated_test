@@ -9,13 +9,14 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.keys import Keys
 from Common.parse_csv import parse_csv
 from time import sleep
+from deprecated.sphinx import deprecated
 
 
 # 定投管理页对象
-class ScheduledPushing(object):
+class ScheduledPushingPage(object):
     def __init__(self, driver):
         self.driver = driver
-        self.oid = parse_csv("../../Data/test_news_add_modal.csv")[0][1]
+        self.oid = parse_csv("Data/test_news_add_modal.csv")[0][1]
 
     """
     以下为定投管理页面中的元素
@@ -90,11 +91,12 @@ class ScheduledPushing(object):
         return ele
 
     # "投放时间输入框"元素
-    def find_delivery_time(self):
+    def find_delivery_time_input(self):
         ele = self.driver.find_element(By.ID, 'delivery_time')
         return ele
 
     # "开始时间小时"元素
+    @deprecated(version='1.0', reason="使用新方式输入投放时间")
     def find_start_hour_input(self):
         ele = self.driver.find_element(By.XPATH,
                                        '//*[@class="calendar left"]/*[@class="daterangepicker_input"]/'
@@ -102,6 +104,7 @@ class ScheduledPushing(object):
         return ele
 
     # "开始时间分钟"元素
+    @deprecated(version='1.0', reason="使用新方式输入投放时间")
     def find_start_minute_input(self):
         ele = self.driver.find_element(By.XPATH,
                                        '//*[@class="calendar left"]/*[@class="daterangepicker_input"]/'
@@ -109,6 +112,7 @@ class ScheduledPushing(object):
         return ele
 
     # "结束时间小时"元素
+    @deprecated(version='1.0', reason="使用新方式输入投放时间")
     def find_end_hour_input(self):
         ele = self.driver.find_element(By.XPATH,
                                        '//*[@class="calendar right"]/*[@class="daterangepicker_input"]/'
@@ -116,6 +120,7 @@ class ScheduledPushing(object):
         return ele
 
     # "结束时间分钟"元素
+    @deprecated(version='1.0', reason="使用新方式输入投放时间")
     def find_end_minute_input(self):
         ele = self.driver.find_element(By.XPATH,
                                        '//*[@class="calendar right"]/*[@class="daterangepicker_input"]/'
@@ -281,7 +286,7 @@ class ScheduledPushing(object):
 # 定投管理页操作
 class ScheduledPushingOper(object):
     def __init__(self, driver):
-        self.scheduled_pushing_page = ScheduledPushing(driver)
+        self.scheduled_pushing_page = ScheduledPushingPage(driver)
         self.wait = WebDriverWait(driver, 100)
 
     """
@@ -344,23 +349,26 @@ class ScheduledPushingOper(object):
     # 输入备注
     def input_remark(self, remark):
         self.scheduled_pushing_page.find_remark_input().clear()
-        # 为了编辑的时候清除备注后能再次输入新备注，因此设置2s的停顿
+        # 为了编辑的时候清除备注后能再次输入新备注，因此设置3s的停顿
         sleep(3)
         self.scheduled_pushing_page.find_remark_input().send_keys(remark)
 
-    # 点击投放时间，打开日历
-    def click_delivery_time(self):
-        self.scheduled_pushing_page.find_delivery_time().click()
+    # 输入投放时间
+    def input_delivery_time(self, delivery_time):
+        self.scheduled_pushing_page.find_delivery_time_input().clear()
+        self.scheduled_pushing_page.find_delivery_time_input().send_keys(delivery_time)
 
     # 输入结束小时
+    @deprecated(version='1.0', reason="使用新方式输入投放时间")
     def input_end_time_hour(self):
         hour = Select(self.scheduled_pushing_page.find_start_hour_input()).first_selected_option.text
         Select(self.scheduled_pushing_page.find_end_hour_input()).select_by_value(hour)
 
     # 输入结束分钟
+    @deprecated(version='1.0', reason="使用新方式输入投放时间")
     def input_end_time_minute(self):
         minute = Select(self.scheduled_pushing_page.find_start_minute_input()).first_selected_option.text
-        minute = str(int(minute) + 3)
+        minute = str(int(minute) + 5)
         Select(self.scheduled_pushing_page.find_end_minute_input()).select_by_value(minute)
 
     # 点击保存按钮
@@ -454,7 +462,7 @@ class ScheduledPushingScenarios(object):
     """
 
     # 增加一条新数据
-    def news_add_modal(self, cids, oid, channel_value, location, weight, remark):
+    def news_add_modal(self, cids, oid, channel_value, location, weight, remark, delivery_time):
         self.scheduled_pushing_oper.click_add_modal_button()
         sleep(5)
         self.scheduled_pushing_oper.click_cids_label()
@@ -464,11 +472,8 @@ class ScheduledPushingScenarios(object):
         self.scheduled_pushing_oper.input_location(location)
         self.scheduled_pushing_oper.input_weight(weight)
         self.scheduled_pushing_oper.input_remark(remark)
-        self.scheduled_pushing_oper.click_delivery_time()
+        self.scheduled_pushing_oper.input_delivery_time(delivery_time)
         sleep(3)
-        self.scheduled_pushing_oper.input_end_time_hour()
-        sleep(3)
-        self.scheduled_pushing_oper.input_end_time_minute()
         self.scheduled_pushing_oper.click_save_button()
 
     # 编辑之前新增的数据，只改备注
@@ -487,21 +492,18 @@ class ScheduledPushingScenarios(object):
     """
 
     # 增加一条新数据
-    def audio_add_modal(self, cids, uid, channel_value, location, weight, remark):
+    def audio_add_modal(self, cids, uid, channel_value, location, weight, remark, delivery_time):
         self.scheduled_pushing_oper.click_add_modal_button()
-        sleep(10)
+        sleep(5)
         self.scheduled_pushing_oper.click_cids_label()
         self.scheduled_pushing_oper.input_new_uid(uid)
         self.scheduled_pushing_oper.input_cids(cids)
-        self.scheduled_pushing_oper.select_channel(channel_value)
         self.scheduled_pushing_oper.input_location(location)
+        self.scheduled_pushing_oper.select_channel(channel_value)
         self.scheduled_pushing_oper.input_weight(weight)
         self.scheduled_pushing_oper.input_remark(remark)
-        self.scheduled_pushing_oper.click_delivery_time()
+        self.scheduled_pushing_oper.input_delivery_time(delivery_time)
         sleep(3)
-        self.scheduled_pushing_oper.input_end_time_hour()
-        sleep(3)
-        self.scheduled_pushing_oper.input_end_time_minute()
         self.scheduled_pushing_oper.click_save_button()
         sleep(5)
         self.scheduled_pushing_oper.input_operator()
