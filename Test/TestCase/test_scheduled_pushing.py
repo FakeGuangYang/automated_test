@@ -13,9 +13,9 @@ from Common.chrome_options import chrome_options
 from time import sleep
 
 # 引用测试数据
-add_news_modal_data = parse_csv("Data/test_news_add_modal.csv")
-add_audio_modal_data = parse_csv("Data/test_audio_add_modal.csv")
-modify_modal_data = parse_csv("Data/test_modify_modal.csv")
+add_news_modal_data = parse_csv("Data/test_scheduled_pushing_news_add_modal.csv")
+add_audio_modal_data = parse_csv("Data/test_scheduled_pushing_audio_add_modal.csv")
+modify_modal_data = parse_csv("Data/test_scheduled_pushing_modify_modal.csv")
 # 登录页url
 login_url = parse_yml("Config/login.yml", 'websites', 'loginPage')
 # 定投管理页url
