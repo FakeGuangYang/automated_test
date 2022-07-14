@@ -49,3 +49,9 @@
 #   # 在Gitlab运行时需要加下面的tag才能被捕捉到
 #   tags:
 #     - smc-check
+
+staging:
+  stage: deploy
+  trigger:
+    project: guangyang219579/automated-test
+    branch: dev
