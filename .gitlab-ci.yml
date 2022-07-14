@@ -1,5 +1,5 @@
 # python-chromedriver镜像包，包含python3.9以及chromedriver
-# image: joyzoursky/python-chromedriver:latest
+image: joyzoursky/python-chromedriver:latest
 
 stages:
   - build
@@ -13,15 +13,15 @@ staging:
     project: guangyang219579/automated-test
     branch: master
 
-# before_script:
-#   - python --version
-#   - df -h
-#   - echo $(date +%F%n%T)
-#   # 使用 https://pypi.tuna.tsinghua.edu.cn/simple 源以下载更快
-#   - pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-#   # 将nameserver改为内网环境来访问管理平台
-#   - echo "nameserver  10.2.166.106" > /etc/resolv.conf
-#   - echo "Automated test starting..."
+before_script:
+  - python --version
+  - df -h
+  - echo $(date +%F%n%T)
+  # 使用 https://pypi.tuna.tsinghua.edu.cn/simple 源以下载更快
+  - pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+  # 将nameserver改为内网环境来访问管理平台
+  - echo "nameserver  10.2.166.106" > /etc/resolv.conf
+  - echo "Automated test starting..."
 
 job_login_page:
   stage: login
