@@ -23,7 +23,6 @@ job_login_page:
     - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
   only:
     - master
-    - dev
   # 在Gitlab运行时需要加下面的tag才能被捕捉到
   tags:
     - smc-check
@@ -34,7 +33,6 @@ job_login_page:
 #    - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
 #  only:
 #    - master
-#    - dev
 #  # 在Gitlab运行时需要加下面的tag才能被捕捉到
 #  tags:
 #    - smc-check
@@ -45,7 +43,6 @@ job_login_page:
 #    - pytest "Test/TestCase/test_scheduled_pushing.py::TestAudioScheduledPushing" --alluredir=Report/report
 #  only:
 #    - master
-#    - dev
 #  # 在Gitlab运行时需要加下面的tag才能被捕捉到
 #  tags:
 #    - smc-check
