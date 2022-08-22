@@ -4,7 +4,7 @@ image: joyzoursky/python-chromedriver:latest
 stages:
   - build
   - login
-#  - scheduled_pushing
+  - scheduled_pushing
   - deploy
 
 before_script:
@@ -27,22 +27,22 @@ job_login_page:
   tags:
     - smc-check
 
-#job_scheduled_pushing_page_news:
-#  stage: scheduled_pushing
-#  script:
-#    - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
-#  only:
-#    - master
-#  # 在Gitlab运行时需要加下面的tag才能被捕捉到
-#  tags:
-#    - smc-check
-#
-#job_scheduled_pushing_page_audio:
-#  stage: scheduled_pushing
-#  script:
-#    - pytest "Test/TestCase/test_scheduled_pushing.py::TestAudioScheduledPushing" --alluredir=Report/report
-#  only:
-#    - master
-#  # 在Gitlab运行时需要加下面的tag才能被捕捉到
-#  tags:
-#    - smc-check
+job_scheduled_pushing_page_news:
+  stage: scheduled_pushing
+  script:
+    - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
+  only:
+    - master
+  # 在Gitlab运行时需要加下面的tag才能被捕捉到
+  tags:
+    - smc-check
+
+job_scheduled_pushing_page_audio:
+  stage: scheduled_pushing
+  script:
+    - pytest "Test/TestCase/test_scheduled_pushing.py::TestAudioScheduledPushing" --alluredir=Report/report
+  only:
+    - master
+  # 在Gitlab运行时需要加下面的tag才能被捕捉到
+  tags:
+    - smc-check
