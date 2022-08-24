@@ -179,4 +179,4 @@ class TestAudioScheduledPushing():
 
 
 if __name__ == "__main__":
-    pytest.main(['-s', 'test_scheduled_pushing.py::TestNewsScheduledPushing'])
+    pytest.main(['-s', 'test_scheduled_pushing.py'])
