@@ -5,6 +5,7 @@ stages:
   - build
   - login
   - scheduled_pushing
+  - hot_24_feed
   - deploy
 
 before_script:
@@ -22,7 +23,7 @@ job_login_page:
   script:
     - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
   only:
-    - master
+    - dev
   # 在Gitlab运行时需要加下面的tag才能被捕捉到
   tags:
     - smc-check
@@ -32,8 +33,7 @@ job_scheduled_pushing_page_news:
   script:
     - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
   only:
-    - master
-  # 在Gitlab运行时需要加下面的tag才能被捕捉到
+    - dev
   tags:
     - smc-check
 
@@ -42,7 +42,51 @@ job_scheduled_pushing_page_audio:
   script:
     - pytest "Test/TestCase/test_scheduled_pushing.py::TestAudioScheduledPushing" --alluredir=Report/report
   only:
-    - master
-  # 在Gitlab运行时需要加下面的tag才能被捕捉到
+    - dev
+  tags:
+    - smc-check
+
+job_hot_24_feed_page_text:
+  stage: hot_24_feed
+  script:
+    - pytest "Test/TestCase/test_hot_24_feed.py::TestTextHot24Feed" --alluredir=Report/report
+  only:
+    - dev
+  tags:
+    - smc-check
+
+job_hot_24_feed_page_pic:
+  stage: hot_24_feed
+  script:
+    - pytest "Test/TestCase/test_hot_24_feed.py::TestPicHot24Feed" --alluredir=Report/report
+  only:
+    - dev
+  tags:
+    - smc-check
+
+job_hot_24_feed_page_video:
+  stage: hot_24_feed
+  script:
+    - pytest "Test/TestCase/test_hot_24_feed.py::TestVideoHot24Feed" --alluredir=Report/report
+  only:
+    - dev
+  tags:
+    - smc-check
+
+job_hot_24_feed_page_link:
+  stage: hot_24_feed
+  script:
+    - pytest "Test/TestCase/test_hot_24_feed.py::TestLinkHot24Feed" --alluredir=Report/report
+  only:
+    - dev
+  tags:
+    - smc-check
+
+job_hot_24_feed_page_listen:
+  stage: hot_24_feed
+  script:
+    - pytest "Test/TestCase/test_hot_24_feed.py::TestListenHot24Feed" --alluredir=Report/report
+  only:
+    - dev
   tags:
     - smc-check
