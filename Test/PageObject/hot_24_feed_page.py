@@ -258,12 +258,15 @@ class Hot24FeedOper(object):
 
     # 点击[搜索]按钮
     def click_search_data_button(self):
-        self.hot_24_feed_page.find_search_data_button().click()
+        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
+                                                    self.hot_24_feed_page.find_search_data_button())
 
     # 点击[创建新消息]按钮
     def click_add_content_button(self):
-        self.hot_24_feed_page.find_add_content_button().click()
+        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
+                                                    self.hot_24_feed_page.find_add_content_button())
 
+    """
     # 点击[文字+图片]tab
     # 由于页面是用iframe嵌套的，故没有使用此操作
     def click_picli_tab(self):
@@ -288,6 +291,7 @@ class Hot24FeedOper(object):
     # 由于页面是用iframe嵌套的，故没有使用此操作
     def click_listenli_tab(self):
         self.hot_24_feed_page.find_listenli_tab().click()
+    """
 
     # 输入消息正文
     def input_content(self, content):
@@ -301,7 +305,8 @@ class Hot24FeedOper(object):
 
     # 输入显示时间
     def click_view_time_submit_button(self):
-        self.hot_24_feed_page.find_view_time_submit_button().click()
+        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
+                                                    self.hot_24_feed_page.find_view_time_submit_button())
 
     # 点击[高亮标识 - 无]选项
     def click_mark_mode_none(self):
@@ -309,7 +314,8 @@ class Hot24FeedOper(object):
 
     # 点击[高亮标识 - 推荐]选项
     def click_mark_mode_recommend(self):
-        self.hot_24_feed_page.find_mark_mode_recommend().click()
+        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
+                                                    self.hot_24_feed_page.find_mark_mode_recommend())
 
     # 点击搜狐视频直播呼起[高亮标识 - 推荐]选项
     def click_sohuvideo_mark_mode_recommend(self):
@@ -317,11 +323,13 @@ class Hot24FeedOper(object):
 
     # 点击[重要 - 否]选项
     def click_is_important_no(self):
-        self.hot_24_feed_page.find_is_important_no().click()
+        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
+                                                    self.hot_24_feed_page.find_is_important_no())
 
     # 点击文字+外链[重要 - 否]选项
     def click_link_is_important_no(self):
-        self.hot_24_feed_page.find_link_is_important_no().click()
+        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
+                                                    self.hot_24_feed_page.find_link_is_important_no())
 
     # 输入添加图片
     def input_pic(self, pic):
@@ -350,19 +358,23 @@ class Hot24FeedOper(object):
 
     # 点击协议地址自动获取
     def click_agreement(self):
-        self.hot_24_feed_page.find_agreement_input().click()
+        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
+                                                    self.hot_24_feed_page.find_agreement_input())
 
     # 点击[裁剪]按钮
     def click_cut_pic_button(self):
-        self.hot_24_feed_page.find_cut_pic_button().click()
+        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
+                                                    self.hot_24_feed_page.find_cut_pic_button())
 
     # 点击[保存]按钮
     def click_submit_button(self):
-        self.hot_24_feed_page.find_submit_button().click()
+        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
+                                                    self.hot_24_feed_page.find_submit_button())
 
     # 点击文字+图片[保存]按钮
     def click_pic_submit_button(self):
-        self.hot_24_feed_page.find_pic_submit_button().click()
+        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
+                                                    self.hot_24_feed_page.find_pic_submit_button())
 
     # 点击[撤回/发布]按钮
     def click_table_recall_button(self):
@@ -454,8 +466,10 @@ class Hot24FeedScenarios(object):
     def add_linkli(self, content, oid, view_time):
         self.hot_24_feed_oper.input_oid(oid)
         self.hot_24_feed_oper.input_content(content)
-        sleep(2)
+        # self.hot_24_feed_oper.scroll_window()
+        sleep(3)
         self.hot_24_feed_oper.click_cut_pic_button()
+        # self.hot_24_feed_oper.scroll_window()
         self.hot_24_feed_oper.click_mark_mode_recommend()
         sleep(3)
         self.hot_24_feed_oper.input_view_time(view_time)

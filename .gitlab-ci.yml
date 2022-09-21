@@ -55,38 +55,38 @@ job_hot_24_feed_page_text:
   tags:
     - smc-check
 
-job_hot_24_feed_page_pic:
-  stage: hot_24_feed
-  script:
-    - pytest "Test/TestCase/test_hot_24_feed.py::TestPicHot24Feed" --alluredir=Report/report
-  only:
-    - 24houor
-  tags:
-    - smc-check
-
-job_hot_24_feed_page_video:
-  stage: hot_24_feed
-  script:
-    - pytest "Test/TestCase/test_hot_24_feed.py::TestVideoHot24Feed" --alluredir=Report/report
-  only:
-    - 24houor
-  tags:
-    - smc-check
-
-job_hot_24_feed_page_link:
-  stage: hot_24_feed
-  script:
-    - pytest "Test/TestCase/test_hot_24_feed.py::TestLinkHot24Feed" --alluredir=Report/report
-  only:
-    - 24houor
-  tags:
-    - smc-check
-
-job_hot_24_feed_page_listen:
-  stage: hot_24_feed
-  script:
-    - pytest "Test/TestCase/test_hot_24_feed.py::TestListenHot24Feed" --alluredir=Report/report
-  only:
-    - 24houor
-  tags:
-    - smc-check
+#job_hot_24_feed_page_pic:
+#  stage: hot_24_feed
+#  script:
+#    - pytest "Test/TestCase/test_hot_24_feed.py::TestPicHot24Feed" --alluredir=Report/report
+#  only:
+#    - 24houor
+#  tags:
+#    - smc-check
+#
+#job_hot_24_feed_page_video:
+#  stage: hot_24_feed
+#  script:
+#    - pytest "Test/TestCase/test_hot_24_feed.py::TestVideoHot24Feed" --alluredir=Report/report
+#  only:
+#    - 24houor
+#  tags:
+#    - smc-check
+#
+#job_hot_24_feed_page_link:
+#  stage: hot_24_feed
+#  script:
+#    - pytest "Test/TestCase/test_hot_24_feed.py::TestLinkHot24Feed" --alluredir=Report/report
+#  only:
+#    - 24houor
+#  tags:
+#    - smc-check
+#
+#job_hot_24_feed_page_listen:
+#  stage: hot_24_feed
+#  script:
+#    - pytest "Test/TestCase/test_hot_24_feed.py::TestListenHot24Feed" --alluredir=Report/report
+#  only:
+#    - 24houor
+#  tags:
+#    - smc-check

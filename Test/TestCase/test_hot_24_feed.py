@@ -22,8 +22,8 @@ listenli_data = parse_csv("Data/test_add_listenli.csv")
 login_url = parse_yml("Config/login.yml", 'websites', 'loginPage')
 # 24小时feed页url
 host = parse_yml("Config/login.yml", 'websites', 'host')
-feed_url = "http://" + host + "/hotred/hot24feed/toHot24FeedList"
-page_url = "http://" + host + "/hotred/hot24feed/toSelectedPage?go="
+feed_url = "http://" + host + ":10510/testhotred/hot24feed/toHot24FeedList"
+page_url = "http://" + host + ":10510/testhotred/hot24feed/toSelectedPage?go="
 # 登录信息
 username = parse_yml("Config/login.yml", 'loginInfo', 'username')
 password = parse_yml("Config/login.yml", 'loginInfo', 'password')
@@ -102,7 +102,7 @@ class TestTextHot24Feed():
         assert important == "否"
 
     def test_recall_textli(self):
-        content_id = pd.read_csv("Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
+        content_id = pd.read_csv("../../Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -124,7 +124,7 @@ class TestTextHot24Feed():
         assert important == "否"
 
     def test_delete_textli(self):
-        content_id = pd.read_csv("Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
+        content_id = pd.read_csv("../../Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -176,10 +176,10 @@ class TestPicHot24Feed():
         # 将生成的新数据存到文件中以供后续使用
         content_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_id()
         data_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_id_attribute()
-        df = pd.read_csv("Data/test_add_picli.csv", delimiter=",")
+        df = pd.read_csv("../../Data/test_add_picli.csv", delimiter=",")
         df['content_id'] = content_id
         df['id'] = data_id
-        df.to_csv("Data/test_add_picli.csv", index=False, encoding="utf-8")
+        df.to_csv("../../Data/test_add_picli.csv", index=False, encoding="utf-8")
         # 获取页面数据结果
         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
@@ -192,8 +192,8 @@ class TestPicHot24Feed():
         assert important == "是"
 
     def test_edit_picli(self):
-        data_id = pd.read_csv("Data/test_add_picli.csv", delimiter=",").iloc[0, 4]
-        content_id = pd.read_csv("Data/test_add_picli.csv", delimiter=",").iloc[0, 3]
+        data_id = pd.read_csv("../../Data/test_add_picli.csv", delimiter=",").iloc[0, 4]
+        content_id = pd.read_csv("../../Data/test_add_picli.csv", delimiter=",").iloc[0, 3]
         # 进入当前id编辑页
         self.driver.get(page_url + page["文字+图片"] + "&id=" + str(data_id))
         sleep(1)
@@ -218,7 +218,7 @@ class TestPicHot24Feed():
         assert important == "否"
 
     def test_recall_picli(self):
-        content_id = pd.read_csv("Data/test_add_picli.csv", delimiter=",").iloc[0, 3]
+        content_id = pd.read_csv("../../Data/test_add_picli.csv", delimiter=",").iloc[0, 3]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -240,7 +240,7 @@ class TestPicHot24Feed():
         assert important == "否"
 
     def test_delete_picli(self):
-        content_id = pd.read_csv("Data/test_add_picli.csv", delimiter=",").iloc[0, 3]
+        content_id = pd.read_csv("../../Data/test_add_picli.csv", delimiter=",").iloc[0, 3]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -292,10 +292,10 @@ class TestVideoHot24Feed():
         # 将生成的新数据存到文件中以供后续使用
         content_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_id()
         data_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_id_attribute()
-        df = pd.read_csv("Data/test_add_videoli.csv", delimiter=",")
+        df = pd.read_csv("../../Data/test_add_videoli.csv", delimiter=",")
         df['content_id'] = content_id
         df['id'] = data_id
-        df.to_csv("Data/test_add_videoli.csv", index=False, encoding="utf-8")
+        df.to_csv("../../Data/test_add_videoli.csv", index=False, encoding="utf-8")
         # 获取页面数据结果
         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
@@ -308,8 +308,8 @@ class TestVideoHot24Feed():
         assert important == "是"
 
     def test_edit_videoli(self):
-        data_id = pd.read_csv("Data/test_add_videoli.csv", delimiter=",").iloc[0, 4]
-        content_id = pd.read_csv("Data/test_add_videoli.csv", delimiter=",").iloc[0, 3]
+        data_id = pd.read_csv("../../Data/test_add_videoli.csv", delimiter=",").iloc[0, 4]
+        content_id = pd.read_csv("../../Data/test_add_videoli.csv", delimiter=",").iloc[0, 3]
         # 进入当前id编辑页
         self.driver.get(page_url + page["文字+视频"] + "&id=" + str(data_id))
         sleep(1)
@@ -334,7 +334,7 @@ class TestVideoHot24Feed():
         assert important == "否"
 
     def test_recall_videoli(self):
-        content_id = pd.read_csv("Data/test_add_videoli.csv", delimiter=",").iloc[0, 3]
+        content_id = pd.read_csv("../../Data/test_add_videoli.csv", delimiter=",").iloc[0, 3]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -356,7 +356,7 @@ class TestVideoHot24Feed():
         assert important == "否"
 
     def test_delete_videoli(self):
-        content_id = pd.read_csv("Data/test_add_videoli.csv", delimiter=",").iloc[0, 3]
+        content_id = pd.read_csv("../../Data/test_add_videoli.csv", delimiter=",").iloc[0, 3]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -384,7 +384,7 @@ class TestVideoHot24Feed():
 # 文字+外链
 class TestLinkHot24Feed():
     def setup(self):
-        self.driver = webdriver.Chrome(options=chrome_options())
+        self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.driver.get(login_url)
@@ -398,36 +398,36 @@ class TestLinkHot24Feed():
         sleep(1)
         # 创建文字+外链消息
         hot_24_feed_page.Hot24FeedScenarios(self.driver).add_linkli(content, oid, view_time)
-        sleep(1)
-        # 进入24小时feed版本页
-        self.driver.get(feed_url)
-        sleep(2)
-        # 搜索新创建的消息
-        hot_24_feed_page.Hot24FeedScenarios(self.driver).search_new_data(status["发布"], feedtype["文字+外链"])
-        sleep(1)
-        # 将生成的新数据存到文件中以供后续使用
-        content_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_id()
-        data_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_id_attribute()
-        df = pd.read_csv("Data/test_add_linkli.csv", delimiter=",")
-        df['content_id'] = content_id
-        df['id'] = data_id
-        df.to_csv("Data/test_add_linkli.csv", index=False, encoding="utf-8")
-        # 获取页面数据结果
-        content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
-        table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
-        link_title = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_link_title()
-        data_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status()
-        important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
-        # 校验
-        assert content_type == "文字+外链"
-        assert table_content == "【一块钱一包的麻辣小鱼干，是不是足疗店退休的小鱼？】据了解，温泉鱼疗起源于土耳其，放在温泉水中的“鱼医生”多为淡红墨头鱼和大口小鲤，或者更为廉价的罗非鱼。至于大家都喜欢的零食小鱼干，使用的则多为产量更大，加工更方便的鳀鱼、银鱼或玉筋鱼等常规的食用种类。正常情况下，足疗店退休的“鱼医生”是不会出现在零食包装里的。"
-        assert link_title == "一块钱一包的麻辣小鱼干，是不是足疗店退休的小鱼？"
-        assert data_status == "发布"
-        assert important == "是"
+        # sleep(1)
+        # # 进入24小时feed版本页
+        # self.driver.get(feed_url)
+        # sleep(2)
+        # # 搜索新创建的消息
+        # hot_24_feed_page.Hot24FeedScenarios(self.driver).search_new_data(status["发布"], feedtype["文字+外链"])
+        # sleep(1)
+        # # 将生成的新数据存到文件中以供后续使用
+        # content_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_id()
+        # data_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_id_attribute()
+        # df = pd.read_csv("../../Data/test_add_linkli.csv", delimiter=",")
+        # df['content_id'] = content_id
+        # df['id'] = data_id
+        # df.to_csv("../../Data/test_add_linkli.csv", index=False, encoding="utf-8")
+        # # 获取页面数据结果
+        # content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
+        # table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
+        # link_title = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_link_title()
+        # data_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status()
+        # important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
+        # # 校验
+        # assert content_type == "文字+外链"
+        # assert table_content == "【一块钱一包的麻辣小鱼干，是不是足疗店退休的小鱼？】据了解，温泉鱼疗起源于土耳其，放在温泉水中的“鱼医生”多为淡红墨头鱼和大口小鲤，或者更为廉价的罗非鱼。至于大家都喜欢的零食小鱼干，使用的则多为产量更大，加工更方便的鳀鱼、银鱼或玉筋鱼等常规的食用种类。正常情况下，足疗店退休的“鱼医生”是不会出现在零食包装里的。"
+        # assert link_title == "一块钱一包的麻辣小鱼干，是不是足疗店退休的小鱼？"
+        # assert data_status == "发布"
+        # assert important == "是"
 
     def test_edit_linkli(self):
-        data_id = pd.read_csv("Data/test_add_linkli.csv", delimiter=",").iloc[0, 4]
-        content_id = pd.read_csv("Data/test_add_linkli.csv", delimiter=",").iloc[0, 3]
+        data_id = pd.read_csv("../../Data/test_add_linkli.csv", delimiter=",").iloc[0, 4]
+        content_id = pd.read_csv("../../Data/test_add_linkli.csv", delimiter=",").iloc[0, 3]
         # 进入当前id编辑页
         self.driver.get(page_url + page["文字+外链"] + "&id=" + str(data_id))
         sleep(2)
@@ -452,7 +452,7 @@ class TestLinkHot24Feed():
         assert important == "否"
 
     def test_recall_linkli(self):
-        content_id = pd.read_csv("Data/test_add_linkli.csv", delimiter=",").iloc[0, 3]
+        content_id = pd.read_csv("../../Data/test_add_linkli.csv", delimiter=",").iloc[0, 3]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -474,7 +474,7 @@ class TestLinkHot24Feed():
         assert important == "否"
 
     def test_delete_linkli(self):
-        content_id = pd.read_csv("Data/test_add_linkli.csv", delimiter=",").iloc[0, 3]
+        content_id = pd.read_csv("../../Data/test_add_linkli.csv", delimiter=",").iloc[0, 3]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -646,10 +646,10 @@ class TestListenHot24Feed():
         # 将生成的新数据存到文件中以供后续使用
         content_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_id()
         data_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_id_attribute()
-        df = pd.read_csv("Data/test_add_listenli.csv", delimiter=",")
+        df = pd.read_csv("../../Data/test_add_listenli.csv", delimiter=",")
         df['content_id'] = content_id
         df['id'] = data_id
-        df.to_csv("Data/test_add_listenli.csv", index=False, encoding="utf-8")
+        df.to_csv("../../Data/test_add_listenli.csv", index=False, encoding="utf-8")
         # 获取页面数据结果
         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
@@ -664,8 +664,8 @@ class TestListenHot24Feed():
         assert important == "是"
 
     def test_edit_listenli(self):
-        data_id = pd.read_csv("Data/test_add_listenli.csv", delimiter=",").iloc[0, 4]
-        content_id = pd.read_csv("Data/test_add_listenli.csv", delimiter=",").iloc[0, 3]
+        data_id = pd.read_csv("../../Data/test_add_listenli.csv", delimiter=",").iloc[0, 4]
+        content_id = pd.read_csv("../../Data/test_add_listenli.csv", delimiter=",").iloc[0, 3]
         # 进入当前id编辑页
         self.driver.get(page_url + page["真人播报"] + "&id=" + str(data_id))
         sleep(2)
@@ -690,7 +690,7 @@ class TestListenHot24Feed():
         assert important == "否"
 
     def test_recall_sohuvideoli(self):
-        content_id = pd.read_csv("Data/test_add_listenli.csv", delimiter=",").iloc[0, 3]
+        content_id = pd.read_csv("../../Data/test_add_listenli.csv", delimiter=",").iloc[0, 3]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -712,7 +712,7 @@ class TestListenHot24Feed():
         assert important == "否"
 
     def test_delete_linkli(self):
-        content_id = pd.read_csv("Data/test_add_listenli.csv", delimiter=",").iloc[0, 3]
+        content_id = pd.read_csv("../../Data/test_add_listenli.csv", delimiter=",").iloc[0, 3]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -738,4 +738,4 @@ class TestListenHot24Feed():
 
 
 if __name__ == "__main__":
-    pytest.main(['-s', 'test_hot_24_feed.py'])
+    pytest.main(['-s', 'test_hot_24_feed.py::TestTextHot24Feed'])
