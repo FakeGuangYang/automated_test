@@ -4,7 +4,7 @@ image: joyzoursky/python-chromedriver:latest
 stages:
   - build
   - login
-  - scheduled_pushing
+#  - scheduled_pushing
   - hot_24_feed
   - deploy
 
@@ -28,23 +28,23 @@ job_login_page:
   tags:
     - smc-check
 
-job_scheduled_pushing_page_news:
-  stage: scheduled_pushing
-  script:
-    - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
-  only:
-    - dev
-  tags:
-    - smc-check
-
-job_scheduled_pushing_page_audio:
-  stage: scheduled_pushing
-  script:
-    - pytest "Test/TestCase/test_scheduled_pushing.py::TestAudioScheduledPushing" --alluredir=Report/report
-  only:
-    - dev
-  tags:
-    - smc-check
+#job_scheduled_pushing_page_news:
+#  stage: scheduled_pushing
+#  script:
+#    - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
+#  only:
+#    - dev
+#  tags:
+#    - smc-check
+#
+#job_scheduled_pushing_page_audio:
+#  stage: scheduled_pushing
+#  script:
+#    - pytest "Test/TestCase/test_scheduled_pushing.py::TestAudioScheduledPushing" --alluredir=Report/report
+#  only:
+#    - dev
+#  tags:
+#    - smc-check
 
 job_hot_24_feed_page_text:
   stage: hot_24_feed

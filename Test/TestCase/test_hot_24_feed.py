@@ -17,14 +17,13 @@ textli_data = parse_csv("Data/test_add_textli.csv")
 picli_data = parse_csv("Data/test_add_picli.csv")
 videoli_data = parse_csv("Data/test_add_videoli.csv")
 linkli_data = parse_csv("Data/test_add_linkli.csv")
-sohuvideoli_data = parse_csv("Data/test_add_sohuvideoli.csv")
 listenli_data = parse_csv("Data/test_add_listenli.csv")
 # 登录页url
 login_url = parse_yml("Config/login.yml", 'websites', 'loginPage')
 # 24小时feed页url
 host = parse_yml("Config/login.yml", 'websites', 'host')
-feed_url = "http://" + host + "/testhotred/hot24feed/toHot24FeedList"
-page_url = "http://" + host + "/testhotred/hot24feed/toSelectedPage?go="
+feed_url = "http://" + host + "/hotred/hot24feed/toHot24FeedList"
+page_url = "http://" + host + "/hotred/hot24feed/toSelectedPage?go="
 # 登录信息
 username = parse_yml("Config/login.yml", 'loginInfo', 'username')
 password = parse_yml("Config/login.yml", 'loginInfo', 'password')
@@ -72,7 +71,7 @@ class TestTextHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "纯文字"
-        assert table_content == "【拜登下令对叙利亚境内与伊朗有关的目标进行空袭】据美国有线电视新闻网和美联社报道，当地时间8月23日，美国总统拜登下令对叙利亚境内与伊朗有关的目标进行空袭。"
+        assert table_content == "【19岁巴西女孩产下双胞胎，这对婴儿竟有两个不同的父亲】据《每日邮报》报道，一名19岁的巴西女孩称，她于去年产下一对双胞胎，但他们的父亲却并非同一个人。这种现象在科学上被称为“异父超级受精”。据说，世界上大约只有20个这样的案例。"
         assert data_status == "发布"
         assert important == "是"
 
@@ -98,7 +97,7 @@ class TestTextHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "纯文字"
-        assert table_content == "【拜登下令对叙利亚境内与伊朗有关的目标进行空袭】据美国有线电视新闻网和美联社报道，当地时间8月23日，美国总统拜登下令对叙利亚境内与伊朗有关的目标进行空袭。"
+        assert table_content == "【19岁巴西女孩产下双胞胎，这对婴儿竟有两个不同的父亲】据《每日邮报》报道，一名19岁的巴西女孩称，她于去年产下一对双胞胎，但他们的父亲却并非同一个人。这种现象在科学上被称为“异父超级受精”。据说，世界上大约只有20个这样的案例。"
         assert data_status == "发布"
         assert important == "否"
 
@@ -120,7 +119,7 @@ class TestTextHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "纯文字"
-        assert table_content == "【拜登下令对叙利亚境内与伊朗有关的目标进行空袭】据美国有线电视新闻网和美联社报道，当地时间8月23日，美国总统拜登下令对叙利亚境内与伊朗有关的目标进行空袭。"
+        assert table_content == "【19岁巴西女孩产下双胞胎，这对婴儿竟有两个不同的父亲】据《每日邮报》报道，一名19岁的巴西女孩称，她于去年产下一对双胞胎，但他们的父亲却并非同一个人。这种现象在科学上被称为“异父超级受精”。据说，世界上大约只有20个这样的案例。"
         assert data_status == "撤回"
         assert important == "否"
 
@@ -142,7 +141,7 @@ class TestTextHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "纯文字"
-        assert table_content == "【拜登下令对叙利亚境内与伊朗有关的目标进行空袭】据美国有线电视新闻网和美联社报道，当地时间8月23日，美国总统拜登下令对叙利亚境内与伊朗有关的目标进行空袭。"
+        assert table_content == "【19岁巴西女孩产下双胞胎，这对婴儿竟有两个不同的父亲】据《每日邮报》报道，一名19岁的巴西女孩称，她于去年产下一对双胞胎，但他们的父亲却并非同一个人。这种现象在科学上被称为“异父超级受精”。据说，世界上大约只有20个这样的案例。"
         assert data_status == "后台删除"
         assert important == "否"
 
@@ -188,7 +187,7 @@ class TestPicHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "文字+图片"
-        assert table_content == "【拜登下令对叙利亚境内与伊朗有关的目标进行空袭】据美国有线电视新闻网和美联社报道，当地时间8月23日，美国总统拜登下令对叙利亚境内与伊朗有关的目标进行空袭。"
+        assert table_content == "【荷兰一城市拟禁播肉类广告】据外媒报道，荷兰西部城市哈勒姆或将成为世界上第一个禁止在公共场所播放肉类广告的城市。政府希望借此减少肉类消费，进而达到大幅减少温室气体排放的目的。不过，这一提议引发了一些从业者的抱怨。"
         assert data_status == "发布"
         assert important == "是"
 
@@ -214,7 +213,7 @@ class TestPicHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "文字+图片"
-        assert table_content == "【拜登下令对叙利亚境内与伊朗有关的目标进行空袭】据美国有线电视新闻网和美联社报道，当地时间8月23日，美国总统拜登下令对叙利亚境内与伊朗有关的目标进行空袭。"
+        assert table_content == "【荷兰一城市拟禁播肉类广告】据外媒报道，荷兰西部城市哈勒姆或将成为世界上第一个禁止在公共场所播放肉类广告的城市。政府希望借此减少肉类消费，进而达到大幅减少温室气体排放的目的。不过，这一提议引发了一些从业者的抱怨。"
         assert data_status == "发布"
         assert important == "否"
 
@@ -236,7 +235,7 @@ class TestPicHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "文字+图片"
-        assert table_content == "【拜登下令对叙利亚境内与伊朗有关的目标进行空袭】据美国有线电视新闻网和美联社报道，当地时间8月23日，美国总统拜登下令对叙利亚境内与伊朗有关的目标进行空袭。"
+        assert table_content == "【荷兰一城市拟禁播肉类广告】据外媒报道，荷兰西部城市哈勒姆或将成为世界上第一个禁止在公共场所播放肉类广告的城市。政府希望借此减少肉类消费，进而达到大幅减少温室气体排放的目的。不过，这一提议引发了一些从业者的抱怨。"
         assert data_status == "撤回"
         assert important == "否"
 
@@ -258,7 +257,7 @@ class TestPicHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "文字+图片"
-        assert table_content == "【拜登下令对叙利亚境内与伊朗有关的目标进行空袭】据美国有线电视新闻网和美联社报道，当地时间8月23日，美国总统拜登下令对叙利亚境内与伊朗有关的目标进行空袭。"
+        assert table_content == "【荷兰一城市拟禁播肉类广告】据外媒报道，荷兰西部城市哈勒姆或将成为世界上第一个禁止在公共场所播放肉类广告的城市。政府希望借此减少肉类消费，进而达到大幅减少温室气体排放的目的。不过，这一提议引发了一些从业者的抱怨。"
         assert data_status == "后台删除"
         assert important == "否"
 
@@ -286,7 +285,7 @@ class TestVideoHot24Feed():
         sleep(1)
         # 进入24小时feed版本页
         self.driver.get(feed_url)
-        sleep(45)
+        sleep(300)
         # 搜索新创建的消息
         hot_24_feed_page.Hot24FeedScenarios(self.driver).search_new_data(status["发布"], feedtype["文字+视频"])
         sleep(1)
@@ -304,7 +303,7 @@ class TestVideoHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "文字+视频"
-        assert table_content == "【拜登下令对叙利亚境内与伊朗有关的目标进行空袭】据美国有线电视新闻网和美联社报道，当地时间8月23日，美国总统拜登下令对叙利亚境内与伊朗有关的目标进行空袭。"
+        assert table_content == "巴铁美女做满桌中国菜招待朋友，斥巨资买中国大米：想找中国老公"
         assert data_status == "发布"
         assert important == "是"
 
@@ -330,7 +329,7 @@ class TestVideoHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "文字+视频"
-        assert table_content == "【拜登下令对叙利亚境内与伊朗有关的目标进行空袭】据美国有线电视新闻网和美联社报道，当地时间8月23日，美国总统拜登下令对叙利亚境内与伊朗有关的目标进行空袭。"
+        assert table_content == "巴铁美女做满桌中国菜招待朋友，斥巨资买中国大米：想找中国老公"
         assert data_status == "发布"
         assert important == "否"
 
@@ -352,7 +351,7 @@ class TestVideoHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "文字+视频"
-        assert table_content == "【拜登下令对叙利亚境内与伊朗有关的目标进行空袭】据美国有线电视新闻网和美联社报道，当地时间8月23日，美国总统拜登下令对叙利亚境内与伊朗有关的目标进行空袭。"
+        assert table_content == "巴铁美女做满桌中国菜招待朋友，斥巨资买中国大米：想找中国老公"
         assert data_status == "撤回"
         assert important == "否"
 
@@ -374,7 +373,7 @@ class TestVideoHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "文字+视频"
-        assert table_content == "【拜登下令对叙利亚境内与伊朗有关的目标进行空袭】据美国有线电视新闻网和美联社报道，当地时间8月23日，美国总统拜登下令对叙利亚境内与伊朗有关的目标进行空袭。"
+        assert table_content == "巴铁美女做满桌中国菜招待朋友，斥巨资买中国大米：想找中国老公"
         assert data_status == "后台删除"
         assert important == "否"
 
@@ -421,8 +420,8 @@ class TestLinkHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "文字+外链"
-        assert table_content == "海南疫情发布会，海南疫情发布会"
-        assert link_title == "重庆北碚山火阻击战中的西南大学师生：外教组装油锯，老师参与灭火"
+        assert table_content == "【一块钱一包的麻辣小鱼干，是不是足疗店退休的小鱼？】据了解，温泉鱼疗起源于土耳其，放在温泉水中的“鱼医生”多为淡红墨头鱼和大口小鲤，或者更为廉价的罗非鱼。至于大家都喜欢的零食小鱼干，使用的则多为产量更大，加工更方便的鳀鱼、银鱼或玉筋鱼等常规的食用种类。正常情况下，足疗店退休的“鱼医生”是不会出现在零食包装里的。"
+        assert link_title == "一块钱一包的麻辣小鱼干，是不是足疗店退休的小鱼？"
         assert data_status == "发布"
         assert important == "是"
 
@@ -448,7 +447,7 @@ class TestLinkHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "文字+外链"
-        assert table_content == "海南疫情发布会，海南疫情发布会"
+        assert table_content == "【一块钱一包的麻辣小鱼干，是不是足疗店退休的小鱼？】据了解，温泉鱼疗起源于土耳其，放在温泉水中的“鱼医生”多为淡红墨头鱼和大口小鲤，或者更为廉价的罗非鱼。至于大家都喜欢的零食小鱼干，使用的则多为产量更大，加工更方便的鳀鱼、银鱼或玉筋鱼等常规的食用种类。正常情况下，足疗店退休的“鱼医生”是不会出现在零食包装里的。"
         assert data_status == "发布"
         assert important == "否"
 
@@ -470,7 +469,7 @@ class TestLinkHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "文字+外链"
-        assert table_content == "海南疫情发布会，海南疫情发布会"
+        assert table_content == "【一块钱一包的麻辣小鱼干，是不是足疗店退休的小鱼？】据了解，温泉鱼疗起源于土耳其，放在温泉水中的“鱼医生”多为淡红墨头鱼和大口小鲤，或者更为廉价的罗非鱼。至于大家都喜欢的零食小鱼干，使用的则多为产量更大，加工更方便的鳀鱼、银鱼或玉筋鱼等常规的食用种类。正常情况下，足疗店退休的“鱼医生”是不会出现在零食包装里的。"
         assert data_status == "撤回"
         assert important == "否"
 
@@ -492,7 +491,7 @@ class TestLinkHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "文字+外链"
-        assert table_content == "海南疫情发布会，海南疫情发布会"
+        assert table_content == "【一块钱一包的麻辣小鱼干，是不是足疗店退休的小鱼？】据了解，温泉鱼疗起源于土耳其，放在温泉水中的“鱼医生”多为淡红墨头鱼和大口小鲤，或者更为廉价的罗非鱼。至于大家都喜欢的零食小鱼干，使用的则多为产量更大，加工更方便的鳀鱼、银鱼或玉筋鱼等常规的食用种类。正常情况下，足疗店退休的“鱼医生”是不会出现在零食包装里的。"
         assert data_status == "后台删除"
         assert important == "否"
 
@@ -528,10 +527,10 @@ class TestSohuvideoHot24Feed():
         # 将生成的新数据存到文件中以供后续使用
         content_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_id()
         data_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_id_attribute()
-        df = pd.read_csv("Data/test_add_sohuvideoli.csv", delimiter=",")
+        df = pd.read_csv("../../Data/test_add_sohuvideoli.csv", delimiter=",")
         df['content_id'] = content_id
         df['id'] = data_id
-        df.to_csv("Data/test_add_sohuvideoli.csv", index=False, encoding="utf-8")
+        df.to_csv("../../Data/test_add_sohuvideoli.csv", index=False, encoding="utf-8")
         # 获取页面数据结果
         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
@@ -546,8 +545,8 @@ class TestSohuvideoHot24Feed():
         assert important == "是"
 
     def test_edit_sohuvideoli(self):
-        data_id = pd.read_csv("Data/test_add_sohuvideoli.csv", delimiter=",").iloc[0, 6]
-        content_id = pd.read_csv("Data/test_add_sohuvideoli.csv", delimiter=",").iloc[0, 5]
+        data_id = pd.read_csv("../../Data/test_add_sohuvideoli.csv", delimiter=",").iloc[0, 6]
+        content_id = pd.read_csv("../../Data/test_add_sohuvideoli.csv", delimiter=",").iloc[0, 5]
         # 进入当前id编辑页
         self.driver.get(page_url + page["搜狐视频直播呼起"] + "&id=" + str(data_id))
         sleep(2)
@@ -572,7 +571,7 @@ class TestSohuvideoHot24Feed():
         assert important == "否"
 
     def test_recall_sohuvideoli(self):
-        content_id = pd.read_csv("Data/test_add_sohuvideoli.csv", delimiter=",").iloc[0, 5]
+        content_id = pd.read_csv("../../Data/test_add_sohuvideoli.csv", delimiter=",").iloc[0, 5]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -594,7 +593,7 @@ class TestSohuvideoHot24Feed():
         assert important == "否"
 
     def test_delete_linkli(self):
-        content_id = pd.read_csv("Data/test_add_sohuvideoli.csv", delimiter=",").iloc[0, 5]
+        content_id = pd.read_csv("../../Data/test_add_sohuvideoli.csv", delimiter=",").iloc[0, 5]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -659,8 +658,8 @@ class TestListenHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "边看边听"
-        assert table_content == "美印这次联合军演，果然藏着对华小动作"
-        assert link_title == "美印这次联合军演，果然藏着对华小动作"
+        assert table_content == "【58万亿一夜蒸发，牵出韩国“史上最大诈骗犯”】"
+        assert link_title == "58万亿一夜蒸发，牵出韩国“史上最大诈骗犯”"
         assert data_status == "发布"
         assert important == "是"
 
@@ -686,7 +685,7 @@ class TestListenHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "边看边听"
-        assert table_content == "美印这次联合军演，果然藏着对华小动作"
+        assert table_content == "【58万亿一夜蒸发，牵出韩国“史上最大诈骗犯”】"
         assert data_status == "发布"
         assert important == "否"
 
@@ -708,7 +707,7 @@ class TestListenHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "边看边听"
-        assert table_content == "美印这次联合军演，果然藏着对华小动作"
+        assert table_content == "【58万亿一夜蒸发，牵出韩国“史上最大诈骗犯”】"
         assert data_status == "撤回"
         assert important == "否"
 
@@ -730,7 +729,7 @@ class TestListenHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
         # 校验
         assert content_type == "边看边听"
-        assert table_content == "美印这次联合军演，果然藏着对华小动作"
+        assert table_content == "【58万亿一夜蒸发，牵出韩国“史上最大诈骗犯”】"
         assert data_status == "后台删除"
         assert important == "否"
 
