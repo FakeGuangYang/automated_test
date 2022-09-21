@@ -300,8 +300,10 @@ class Hot24FeedOper(object):
 
     # 输入显示时间
     def input_view_time(self, view_time):
-        self.hot_24_feed_page.find_view_time_input().clear()
-        self.hot_24_feed_page.find_view_time_input().send_keys(view_time)
+        self.hot_24_feed_page.driver.execute_script("arguments[0].clear();",
+                                                    self.hot_24_feed_page.find_view_time_input())
+        self.hot_24_feed_page.driver.execute_script("arguments[0].send_keys(view_time);",
+                                                    self.hot_24_feed_page.find_view_time_input())
 
     # 输入显示时间
     def click_view_time_submit_button(self):
