@@ -22,8 +22,8 @@ listenli_data = parse_csv("Data/test_add_listenli.csv")
 login_url = parse_yml("Config/login.yml", 'websites', 'loginPage')
 # 24小时feed页url
 host = parse_yml("Config/login.yml", 'websites', 'host')
-feed_url = "http://" + host + ":10510/testhotred/hot24feed/toHot24FeedList"
-page_url = "http://" + host + ":10510/testhotred/hot24feed/toSelectedPage?go="
+feed_url = "http://" + host + "/hotred/hot24feed/toHot24FeedList"
+page_url = "http://" + host + "/hotred/hot24feed/toSelectedPage?go="
 # 登录信息
 username = parse_yml("Config/login.yml", 'loginInfo', 'username')
 password = parse_yml("Config/login.yml", 'loginInfo', 'password')
@@ -102,7 +102,7 @@ class TestTextHot24Feed():
         assert important == "否"
 
     def test_recall_textli(self):
-        content_id = pd.read_csv("../../Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
+        content_id = pd.read_csv("Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -124,7 +124,7 @@ class TestTextHot24Feed():
         assert important == "否"
 
     def test_delete_textli(self):
-        content_id = pd.read_csv("../../Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
+        content_id = pd.read_csv("Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)

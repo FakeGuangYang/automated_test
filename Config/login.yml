@@ -1,6 +1,6 @@
 websites:
   host: "opt.mrd.sohuno.com"
-  loginPage: "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com:10510/testhotred/ssoValidate?returnUrl=/"
+  loginPage: "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com/hotred/ssoValidate?returnUrl=/"
 
 loginInfo:
   username: guangyang219579
