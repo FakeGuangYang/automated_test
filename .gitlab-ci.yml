@@ -23,7 +23,7 @@ job_login_page:
   script:
     - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
   only:
-    - dev
+    - 24houor
   # 在Gitlab运行时需要加下面的tag才能被捕捉到
   tags:
     - smc-check
@@ -51,7 +51,7 @@ job_hot_24_feed_page_text:
   script:
     - pytest "Test/TestCase/test_hot_24_feed.py::TestTextHot24Feed" --alluredir=Report/report
   only:
-    - dev
+    - 24houor
   tags:
     - smc-check
 
@@ -60,7 +60,7 @@ job_hot_24_feed_page_pic:
   script:
     - pytest "Test/TestCase/test_hot_24_feed.py::TestPicHot24Feed" --alluredir=Report/report
   only:
-    - dev
+    - 24houor
   tags:
     - smc-check
 
@@ -69,7 +69,7 @@ job_hot_24_feed_page_video:
   script:
     - pytest "Test/TestCase/test_hot_24_feed.py::TestVideoHot24Feed" --alluredir=Report/report
   only:
-    - dev
+    - 24houor
   tags:
     - smc-check
 
@@ -78,7 +78,7 @@ job_hot_24_feed_page_link:
   script:
     - pytest "Test/TestCase/test_hot_24_feed.py::TestLinkHot24Feed" --alluredir=Report/report
   only:
-    - dev
+    - 24houor
   tags:
     - smc-check
 
@@ -87,6 +87,6 @@ job_hot_24_feed_page_listen:
   script:
     - pytest "Test/TestCase/test_hot_24_feed.py::TestListenHot24Feed" --alluredir=Report/report
   only:
-    - dev
+    - 24houor
   tags:
     - smc-check
