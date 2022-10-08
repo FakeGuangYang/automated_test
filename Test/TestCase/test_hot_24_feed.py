@@ -13,20 +13,20 @@ from Common.chrome_options import chrome_options
 from time import sleep
 
 # 引用测试数据
-textli_data = parse_csv("Data/test_add_textli.csv")
-picli_data = parse_csv("Data/test_add_picli.csv")
-videoli_data = parse_csv("Data/test_add_videoli.csv")
-linkli_data = parse_csv("Data/test_add_linkli.csv")
-listenli_data = parse_csv("Data/test_add_listenli.csv")
+textli_data = parse_csv("../../Data/test_add_textli.csv")
+picli_data = parse_csv("../../Data/test_add_picli.csv")
+videoli_data = parse_csv("../../Data/test_add_videoli.csv")
+linkli_data = parse_csv("../../Data/test_add_linkli.csv")
+listenli_data = parse_csv("../../Data/test_add_listenli.csv")
 # 登录页url
-login_url = parse_yml("Config/login.yml", 'websites', 'loginPage')
+login_url = parse_yml("../../Config/login.yml", 'websites', 'loginPage')
 # 24小时feed页url
-host = parse_yml("Config/login.yml", 'websites', 'host')
-feed_url = "http://" + host + "/hotred/hot24feed/toHot24FeedList"
-page_url = "http://" + host + "/hotred/hot24feed/toSelectedPage?go="
+host = parse_yml("../../Config/login.yml", 'websites', 'host')
+feed_url = "http://" + host + ":10510/testhotred/hot24feed/toHot24FeedList"
+page_url = "http://" + host + ":10510/testhotred/hot24feed/toSelectedPage?go="
 # 登录信息
-username = parse_yml("Config/login.yml", 'loginInfo', 'username')
-password = parse_yml("Config/login.yml", 'loginInfo', 'password')
+username = parse_yml("../../Config/login.yml", 'loginInfo', 'username')
+password = parse_yml("../../Config/login.yml", 'loginInfo', 'password')
 # 通用参数
 page = {"纯文字": "text", "文字+图片": "pic", "文字+视频": "video", "文字+外链": "link", "搜狐视频直播呼起": "sohuVideo", "真人播报": "listen"}
 status = {"发布": "0", "撤回": "1", "前端删除": "2", "审核删除": "3", "后台删除": "4"}
@@ -60,10 +60,10 @@ class TestTextHot24Feed():
         # 将生成的新数据存到文件中以供后续使用
         content_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_id()
         data_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_id_attribute()
-        df = pd.read_csv("Data/test_add_textli.csv", delimiter=",")
+        df = pd.read_csv("../../Data/test_add_textli.csv", delimiter=",")
         df['content_id'] = content_id
         df['id'] = data_id
-        df.to_csv("Data/test_add_textli.csv", index=False, encoding="utf-8")
+        df.to_csv("../../Data/test_add_textli.csv", index=False, encoding="utf-8")
         # 获取页面数据结果
         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
@@ -76,8 +76,8 @@ class TestTextHot24Feed():
         assert important == "是"
 
     def test_edit_textli(self):
-        data_id = pd.read_csv("Data/test_add_textli.csv", delimiter=",").iloc[0, 3]
-        content_id = pd.read_csv("Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
+        data_id = pd.read_csv("../../Data/test_add_textli.csv", delimiter=",").iloc[0, 3]
+        content_id = pd.read_csv("../../Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
         # 进入当前id编辑页
         self.driver.get(page_url + page["纯文字"] + "&id=" + str(data_id))
         sleep(1)
@@ -102,7 +102,7 @@ class TestTextHot24Feed():
         assert important == "否"
 
     def test_recall_textli(self):
-        content_id = pd.read_csv("Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
+        content_id = pd.read_csv("../../Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
@@ -124,7 +124,7 @@ class TestTextHot24Feed():
         assert important == "否"
 
     def test_delete_textli(self):
-        content_id = pd.read_csv("Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
+        content_id = pd.read_csv("../../Data/test_add_textli.csv", delimiter=",").iloc[0, 2]
         # 进入24小时feed版本页
         self.driver.get(feed_url)
         sleep(1)
