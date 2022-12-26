@@ -103,7 +103,7 @@ class TestNewsScheduledPushing():
 
 class TestAudioScheduledPushing():
     def setup(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(options=chrome_options())
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         login(self.driver)
