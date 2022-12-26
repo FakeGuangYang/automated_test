@@ -22,7 +22,7 @@ job_login_page:
   script:
     - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
   only:
-    - dev
+    - master
   # 在Gitlab运行时需要加下面的tag才能被捕捉到
   tags:
     - smc-check
