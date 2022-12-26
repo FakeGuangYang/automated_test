@@ -8,7 +8,6 @@ from selenium.webdriver.chrome.options import Options
 import pytest
 from Test.PageObject import login_page
 from Common.parse_csv import parse_csv
-from time import sleep
 
 data = parse_csv("Data/test_login.csv")
 url = "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com/operation/ssoValidate?returnUrl=/"

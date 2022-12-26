@@ -7,10 +7,10 @@ from Common.parse_yml import parse_yml
 from Test.PageObject import login_page
 
 # 登录页url
-login_url = parse_yml("../../Config/login.yml", 'websites', 'loginPage')
+login_url = parse_yml("Config/login.yml", 'websites', 'loginPage')
 # 登录信息
-username = parse_yml("../../Config/login.yml", 'loginInfo', 'username')
-password = parse_yml("../../Config/login.yml", 'loginInfo', 'password')
+username = parse_yml("Config/login.yml", 'loginInfo', 'username')
+password = parse_yml("Config/login.yml", 'loginInfo', 'password')
 
 
 def login(driver):
