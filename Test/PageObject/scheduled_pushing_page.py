@@ -16,7 +16,7 @@ from deprecated.sphinx import deprecated
 class ScheduledPushingPage(object):
     def __init__(self, driver):
         self.driver = driver
-        self.oid = parse_csv("../../Data/test_scheduled_pushing_news_add_modal.csv")[0][1]
+        self.oid = parse_csv("Data/test_scheduled_pushing_news_add_modal.csv")[0][1]
 
     """
     以下为定投管理页面中的元素
