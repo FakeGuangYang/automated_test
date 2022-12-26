@@ -36,6 +36,16 @@ class LoginPage(object):
         ele = self.driver.find_element(By.ID, 'myError')
         return ele
 
+    # "登陆后的url"元素
+    def find_login_url(self):
+        ele = self.driver.current_url
+        return ele
+
+    # "登陆后的url"元素
+    def find_pic(self):
+        ele = self.driver.find_element(By.XPATH, '//img')
+        return ele
+
 
 # 登录页操作
 class LoginOper(object):
@@ -64,6 +74,13 @@ class LoginOper(object):
     def get_login_failed_info(self):
         return self.login_page.find_login_failed_info().text
 
+    # 判断登陆后url是否需要再点击图片才能跳转到页面
+    def click_pic(self):
+        if "ssologin" in self.login_page.find_login_url():
+            self.login_page.find_pic().click()
+        else:
+            pass
+
 
 # 登录页场景
 class LoginScenarios(object):
@@ -75,3 +92,4 @@ class LoginScenarios(object):
         self.login_oper.input_username(username)
         self.login_oper.input_password(password)
         self.login_oper.click_login_button()
+        self.login_oper.click_pic()

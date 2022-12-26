@@ -5,10 +5,11 @@
 
 from selenium import webdriver
 import pytest
-from Test.PageObject import login_page, scheduled_pushing_page
+from Test.PageObject import scheduled_pushing_page
 from Common.parse_csv import parse_csv
 from Common.parse_yml import parse_yml
 from Common.delivery_time import delivery_time
+from Common.login import login
 from Common.chrome_options import chrome_options
 from time import sleep
 
@@ -16,15 +17,10 @@ from time import sleep
 add_news_modal_data = parse_csv("Data/test_scheduled_pushing_news_add_modal.csv")
 add_audio_modal_data = parse_csv("Data/test_scheduled_pushing_audio_add_modal.csv")
 modify_modal_data = parse_csv("Data/test_scheduled_pushing_modify_modal.csv")
-# 登录页url
-login_url = parse_yml("Config/login.yml", 'websites', 'loginPage')
 # 定投管理页url
 host = parse_yml("Config/login.yml", 'websites', 'host')
 news = "http://" + host + "/operation/delivery/toTargetedDeliveryList?type=news"
 audio = "http://" + host + "/operation/delivery/toTargetedDeliveryList?type=audio"
-# 登录信息
-username = parse_yml("Config/login.yml", 'loginInfo', 'username')
-password = parse_yml("Config/login.yml", 'loginInfo', 'password')
 
 
 class TestNewsScheduledPushing():
@@ -32,9 +28,7 @@ class TestNewsScheduledPushing():
         self.driver = webdriver.Chrome(options=chrome_options())
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
-        self.driver.get(login_url)
-        # 登录
-        login_page.LoginScenarios(self.driver).login(username, password)
+        login(self.driver)
 
     @pytest.mark.parametrize(("cids", "oid", "channel_value", "location", "weight", "remark"), add_news_modal_data)
     def test_add_modal(self, cids, oid, channel_value, location, weight, remark):
@@ -112,9 +106,7 @@ class TestAudioScheduledPushing():
         self.driver = webdriver.Chrome(options=chrome_options())
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
-        self.driver.get(login_url)
-        # 登录
-        login_page.LoginScenarios(self.driver).login(username, password)
+        login(self.driver)
 
     @pytest.mark.parametrize(("cids", "uid", "channel_value", "location", "weight", "remark"), add_audio_modal_data)
     def test_add_modal(self, cids, uid, channel_value, location, weight, remark):
