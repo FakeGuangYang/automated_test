@@ -33,7 +33,7 @@ job_scheduled_pushing_page_news:
   script:
     - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
   only:
-    - dev
+    - master
   tags:
     - smc-check
 
@@ -43,7 +43,7 @@ job_scheduled_pushing_page_audio:
   script:
     - pytest "Test/TestCase/test_scheduled_pushing.py::TestAudioScheduledPushing" --alluredir=Report/report
   only:
-    - dev
+    - master
   tags:
     - smc-check
 
@@ -53,6 +53,6 @@ job_jina_page:
   script:
     - pytest "Test/TestCase/test_jina.py" --alluredir=Report/report
   only:
-    - dev
+    - master
   tags:
     - smc-check
