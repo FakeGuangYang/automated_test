@@ -190,9 +190,10 @@ class Hot24FeedPage(object):
 
     # "弹窗[确定]按钮"元素
     def find_accept_button(self):
-        ele = self.driver.find_element(By.XPATH, '//div[contains(.,"确定要")]/div/a[1]')
-        js = "arguments[0].scrollIntoView();"
-        self.driver.execute_script(js, ele)
+        # ele = self.driver.find_element(By.XPATH, '//div[contains(.,"确定要")]/div/a[1]')
+        # js = "arguments[0].scrollIntoView();"
+        # self.driver.execute_script(js, ele)
+        ele = self.driver.switch_to_alert()
         return ele
 
 
@@ -296,7 +297,8 @@ class Hot24FeedOper(object):
 
     # 点击弹窗[确定]按钮
     def click_accept_button(self):
-        self.hot_24_feed_page.find_accept_button().click()
+        # self.hot_24_feed_page.find_accept_button().click()
+        self.hot_24_feed_page.find_accept_button().accept()
 
     """
     以下操作用于验证操作结果是否正确
