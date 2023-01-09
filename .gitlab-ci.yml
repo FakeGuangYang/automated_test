@@ -23,54 +23,54 @@ job_login_page:
   script:
     - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
   only:
-    - 24houor
+    - master
   # 在Gitlab运行时需要加下面的tag才能被捕捉到
   tags:
     - smc-check
 
-## 定投管理页-新闻定投自动化测试用例
-#job_scheduled_pushing_page_news:
-#  stage: test_cases
-#  script:
-#    - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
-#  only:
-#    - master
-#  tags:
-#    - smc-check
-#
-## 定投管理页-音频定投自动化测试用例
-#job_scheduled_pushing_page_audio:
-#  stage: test_cases
-#  script:
-#    - pytest "Test/TestCase/test_scheduled_pushing.py::TestAudioScheduledPushing" --alluredir=Report/report
-#  only:
-#    - master
-#  tags:
-#    - smc-check
-#
-## 集纳页自动化测试用例
-#job_jina_page:
-#  stage: test_cases
-#  script:
-#    - pytest "Test/TestCase/test_jina.py" --alluredir=Report/report
-#  only:
-#    - master
-#  tags:
-#    - smc-check
-#
-## 24小时feed版页-"纯文字"自动化测试用例
-#job_hot_24_feed_page_text:
-#  stage: test_cases
-#  script:
-#    - pytest "Test/TestCase/test_hot_24_feed.py::TestTextHot24Feed" --alluredir=Report/report
-#  only:
-#    - master
-#  tags:
-#    - smc-check
+# 定投管理页-新闻定投自动化测试用例
+job_scheduled_pushing_page_news:
+  stage: test_cases
+  script:
+    - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
+  only:
+    - master
+  tags:
+    - smc-check
+
+# 定投管理页-音频定投自动化测试用例
+job_scheduled_pushing_page_audio:
+  stage: test_cases
+  script:
+    - pytest "Test/TestCase/test_scheduled_pushing.py::TestAudioScheduledPushing" --alluredir=Report/report
+  only:
+    - master
+  tags:
+    - smc-check
+
+# 集纳页自动化测试用例
+job_jina_page:
+  stage: test_cases
+  script:
+    - pytest "Test/TestCase/test_jina.py" --alluredir=Report/report
+  only:
+    - master
+  tags:
+    - smc-check
+
+# 24小时feed版页-"纯文字"自动化测试用例
+job_hot_24_feed_page_text:
+  stage: test_cases
+  script:
+    - pytest "Test/TestCase/test_hot_24_feed.py::TestTextHot24Feed" --alluredir=Report/report
+  only:
+    - master
+  tags:
+    - smc-check
 
 # 24小时feed版页-"文字+图片"自动化测试用例
 job_hot_24_feed_page_pic:
-  stage: hot_24_feed
+  stage: test_cases
   script:
     - pytest "Test/TestCase/test_hot_24_feed.py::TestPicHot24Feed" --alluredir=Report/report
   only:
@@ -79,7 +79,7 @@ job_hot_24_feed_page_pic:
     - smc-check
 
 #job_hot_24_feed_page_video:
-#  stage: hot_24_feed
+#  stage: test_cases
 #  script:
 #    - pytest "Test/TestCase/test_hot_24_feed.py::TestVideoHot24Feed" --alluredir=Report/report
 #  only:
@@ -88,7 +88,7 @@ job_hot_24_feed_page_pic:
 #    - smc-check
 #
 #job_hot_24_feed_page_link:
-#  stage: hot_24_feed
+#  stage: test_cases
 #  script:
 #    - pytest "Test/TestCase/test_hot_24_feed.py::TestLinkHot24Feed" --alluredir=Report/report
 #  only:
@@ -97,7 +97,7 @@ job_hot_24_feed_page_pic:
 #    - smc-check
 #
 #job_hot_24_feed_page_listen:
-#  stage: hot_24_feed
+#  stage: test_cases
 #  script:
 #    - pytest "Test/TestCase/test_hot_24_feed.py::TestListenHot24Feed" --alluredir=Report/report
 #  only:
