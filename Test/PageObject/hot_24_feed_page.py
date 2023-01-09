@@ -18,8 +18,9 @@ class Hot24FeedPage(object):
     """
 
     # id元素(用于拼链接)
-    def find_id_attribute(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="dataTable"]/tbody/tr')
+    def find_id_attribute(self, content):
+        path = '//tr[contains(.,"' + str(content) + '")]'
+        ele = self.driver.find_element(By.XPATH, path)
         return ele
 
     # 搜索框"消息ID"元素
@@ -45,90 +46,51 @@ class Hot24FeedPage(object):
     # "搜索按钮"元素
     def find_search_data_button(self):
         ele = self.driver.find_element(By.ID, 'searchData')
-        return ele
-
-    # "创建新消息按钮"元素
-    def find_add_content_button(self):
-        ele = self.driver.find_element(By.ID, 'add')
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
 
     """
     以下为点击[创建新消息]按钮后弹窗中"信息"卡片中的元素，默认进入"纯文字"页面
     """
 
-    # "文字+图片tab"元素
-    # 由于页面是用iframe嵌套的，故没有使用此元素
-    def find_picli_tab(self):
-        ele = self.driver.find_element(By.ID, 'picli')
-        return ele
-
-    # "文字+视频tab"元素
-    # 由于页面是用iframe嵌套的，故没有使用此元素
-    def find_videoli_tab(self):
-        ele = self.driver.find_element(By.ID, 'videoli')
-        return ele
-
-    # "文字+外链tab"元素
-    # 由于页面是用iframe嵌套的，故没有使用此元素
-    def find_linkli_tab(self):
-        ele = self.driver.find_element(By.ID, 'linkli')
-        return ele
-
-    # "搜狐视频直播呼起tab"元素
-    # 由于页面是用iframe嵌套的，故没有使用此元素
-    def find_sohuvideoli_tab(self):
-        ele = self.driver.find_element(By.ID, 'sohuVideoli')
-        return ele
-
-    # "真人播报tab"元素
-    # 由于页面是用iframe嵌套的，故没有使用此元素
-    def find_listenli_tab(self):
-        ele = self.driver.find_element(By.ID, 'Listenli')
-        return ele
-
     # "消息正文输入框"元素
     def find_content_input(self):
         ele = self.driver.find_element(By.ID, 'contentEditor')
         return ele
 
-    # "显示时间输入框"元素
-    def find_view_time_input(self):
-        ele = self.driver.find_element(By.ID, 'viewTime')
+    # "状态 - 撤回"元素
+    def find_recall_label(self):
+        ele = self.driver.find_element(By.XPATH, '//label[contains(.,"撤回")]')
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
 
-    # "显示时间输入框确定按钮"元素
-    def find_view_time_submit_button(self):
-        ele = self.driver.find_element(By.ID, 'dpOkInput')
+    # "保存按钮"元素
+    def find_submit_button(self):
+        ele = self.driver.find_element(By.XPATH, '//button[contains(.,"保存")]')
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
 
-    # "高亮标识 - 无"元素
-    def find_mark_mode_none(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="mark_0"]/../label[1]')
+    # "重要 - 是"元素
+    def find_important_label(self):
+        ele = self.driver.find_element(By.XPATH, '//label[contains(.,"重要")]/../div/label[contains(.,"是")]')
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
 
-    # "高亮标识 - 推荐"元素
-    def find_mark_mode_recommend(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="mark_0"]/../label[5]')
-        return ele
 
-    # 搜狐视频直播呼起"高亮标识 - 推荐"元素
-    def find_sohuvideo_mark_mode_recommend(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="mark_0"]/../label[6]')
-        return ele
 
-    # "重要 - 否"元素
-    def find_is_important_no(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="isImportant_0"]/../label[1]')
-        return ele
 
-    # 文字+外链"重要 - 否"元素
-    def find_link_is_important_no(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="isImportant_0"]/../label[2]')
-        return ele
+
+
 
     # "添加图片输入框"元素
     def find_pic_input(self):
         ele = self.driver.find_element(By.ID, 'addPic')
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
 
     # "搜狐视频直播呼起添加图片输入框"元素
@@ -161,16 +123,6 @@ class Hot24FeedPage(object):
         ele = self.driver.find_element(By.ID, 'agreement')
         return ele
 
-    # "保存按钮"元素
-    def find_submit_button(self):
-        ele = self.driver.find_element(By.ID, 'save')
-        return ele
-
-    # 文字+图片"保存按钮"元素(与其他页面不一致)
-    def find_pic_submit_button(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="close"]/../button[1]')
-        return ele
-
     """
     以下为列表数据元素
     """
@@ -181,48 +133,64 @@ class Hot24FeedPage(object):
         return ele
 
     # "消息类型"元素
-    def find_table_content_type(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="dataTable"]/tbody/tr[1]/td[4]')
+    def find_table_content_type(self, content_id):
+        path = '//td[contains(.,"' + str(content_id) + '")]/../td[4]'
+        ele = self.driver.find_element(By.XPATH, path)
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
 
     # "消息正文"元素
-    def find_table_content(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="dataTable"]/tbody/tr[1]/td[6]/div')
-        return ele
-
-    # "外链接标题"元素
-    def find_table_link_title(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="dataTable"]/tbody/tr[1]/td[7]')
-        return ele
-
-    # "重要"元素
-    def find_table_important(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="dataTable"]/tbody/tr[1]/td[12]')
+    def find_table_content(self, content_id):
+        path = '//td[contains(.,"' + str(content_id) + '")]/../td[6]/div'
+        ele = self.driver.find_element(By.XPATH, path)
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
 
     # "状态"元素
-    def find_table_status(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="dataTable"]/tbody/tr[1]/td[19]')
+    def find_table_status(self, content_id):
+        path = '//td[contains(.,"' + str(content_id) + '")]/../td[19]'
+        ele = self.driver.find_element(By.XPATH, path)
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
 
-    # "撤回/发布按钮"元素
-    def find_table_recall_button(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="dataTable"]/tbody/tr[1]/td[20]/a[1]')
+    # "重要"元素
+    def find_table_important(self, content_id):
+        path = '//td[contains(.,"' + str(content_id) + '")]/../td[12]'
+        ele = self.driver.find_element(By.XPATH, path)
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
+        return ele
+
+    # "外链接标题"元素
+    def find_table_link_title(self, content_id):
+        path = '//td[contains(.,"' + str(content_id) + '")]/../td[7]'
+        ele = self.driver.find_element(By.XPATH, path)
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
 
     # "编辑按钮"元素
-    def find_table_edit_button(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="dataTable"]/tbody/tr[1]/td[20]/a[2]')
+    def find_table_edit_button(self, content_id):
+        path = '//td[contains(.,"' + str(content_id) + '")]/../td[20]/a[2]'
+        ele = self.driver.find_element(By.XPATH, path)
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
 
     # "删除按钮"元素
-    def find_table_delete_button(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@id="dataTable"]/tbody/tr[1]/td[20]/a[3]')
+    def find_table_delete_button(self, content_id):
+        path = '//td[contains(.,"' + str(content_id) + '")]/../td[20]/a[3]'
+        ele = self.driver.find_element(By.XPATH, path)
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
 
     # "弹窗[确定]按钮"元素
     def find_accept_button(self):
-        ele = self.driver.find_element(By.XPATH, '//*[@class="layui-layer layui-layer-dialog"]/div[3]/a[1]')
+        ele = self.driver.find_element(By.XPATH, '//div[contains(.,"确定要")]/div/a[1]')
         return ele
 
 
@@ -261,77 +229,25 @@ class Hot24FeedOper(object):
         self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
                                                     self.hot_24_feed_page.find_search_data_button())
 
-    # 点击[创建新消息]按钮
-    def click_add_content_button(self):
-        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
-                                                    self.hot_24_feed_page.find_add_content_button())
-
-    """
-    # 点击[文字+图片]tab
-    # 由于页面是用iframe嵌套的，故没有使用此操作
-    def click_picli_tab(self):
-        self.hot_24_feed_page.find_picli_tab().click()
-
-    # 点击[文字+视频]tab
-    # 由于页面是用iframe嵌套的，故没有使用此操作
-    def click_videoli_tab(self):
-        self.hot_24_feed_page.find_videoli_tab().click()
-
-    # 点击[文字+外链]tab
-    # 由于页面是用iframe嵌套的，故没有使用此操作
-    def click_linkli_tab(self):
-        self.hot_24_feed_page.find_linkli_tab().click()
-
-    # 点击[搜狐视频直播呼起]tab
-    # 由于页面是用iframe嵌套的，故没有使用此操作
-    def click_sohuvideoli_tab(self):
-        self.hot_24_feed_page.find_sohuvideoli_tab().click()
-
-    # 点击[真人播报]tab
-    # 由于页面是用iframe嵌套的，故没有使用此操作
-    def click_listenli_tab(self):
-        self.hot_24_feed_page.find_listenli_tab().click()
-    """
-
     # 输入消息正文
     def input_content(self, content):
         self.hot_24_feed_page.find_content_input().clear()
         self.hot_24_feed_page.find_content_input().send_keys(content)
 
-    # 输入显示时间
-    def input_view_time(self, view_time):
-        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
-                                                    self.hot_24_feed_page.find_view_time_input())
-        self.hot_24_feed_page.find_view_time_input().clear()
-        self.hot_24_feed_page.find_view_time_input().send_keys(view_time)
+    # 点击[状态 - 撤回]选项
+    def click_recall_label(self):
+        self.hot_24_feed_page.find_recall_label().click()
 
-    # 输入显示时间
-    def click_view_time_submit_button(self):
-        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
-                                                    self.hot_24_feed_page.find_view_time_submit_button())
+    # 点击[保存]按钮
+    def click_submit_button(self):
+        self.hot_24_feed_page.find_submit_button().click()
 
-    # 点击[高亮标识 - 无]选项
-    def click_mark_mode_none(self):
-        self.hot_24_feed_page.find_mark_mode_none().click()
+    # 点击[重要 - 是]选项
+    def click_important_label(self):
+        self.hot_24_feed_page.find_important_label().click()
 
-    # 点击[高亮标识 - 推荐]选项
-    def click_mark_mode_recommend(self):
-        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
-                                                    self.hot_24_feed_page.find_mark_mode_recommend())
 
-    # 点击搜狐视频直播呼起[高亮标识 - 推荐]选项
-    def click_sohuvideo_mark_mode_recommend(self):
-        self.hot_24_feed_page.find_sohuvideo_mark_mode_recommend().click()
 
-    # 点击[重要 - 否]选项
-    def click_is_important_no(self):
-        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
-                                                    self.hot_24_feed_page.find_is_important_no())
-
-    # 点击文字+外链[重要 - 否]选项
-    def click_link_is_important_no(self):
-        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
-                                                    self.hot_24_feed_page.find_link_is_important_no())
 
     # 输入添加图片
     def input_pic(self, pic):
@@ -368,27 +284,13 @@ class Hot24FeedOper(object):
         self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
                                                     self.hot_24_feed_page.find_cut_pic_button())
 
-    # 点击[保存]按钮
-    def click_submit_button(self):
-        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
-                                                    self.hot_24_feed_page.find_submit_button())
-
-    # 点击文字+图片[保存]按钮
-    def click_pic_submit_button(self):
-        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
-                                                    self.hot_24_feed_page.find_pic_submit_button())
-
-    # 点击[撤回/发布]按钮
-    def click_table_recall_button(self):
-        self.hot_24_feed_page.find_table_recall_button().click()
-
     # 点击[编辑]按钮
-    def click_table_edit_button(self):
-        self.hot_24_feed_page.find_table_edit_button().click()
+    def click_table_edit_button(self, content_id):
+        self.hot_24_feed_page.find_table_edit_button(content_id).click()
 
     # 点击[删除]按钮
-    def click_table_delete_button(self):
-        self.hot_24_feed_page.find_table_delete_button().click()
+    def click_table_delete_button(self, content_id):
+        self.hot_24_feed_page.find_table_delete_button(content_id).click()
 
     # 点击弹窗[确定]按钮
     def click_accept_button(self):
@@ -403,28 +305,28 @@ class Hot24FeedOper(object):
         return self.hot_24_feed_page.find_table_content_id().text
 
     # 取消息类型列内容
-    def get_table_content_type(self):
-        return self.hot_24_feed_page.find_table_content_type().text
+    def get_table_content_type(self, content_id):
+        return self.hot_24_feed_page.find_table_content_type(content_id).text
 
     # 取消息正文列内容
-    def get_table_content(self):
-        return self.hot_24_feed_page.find_table_content().text
+    def get_table_content(self, content_id):
+        return self.hot_24_feed_page.find_table_content(content_id).text
+
+    # 取消息正文列内容
+    def get_table_status(self, content_id):
+        return self.hot_24_feed_page.find_table_status(content_id).text
+
+    # 取消息正文列内容
+    def get_table_important(self, content_id):
+        return self.hot_24_feed_page.find_table_important(content_id).text
 
     # 取外链接标题列内容
-    def get_table_link_title(self):
-        return self.hot_24_feed_page.find_table_link_title().text
-
-    # 取状态列内容
-    def get_table_status(self):
-        return self.hot_24_feed_page.find_table_status().text
-
-    # 取重要列内容
-    def get_table_important(self):
-        return self.hot_24_feed_page.find_table_important().text
+    def get_table_link_title(self, content_id):
+        return self.hot_24_feed_page.find_table_link_title(content_id).text
 
     # 输出id属性
-    def get_id_attribute(self):
-        return self.hot_24_feed_page.find_id_attribute().get_attribute('id')
+    def get_id_attribute(self, content):
+        return self.hot_24_feed_page.find_id_attribute(content).get_attribute('id')
 
 
 # 24小时feed页场景
@@ -433,12 +335,22 @@ class Hot24FeedScenarios(object):
         self.hot_24_feed_oper = Hot24FeedOper(driver)
 
     # 增加一条新纯文字数据
-    def add_textli(self, content, view_time):
+    def add_textli(self, content):
         self.hot_24_feed_oper.input_content(content)
-        self.hot_24_feed_oper.click_mark_mode_recommend()
-        self.hot_24_feed_oper.input_view_time(view_time)
+        self.hot_24_feed_oper.click_recall_label()
         sleep(2)
         self.hot_24_feed_oper.click_submit_button()
+
+    # 编辑数据
+    def edit_data(self):
+        self.hot_24_feed_oper.click_important_label()
+        sleep(2)
+        self.hot_24_feed_oper.click_submit_button()
+
+    # 删除数据
+    def delete_data(self, content_id):
+        self.hot_24_feed_oper.click_table_delete_button(content_id)
+        self.hot_24_feed_oper.click_accept_button()
 
     # 增加一条新文字+图片数据
     def add_picli(self, content, pic, view_time):
@@ -447,13 +359,13 @@ class Hot24FeedScenarios(object):
         self.hot_24_feed_oper.input_pic(pic)
         self.hot_24_feed_oper.input_view_time(view_time)
         sleep(2)
-        self.hot_24_feed_oper.click_pic_submit_button()
+        self.hot_24_feed_oper.click_submit_button()
 
     # 编辑文字+图片数据
     def edit_pic_data(self):
         self.hot_24_feed_oper.click_is_important_no()
         sleep(2)
-        self.hot_24_feed_oper.click_pic_submit_button()
+        self.hot_24_feed_oper.click_submit_button()
 
     # 增加一条新文字+视频数据
     def add_videoli(self, content, oid, view_time):
@@ -514,29 +426,14 @@ class Hot24FeedScenarios(object):
         sleep(2)
         self.hot_24_feed_oper.click_submit_button()
 
-    # 编辑数据
-    def edit_data(self):
-        self.hot_24_feed_oper.click_is_important_no()
-        sleep(2)
-        self.hot_24_feed_oper.click_submit_button()
-
-    # 撤回数据
-    def recall_data(self):
-        self.hot_24_feed_oper.click_table_recall_button()
-        self.hot_24_feed_oper.click_accept_button()
-
-    # 删除数据
-    def delete_data(self):
-        self.hot_24_feed_oper.click_table_delete_button()
-        self.hot_24_feed_oper.click_accept_button()
-
     # 查询新建数据(首次查询，为得出content_id)
     def search_new_data(self, status, feedtype):
         self.hot_24_feed_oper.select_status(status)
         self.hot_24_feed_oper.select_feedtype(feedtype)
         self.hot_24_feed_oper.input_operator("guangyang")
+        sleep(3)
         self.hot_24_feed_oper.click_search_data_button()
-        return
+        sleep(3)
 
     # 查询数据
     def search_data(self, content_id):
