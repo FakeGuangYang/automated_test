@@ -80,18 +80,18 @@ class Hot24FeedPage(object):
         self.driver.execute_script(js, ele)
         return ele
 
-
-
-
-
-
-
     # "添加图片输入框"元素
     def find_pic_input(self):
         ele = self.driver.find_element(By.ID, 'addPic')
         js = "arguments[0].scrollIntoView();"
         self.driver.execute_script(js, ele)
         return ele
+
+
+
+
+
+
 
     # "搜狐视频直播呼起添加图片输入框"元素
     def find_sohuvideo_pic_input(self):
@@ -172,14 +172,6 @@ class Hot24FeedPage(object):
         self.driver.execute_script(js, ele)
         return ele
 
-    # "编辑按钮"元素
-    def find_table_edit_button(self, content_id):
-        path = '//td[contains(.,"' + str(content_id) + '")]/../td[20]/a[2]'
-        ele = self.driver.find_element(By.XPATH, path)
-        js = "arguments[0].scrollTo(document.body.scrollWidth,0);"
-        self.driver.execute_script(js, ele)
-        return ele
-
     # "删除按钮"元素
     def find_table_delete_button(self, content_id):
         path = '//td[contains(.,"' + str(content_id) + '")]/../td[20]/a[3]'
@@ -249,13 +241,20 @@ class Hot24FeedOper(object):
     def click_important_label(self):
         self.hot_24_feed_page.find_important_label().click()
 
-
-
-
     # 输入添加图片
     def input_pic(self, pic):
         self.hot_24_feed_page.find_pic_input().clear()
         self.hot_24_feed_page.find_pic_input().send_keys(pic)
+
+
+
+
+
+
+
+
+
+
 
     # 输入搜狐视频直播呼起添加图片
     def input_sohuvideo_pic(self, pic):
@@ -357,19 +356,20 @@ class Hot24FeedScenarios(object):
         self.hot_24_feed_oper.click_accept_button()
 
     # 增加一条新文字+图片数据
-    def add_picli(self, content, pic, view_time):
+    def add_picli(self, content, pic):
         self.hot_24_feed_oper.input_content(content)
-        self.hot_24_feed_oper.click_mark_mode_recommend()
         self.hot_24_feed_oper.input_pic(pic)
-        self.hot_24_feed_oper.input_view_time(view_time)
+        self.hot_24_feed_oper.click_recall_label()
         sleep(2)
         self.hot_24_feed_oper.click_submit_button()
 
-    # 编辑文字+图片数据
-    def edit_pic_data(self):
-        self.hot_24_feed_oper.click_is_important_no()
-        sleep(2)
-        self.hot_24_feed_oper.click_submit_button()
+
+
+
+
+
+
+
 
     # 增加一条新文字+视频数据
     def add_videoli(self, content, oid, view_time):
