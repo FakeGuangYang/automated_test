@@ -191,6 +191,8 @@ class Hot24FeedPage(object):
     # "弹窗[确定]按钮"元素
     def find_accept_button(self):
         ele = self.driver.find_element(By.XPATH, '//div[contains(.,"确定要")]/div/a[1]')
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
 
 
