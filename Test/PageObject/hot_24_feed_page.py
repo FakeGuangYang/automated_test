@@ -96,7 +96,7 @@ class Hot24FeedPage(object):
 
     # "裁剪按钮"元素
     def find_cut_pic_button(self):
-        ele = self.driver.find_element(By.ID, 'cutPic')
+        ele = self.driver.find_element(By.XPATH, '//input[@id="cutPic"]')
         js = "arguments[0].scrollIntoView();"
         self.driver.execute_script(js, ele)
         return ele
