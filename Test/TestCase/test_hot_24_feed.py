@@ -12,6 +12,7 @@ from Common.parse_yml import parse_yml
 from Common.login import login
 from Common.chrome_options import chrome_options
 from time import sleep
+import os
 
 # 通用参数
 page = {"纯文字": "text", "文字+图片": "pic", "文字+视频": "video", "文字+外链": "link", "搜狐视频直播呼起": "sohuVideo",
@@ -25,6 +26,8 @@ host = parse_yml("Config/login.yml", 'websites', 'host')
 # page_url = "http://" + host + ":10510/testhotred/hot24feed/toSelectedPage?go="
 feed_url = "http://" + host + "/hotred/hot24feed/toHot24FeedList"
 page_url = "http://" + host + "/hotred/hot24feed/toSelectedPage?go="
+print("curdir: " + os.path.abspath(os.curdir))
+print("getcwd: " + os.getcwd())
 
 # 引用测试数据
 textli_data = parse_csv("Data/test_add_textli.csv")
