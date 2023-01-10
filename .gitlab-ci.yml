@@ -72,7 +72,7 @@ job_hot_24_feed_page_text:
 job_hot_24_feed_page_pic:
   stage: test_cases
   script:
-    - pytest "Test/TestCase/test_hot_24_feed.py::TestPicHot24Feed" --alluredir=Report/report
+    - pytest "Test/TestCase/test_hot_24_feed.py::TestPicHot24Feed::test_add_picli" --alluredir=Report/report
   only:
     - 24houor
   tags:
