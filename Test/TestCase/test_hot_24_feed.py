@@ -12,7 +12,6 @@ from Common.parse_yml import parse_yml
 from Common.login import login
 from Common.chrome_options import chrome_options
 from time import sleep
-import os
 
 # 通用参数
 page = {"纯文字": "text", "文字+图片": "pic", "文字+视频": "video", "文字+外链": "link", "搜狐视频直播呼起": "sohuVideo",
@@ -70,7 +69,7 @@ class TestTextHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important(content_id)
         # 校验
         assert content_type == "纯文字"
-        assert table_content == "这是一条自动化测试用例"
+        assert table_content == "这是一条自动化测试用例，请审核老师通过就好"
         assert important == "否"
 
     def test_edit_textli(self):
@@ -92,7 +91,7 @@ class TestTextHot24Feed():
         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content(content_id)
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important(content_id)
         # 校验
-        assert table_content == "这是一条自动化测试用例"
+        assert table_content == "这是一条自动化测试用例，请审核老师通过就好"
         assert important == "是"
 
     def test_delete_textli(self):
@@ -110,7 +109,7 @@ class TestTextHot24Feed():
         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content(content_id)
         table_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status(content_id)
         # 校验
-        assert table_content == "这是一条自动化测试用例"
+        assert table_content == "这是一条自动化测试用例，请审核老师通过就好"
         assert table_status == "后台删除"
 
     def teardown(self):
@@ -128,8 +127,6 @@ class TestPicHot24Feed():
     @pytest.mark.parametrize(("content", "pic"), [picli_data[0][:2]])
     def test_add_picli(self, content, pic):
         # 进入"创建新消息-文字+图片"页
-        print("curdir: " + os.path.abspath(os.curdir))
-        print("getcwd: " + os.getcwd())
         self.driver.get(page_url + page["文字+图片"])
         sleep(1)
         # 创建文字+图片消息
@@ -154,7 +151,7 @@ class TestPicHot24Feed():
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important(content_id)
         # 校验
         assert content_type == "文字+图片"
-        assert table_content == "这是一条自动化测试用例"
+        assert table_content == "这是一条自动化测试用例，请审核老师通过就好"
         assert important == "否"
 
     def test_edit_picli(self):
@@ -176,7 +173,7 @@ class TestPicHot24Feed():
         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content(content_id)
         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important(content_id)
         # 校验
-        assert table_content == "这是一条自动化测试用例"
+        assert table_content == "这是一条自动化测试用例，请审核老师通过就好"
         assert important == "是"
 
     def test_delete_picli(self):
@@ -194,7 +191,7 @@ class TestPicHot24Feed():
         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content(content_id)
         data_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status(content_id)
         # 校验
-        assert table_content == "这是一条自动化测试用例"
+        assert table_content == "这是一条自动化测试用例，请审核老师通过就好"
         assert data_status == "后台删除"
 
     def teardown(self):
