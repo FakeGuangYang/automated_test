@@ -94,19 +94,28 @@ class Hot24FeedPage(object):
         self.driver.execute_script(js, ele)
         return ele
 
-
-
-
-
-
-
-
-
-
     # "裁剪按钮"元素
     def find_cut_pic_button(self):
         ele = self.driver.find_element(By.ID, 'cutPic')
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
+
+    # "文字+外链"中"重要 - 是"元素
+    def find_link_important_label(self):
+        ele = self.driver.find_element(By.XPATH, '//label[contains(.,"重要")]/../label[contains(.,"是")]')
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
+        return ele
+
+
+
+
+
+
+
+
+
 
     # "外链标题输入框"元素
     def find_link_title_input(self):
@@ -250,6 +259,14 @@ class Hot24FeedOper(object):
         self.hot_24_feed_page.find_oid_input().clear()
         self.hot_24_feed_page.find_oid_input().send_keys(oid)
 
+    # 点击[裁剪]按钮
+    def click_cut_pic_button(self):
+        self.hot_24_feed_page.find_cut_pic_button().click()
+
+    # 点击"文字+外链"中[重要 - 是]选项
+    def click_link_important_label(self):
+        self.hot_24_feed_page.find_link_important_label().click()
+
 
 
 
@@ -273,10 +290,13 @@ class Hot24FeedOper(object):
         self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
                                                     self.hot_24_feed_page.find_agreement_input())
 
-    # 点击[裁剪]按钮
-    def click_cut_pic_button(self):
-        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
-                                                    self.hot_24_feed_page.find_cut_pic_button())
+
+
+
+
+
+
+
 
     # 点击[删除]按钮
     def click_table_delete_button(self, content_id):
@@ -285,7 +305,6 @@ class Hot24FeedOper(object):
     # 点击弹窗[确定]按钮
     def click_accept_button(self):
         self.hot_24_feed_page.find_accept_button().click()
-        # self.hot_24_feed_page.find_accept_button().accept()
 
     """
     以下操作用于验证操作结果是否正确
@@ -359,30 +378,26 @@ class Hot24FeedScenarios(object):
         sleep(2)
         self.hot_24_feed_oper.click_submit_button()
 
-
-
-
-
-
     # 增加一条新文字+外链数据
-    def add_linkli(self, content, oid, view_time):
+    def add_linkli(self, content, oid):
         self.hot_24_feed_oper.input_oid(oid)
         self.hot_24_feed_oper.input_content(content)
-        # self.hot_24_feed_oper.scroll_window()
-        sleep(3)
         self.hot_24_feed_oper.click_cut_pic_button()
-        # self.hot_24_feed_oper.scroll_window()
-        self.hot_24_feed_oper.click_mark_mode_recommend()
-        sleep(3)
-        self.hot_24_feed_oper.input_view_time(view_time)
+        self.hot_24_feed_oper.click_recall_label()
         sleep(2)
         self.hot_24_feed_oper.click_submit_button()
 
     # 编辑文字+外链数据
     def edit_link_data(self):
-        self.hot_24_feed_oper.click_link_is_important_no()
+        self.hot_24_feed_oper.click_link_important_label()
         sleep(2)
         self.hot_24_feed_oper.click_submit_button()
+
+
+
+
+
+
 
     # 增加一条新真人播报数据
     def add_listenli(self, oid, content, view_time):
