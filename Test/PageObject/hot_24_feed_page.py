@@ -382,6 +382,7 @@ class Hot24FeedScenarios(object):
     def add_linkli(self, content, oid):
         self.hot_24_feed_oper.input_oid(oid)
         self.hot_24_feed_oper.input_content(content)
+        sleep(5)
         self.hot_24_feed_oper.click_cut_pic_button()
         self.hot_24_feed_oper.click_recall_label()
         sleep(2)
