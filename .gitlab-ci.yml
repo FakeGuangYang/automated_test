@@ -64,7 +64,7 @@ job_hot_24_feed_page_text:
   script:
     - pytest "Test/TestCase/test_hot_24_feed.py::TestTextHot24Feed" --alluredir=Report/report
   only:
-    - 24houor
+    - master
   tags:
     - smc-check
 
@@ -74,19 +74,19 @@ job_hot_24_feed_page_pic:
   script:
     - pytest "Test/TestCase/test_hot_24_feed.py::TestPicHot24Feed" --alluredir=Report/report
   only:
+    - master
+  tags:
+    - smc-check
+
+job_hot_24_feed_page_video:
+  stage: test_cases
+  script:
+    - pytest "Test/TestCase/test_hot_24_feed.py::TestVideoHot24Feed" --alluredir=Report/report
+  only:
     - 24houor
   tags:
     - smc-check
 
-#job_hot_24_feed_page_video:
-#  stage: test_cases
-#  script:
-#    - pytest "Test/TestCase/test_hot_24_feed.py::TestVideoHot24Feed" --alluredir=Report/report
-#  only:
-#    - 24houor
-#  tags:
-#    - smc-check
-#
 #job_hot_24_feed_page_link:
 #  stage: test_cases
 #  script:

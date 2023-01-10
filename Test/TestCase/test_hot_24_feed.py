@@ -29,7 +29,7 @@ page_url = "http://" + host + "/hotred/hot24feed/toSelectedPage?go="
 # 引用测试数据
 textli_data = parse_csv("Data/test_add_textli.csv")
 picli_data = parse_csv("Data/test_add_picli.csv")
-# videoli_data = parse_csv("../../Data/test_add_videoli.csv")
+videoli_data = parse_csv("Data/test_add_videoli.csv")
 # linkli_data = parse_csv("../../Data/test_add_linkli.csv")
 # listenli_data = parse_csv("../../Data/test_add_listenli.csv")
 
@@ -198,120 +198,88 @@ class TestPicHot24Feed():
         self.driver.quit()
 
 
-# # 文字+视频
-# class TestVideoHot24Feed():
-#     def setup(self):
-#         self.driver = webdriver.Chrome(options=chrome_options())
-#         self.driver.maximize_window()
-#         self.driver.implicitly_wait(10)
-#         login(self.driver)
-#
-#     @pytest.mark.parametrize(("content", "oid", "view_time"), [videoli_data[0][:3]])
-#     def test_add_videoli(self, content, oid, view_time):
-#         # 进入"创建新消息-文字+视频"页
-#         self.driver.get(page_url + page["文字+视频"])
-#         sleep(1)
-#         # 创建文字+视频消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).add_videoli(content, oid, view_time)
-#         sleep(1)
-#         # 进入24小时feed版本页
-#         self.driver.get(feed_url)
-#         sleep(300)
-#         # 搜索新创建的消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).search_new_data(status["发布"], feedtype["文字+视频"])
-#         sleep(1)
-#         # 将生成的新数据存到文件中以供后续使用
-#         content_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_id()
-#         data_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_id_attribute()
-#         df = pd.read_csv("../../Data/test_add_videoli.csv", delimiter=",")
-#         df['content_id'] = content_id
-#         df['id'] = data_id
-#         df.to_csv("../../Data/test_add_videoli.csv", index=False, encoding="utf-8")
-#         # 获取页面数据结果
-#         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
-#         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
-#         data_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status()
-#         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
-#         # 校验
-#         assert content_type == "文字+视频"
-#         assert table_content == "巴铁美女做满桌中国菜招待朋友，斥巨资买中国大米：想找中国老公"
-#         assert data_status == "发布"
-#         assert important == "是"
-#
-#     def test_edit_videoli(self):
-#         data_id = pd.read_csv("../../Data/test_add_videoli.csv", delimiter=",").iloc[0, 4]
-#         content_id = pd.read_csv("../../Data/test_add_videoli.csv", delimiter=",").iloc[0, 3]
-#         # 进入当前id编辑页
-#         self.driver.get(page_url + page["文字+视频"] + "&id=" + str(data_id))
-#         sleep(1)
-#         # 编辑消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).edit_data()
-#         sleep(1)
-#         # 进入24小时feed版本页
-#         self.driver.get(feed_url)
-#         sleep(1)
-#         # 搜索编辑的消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).search_data(str(content_id))
-#         sleep(3)
-#         # 获取页面数据结果
-#         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
-#         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
-#         data_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status()
-#         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
-#         # 校验
-#         assert content_type == "文字+视频"
-#         assert table_content == "巴铁美女做满桌中国菜招待朋友，斥巨资买中国大米：想找中国老公"
-#         assert data_status == "发布"
-#         assert important == "否"
-#
-#     def test_recall_videoli(self):
-#         content_id = pd.read_csv("../../Data/test_add_videoli.csv", delimiter=",").iloc[0, 3]
-#         # 进入24小时feed版本页
-#         self.driver.get(feed_url)
-#         sleep(1)
-#         # 搜索操作的消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).search_data(str(content_id))
-#         sleep(2)
-#         # 撤回消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).recall_data()
-#         sleep(2)
-#         # 获取页面数据结果
-#         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
-#         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
-#         data_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status()
-#         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
-#         # 校验
-#         assert content_type == "文字+视频"
-#         assert table_content == "巴铁美女做满桌中国菜招待朋友，斥巨资买中国大米：想找中国老公"
-#         assert data_status == "撤回"
-#         assert important == "否"
-#
-#     def test_delete_videoli(self):
-#         content_id = pd.read_csv("../../Data/test_add_videoli.csv", delimiter=",").iloc[0, 3]
-#         # 进入24小时feed版本页
-#         self.driver.get(feed_url)
-#         sleep(1)
-#         # 搜索操作的消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).search_data(str(content_id))
-#         sleep(2)
-#         # 删除消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).delete_data()
-#         sleep(2)
-#         # 获取页面数据结果
-#         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
-#         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
-#         data_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status()
-#         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
-#         # 校验
-#         assert content_type == "文字+视频"
-#         assert table_content == "巴铁美女做满桌中国菜招待朋友，斥巨资买中国大米：想找中国老公"
-#         assert data_status == "后台删除"
-#         assert important == "否"
-#
-#     def teardown(self):
-#         self.driver.quit()
-#
-#
+# 文字+视频
+class TestVideoHot24Feed():
+    def setup(self):
+        self.driver = webdriver.Chrome(options=chrome_options())
+        self.driver.maximize_window()
+        self.driver.implicitly_wait(10)
+        login(self.driver)
+
+    @pytest.mark.parametrize(("content", "oid"), [videoli_data[0][:2]])
+    def test_add_videoli(self, content, oid):
+        # 进入"创建新消息-文字+视频"页
+        self.driver.get(page_url + page["文字+视频"])
+        sleep(1)
+        # 创建文字+视频消息
+        hot_24_feed_page.Hot24FeedScenarios(self.driver).add_videoli(content, oid)
+        sleep(1)
+        # 进入24小时feed版本页
+        self.driver.get(feed_url)
+        sleep(300)
+        # 搜索新创建的消息
+        hot_24_feed_page.Hot24FeedScenarios(self.driver).search_new_data(status["撤回"], feedtype["文字+视频"])
+        sleep(1)
+        # 将生成的新数据存到文件中以供后续使用
+        content_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_id()
+        data_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_id_attribute(content)
+        df = pd.read_csv("Data/test_add_videoli.csv", delimiter=",")
+        df['content_id'] = content_id
+        df['id'] = data_id
+        df.to_csv("Data/test_add_videoli.csv", index=False, encoding="utf-8")
+        # 获取页面数据结果
+        content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type(content_id)
+        table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content(content_id)
+        important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important(content_id)
+        # 校验
+        assert content_type == "文字+视频"
+        assert table_content == "这是一条自动化测试用例，请审核老师通过就好"
+        assert important == "否"
+
+    def test_edit_videoli(self):
+        data_id = pd.read_csv("Data/test_add_videoli.csv", delimiter=",").iloc[0, 3]
+        content_id = pd.read_csv("Data/test_add_videoli.csv", delimiter=",").iloc[0, 2]
+        # 进入当前id编辑页
+        self.driver.get(page_url + page["文字+视频"] + "&id=" + str(data_id))
+        sleep(1)
+        # 编辑消息
+        hot_24_feed_page.Hot24FeedScenarios(self.driver).edit_data()
+        sleep(1)
+        # 进入24小时feed版本页
+        self.driver.get(feed_url)
+        sleep(1)
+        # 搜索编辑的消息
+        hot_24_feed_page.Hot24FeedScenarios(self.driver).search_data(str(content_id))
+        sleep(3)
+        # 获取页面数据结果
+        table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content(content_id)
+        important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important(content_id)
+        # 校验
+        assert table_content == "这是一条自动化测试用例，请审核老师通过就好"
+        assert important == "是"
+
+    def test_delete_videoli(self):
+        content_id = pd.read_csv("Data/test_add_videoli.csv", delimiter=",").iloc[0, 2]
+        # 进入24小时feed版本页
+        self.driver.get(feed_url)
+        sleep(1)
+        # 搜索操作的消息
+        hot_24_feed_page.Hot24FeedScenarios(self.driver).search_data(str(content_id))
+        sleep(2)
+        # 删除消息
+        hot_24_feed_page.Hot24FeedScenarios(self.driver).delete_data(content_id)
+        sleep(2)
+        # 获取页面数据结果
+        table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content(content_id)
+        data_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status(content_id)
+        # 校验
+        assert table_content == "这是一条自动化测试用例，请审核老师通过就好"
+        assert data_status == "后台删除"
+
+    def teardown(self):
+        self.driver.quit()
+
+
 # # 文字+外链
 # class TestLinkHot24Feed():
 #     def setup(self):
@@ -426,124 +394,6 @@ class TestPicHot24Feed():
 #
 #     def teardown(self):
 #         self.driver.quit()
-#
-#
-# """
-# # 搜狐视频直播呼起，运营已经停止使用
-# class TestSohuvideoHot24Feed():
-#     def setup(self):
-#         self.driver = webdriver.Chrome(options=chrome_options())
-#         self.driver.maximize_window()
-#         self.driver.implicitly_wait(10)
-#         login(self.driver)
-#
-#     @pytest.mark.parametrize(("link_title", "link", "content", "pic", "view_time"), [sohuvideoli_data[0][:5]])
-#     def test_add_sohuvideoli(self, link_title, link, content, pic, view_time):
-#         # 进入"创建新消息-搜狐视频直播呼起"页
-#         self.driver.get(page_url + page["搜狐视频直播呼起"])
-#         sleep(1)
-#         # 创建搜狐视频直播呼起消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).add_sohuvideoli(link_title, link, content, pic, view_time)
-#         sleep(1)
-#         # 进入24小时feed版本页
-#         self.driver.get(feed_url)
-#         sleep(2)
-#         # 搜索新创建的消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).search_new_data(status["发布"], feedtype["搜狐视频直播呼起"])
-#         sleep(1)
-#         # 将生成的新数据存到文件中以供后续使用
-#         content_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_id()
-#         data_id = hot_24_feed_page.Hot24FeedOper(self.driver).get_id_attribute()
-#         df = pd.read_csv("../../Data/test_add_sohuvideoli.csv", delimiter=",")
-#         df['content_id'] = content_id
-#         df['id'] = data_id
-#         df.to_csv("../../Data/test_add_sohuvideoli.csv", index=False, encoding="utf-8")
-#         # 获取页面数据结果
-#         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
-#         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
-#         link_title = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_link_title()
-#         data_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status()
-#         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
-#         # 校验
-#         assert content_type == "搜狐视频直播呼起"
-#         assert table_content == "海南疫情发布会，海南疫情发布会"
-#         assert link_title == "海南疫情发布会"
-#         assert data_status == "发布"
-#         assert important == "是"
-#
-#     def test_edit_sohuvideoli(self):
-#         data_id = pd.read_csv("../../Data/test_add_sohuvideoli.csv", delimiter=",").iloc[0, 6]
-#         content_id = pd.read_csv("../../Data/test_add_sohuvideoli.csv", delimiter=",").iloc[0, 5]
-#         # 进入当前id编辑页
-#         self.driver.get(page_url + page["搜狐视频直播呼起"] + "&id=" + str(data_id))
-#         sleep(2)
-#         # 编辑消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).edit_sohuvideo_data()
-#         sleep(1)
-#         # 进入24小时feed版本页
-#         self.driver.get(feed_url)
-#         sleep(1)
-#         # 搜索编辑的消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).search_data(str(content_id))
-#         sleep(3)
-#         # 获取页面数据结果
-#         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
-#         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
-#         data_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status()
-#         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
-#         # 校验
-#         assert content_type == "搜狐视频直播呼起"
-#         assert table_content == "海南疫情发布会，海南疫情发布会"
-#         assert data_status == "发布"
-#         assert important == "否"
-#
-#     def test_recall_sohuvideoli(self):
-#         content_id = pd.read_csv("../../Data/test_add_sohuvideoli.csv", delimiter=",").iloc[0, 5]
-#         # 进入24小时feed版本页
-#         self.driver.get(feed_url)
-#         sleep(1)
-#         # 搜索操作的消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).search_data(str(content_id))
-#         sleep(2)
-#         # 撤回消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).recall_data()
-#         sleep(2)
-#         # 获取页面数据结果
-#         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
-#         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
-#         data_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status()
-#         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
-#         # 校验
-#         assert content_type == "搜狐视频直播呼起"
-#         assert table_content == "海南疫情发布会，海南疫情发布会"
-#         assert data_status == "撤回"
-#         assert important == "否"
-#
-#     def test_delete_linkli(self):
-#         content_id = pd.read_csv("../../Data/test_add_sohuvideoli.csv", delimiter=",").iloc[0, 5]
-#         # 进入24小时feed版本页
-#         self.driver.get(feed_url)
-#         sleep(1)
-#         # 搜索操作的消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).search_data(str(content_id))
-#         sleep(2)
-#         # 删除消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).delete_data()
-#         sleep(2)
-#         # 获取页面数据结果
-#         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
-#         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
-#         data_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status()
-#         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
-#         # 校验
-#         assert content_type == "搜狐视频直播呼起"
-#         assert table_content == "海南疫情发布会，海南疫情发布会"
-#         assert data_status == "后台删除"
-#         assert important == "否"
-#
-#     def teardown(self):
-#         self.driver.quit()
-# """
 #
 #
 # # 真人播报

@@ -87,21 +87,21 @@ class Hot24FeedPage(object):
         self.driver.execute_script(js, ele)
         return ele
 
-
-
-
-
-
-
-    # "搜狐视频直播呼起添加图片输入框"元素
-    def find_sohuvideo_pic_input(self):
-        ele = self.driver.find_element(By.ID, 'picLoad')
-        return ele
-
     # "oid输入框"元素
     def find_oid_input(self):
         ele = self.driver.find_element(By.ID, 'oid')
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
+
+
+
+
+
+
+
+
+
 
     # "裁剪按钮"元素
     def find_cut_pic_button(self):
@@ -185,7 +185,6 @@ class Hot24FeedPage(object):
         ele = self.driver.find_element(By.XPATH, '//div[contains(.,"确定要")]/div/a[1]')
         js = "arguments[0].scrollIntoView();"
         self.driver.execute_script(js, ele)
-        # ele = self.driver.switch_to_alert()
         return ele
 
 
@@ -246,25 +245,18 @@ class Hot24FeedOper(object):
         self.hot_24_feed_page.find_pic_input().clear()
         self.hot_24_feed_page.find_pic_input().send_keys(pic)
 
-
-
-
-
-
-
-
-
-
-
-    # 输入搜狐视频直播呼起添加图片
-    def input_sohuvideo_pic(self, pic):
-        self.hot_24_feed_page.find_sohuvideo_pic_input().clear()
-        self.hot_24_feed_page.find_sohuvideo_pic_input().send_keys(pic)
-
     # 输入oid
     def input_oid(self, oid):
         self.hot_24_feed_page.find_oid_input().clear()
         self.hot_24_feed_page.find_oid_input().send_keys(oid)
+
+
+
+
+
+
+
+
 
     # 输入外链标题
     def input_link_title(self, link_title):
@@ -285,10 +277,6 @@ class Hot24FeedOper(object):
     def click_cut_pic_button(self):
         self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
                                                     self.hot_24_feed_page.find_cut_pic_button())
-
-    # 点击[编辑]按钮
-    def click_table_edit_button(self, content_id):
-        self.hot_24_feed_page.find_table_edit_button(content_id).click()
 
     # 点击[删除]按钮
     def click_table_delete_button(self, content_id):
@@ -363,22 +351,18 @@ class Hot24FeedScenarios(object):
         sleep(2)
         self.hot_24_feed_oper.click_submit_button()
 
-
-
-
-
-
-
-
-
     # 增加一条新文字+视频数据
-    def add_videoli(self, content, oid, view_time):
+    def add_videoli(self, content, oid):
         self.hot_24_feed_oper.input_oid(oid)
         self.hot_24_feed_oper.input_content(content)
-        self.hot_24_feed_oper.click_mark_mode_recommend()
-        self.hot_24_feed_oper.input_view_time(view_time)
+        self.hot_24_feed_oper.click_recall_label()
         sleep(2)
         self.hot_24_feed_oper.click_submit_button()
+
+
+
+
+
 
     # 增加一条新文字+外链数据
     def add_linkli(self, content, oid, view_time):
@@ -396,27 +380,6 @@ class Hot24FeedScenarios(object):
 
     # 编辑文字+外链数据
     def edit_link_data(self):
-        self.hot_24_feed_oper.click_link_is_important_no()
-        sleep(2)
-        self.hot_24_feed_oper.click_submit_button()
-
-    # 增加一条新搜狐视频直播呼起数据
-    def add_sohuvideoli(self, link_title, link, content, pic, view_time):
-        self.hot_24_feed_oper.input_link_title(link_title)
-        self.hot_24_feed_oper.input_link(link)
-        self.hot_24_feed_oper.click_agreement()
-        self.hot_24_feed_oper.input_sohuvideo_pic(pic)
-        self.hot_24_feed_oper.input_content(content)
-        sleep(2)
-        self.hot_24_feed_oper.click_cut_pic_button()
-        self.hot_24_feed_oper.click_sohuvideo_mark_mode_recommend()
-        sleep(2)
-        self.hot_24_feed_oper.input_view_time(view_time)
-        sleep(2)
-        self.hot_24_feed_oper.click_submit_button()
-
-    # 编辑搜狐视频直播呼起数据
-    def edit_sohuvideo_data(self):
         self.hot_24_feed_oper.click_link_is_important_no()
         sleep(2)
         self.hot_24_feed_oper.click_submit_button()
