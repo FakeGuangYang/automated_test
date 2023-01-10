@@ -26,8 +26,6 @@ host = parse_yml("Config/login.yml", 'websites', 'host')
 # page_url = "http://" + host + ":10510/testhotred/hot24feed/toSelectedPage?go="
 feed_url = "http://" + host + "/hotred/hot24feed/toHot24FeedList"
 page_url = "http://" + host + "/hotred/hot24feed/toSelectedPage?go="
-print("curdir: " + os.path.abspath(os.curdir))
-print("getcwd: " + os.getcwd())
 
 # 引用测试数据
 textli_data = parse_csv("Data/test_add_textli.csv")
@@ -130,6 +128,8 @@ class TestPicHot24Feed():
     @pytest.mark.parametrize(("content", "pic"), [picli_data[0][:2]])
     def test_add_picli(self, content, pic):
         # 进入"创建新消息-文字+图片"页
+        print("curdir: " + os.path.abspath(os.curdir))
+        print("getcwd: " + os.getcwd())
         self.driver.get(page_url + page["文字+图片"])
         sleep(1)
         # 创建文字+图片消息
