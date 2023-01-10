@@ -283,7 +283,7 @@ class TestVideoHot24Feed():
 # 文字+外链
 class TestLinkHot24Feed():
     def setup(self):
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome(options=chrome_options())
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         login(self.driver)
@@ -432,28 +432,6 @@ class TestLinkHot24Feed():
 #         assert data_status == "发布"
 #         assert important == "否"
 #
-#     def test_recall_sohuvideoli(self):
-#         content_id = pd.read_csv("../../Data/test_add_listenli.csv", delimiter=",").iloc[0, 3]
-#         # 进入24小时feed版本页
-#         self.driver.get(feed_url)
-#         sleep(1)
-#         # 搜索操作的消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).search_data(str(content_id))
-#         sleep(2)
-#         # 撤回消息
-#         hot_24_feed_page.Hot24FeedScenarios(self.driver).recall_data()
-#         sleep(2)
-#         # 获取页面数据结果
-#         content_type = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content_type()
-#         table_content = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_content()
-#         data_status = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_status()
-#         important = hot_24_feed_page.Hot24FeedOper(self.driver).get_table_important()
-#         # 校验
-#         assert content_type == "边看边听"
-#         assert table_content == "【58万亿一夜蒸发，牵出韩国“史上最大诈骗犯”】"
-#         assert data_status == "撤回"
-#         assert important == "否"
-#
 #     def test_delete_linkli(self):
 #         content_id = pd.read_csv("../../Data/test_add_listenli.csv", delimiter=",").iloc[0, 3]
 #         # 进入24小时feed版本页
@@ -481,4 +459,4 @@ class TestLinkHot24Feed():
 
 
 if __name__ == "__main__":
-    pytest.main(['-s', 'test_hot_24_feed.py::TestPicHot24Feed'])
+    pytest.main(['-s', 'test_hot_24_feed.py'])
