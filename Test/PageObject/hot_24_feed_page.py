@@ -57,6 +57,8 @@ class Hot24FeedPage(object):
     # "消息正文输入框"元素
     def find_content_input(self):
         ele = self.driver.find_element(By.ID, 'contentEditor')
+        js = "arguments[0].scrollIntoView();"
+        self.driver.execute_script(js, ele)
         return ele
 
     # "状态 - 撤回"元素
@@ -106,30 +108,6 @@ class Hot24FeedPage(object):
         ele = self.driver.find_element(By.XPATH, '//label[contains(.,"重要")]/../label[contains(.,"是")]')
         js = "arguments[0].scrollIntoView();"
         self.driver.execute_script(js, ele)
-        return ele
-
-
-
-
-
-
-
-
-
-
-    # "外链标题输入框"元素
-    def find_link_title_input(self):
-        ele = self.driver.find_element(By.ID, 'LinkTitle')
-        return ele
-
-    # "外链接地址输入框"元素
-    def find_link_input(self):
-        ele = self.driver.find_element(By.ID, 'link')
-        return ele
-
-    # "协议地址输入框"元素
-    def find_agreement_input(self):
-        ele = self.driver.find_element(By.ID, 'agreement')
         return ele
 
     """
@@ -267,37 +245,6 @@ class Hot24FeedOper(object):
     def click_link_important_label(self):
         self.hot_24_feed_page.find_link_important_label().click()
 
-
-
-
-
-
-
-
-
-    # 输入外链标题
-    def input_link_title(self, link_title):
-        self.hot_24_feed_page.find_link_title_input().clear()
-        self.hot_24_feed_page.find_link_title_input().send_keys(link_title)
-
-    # 输入外链接地址
-    def input_link(self, link):
-        self.hot_24_feed_page.find_link_input().clear()
-        self.hot_24_feed_page.find_link_input().send_keys(link)
-
-    # 点击协议地址自动获取
-    def click_agreement(self):
-        self.hot_24_feed_page.driver.execute_script("arguments[0].click();",
-                                                    self.hot_24_feed_page.find_agreement_input())
-
-
-
-
-
-
-
-
-
     # 点击[删除]按钮
     def click_table_delete_button(self, content_id):
         self.hot_24_feed_page.find_table_delete_button(content_id).click()
@@ -382,8 +329,8 @@ class Hot24FeedScenarios(object):
     def add_linkli(self, content, oid):
         self.hot_24_feed_oper.input_oid(oid)
         self.hot_24_feed_oper.input_content(content)
-        sleep(5)
         self.hot_24_feed_oper.click_cut_pic_button()
+        sleep(2)
         self.hot_24_feed_oper.click_recall_label()
         sleep(2)
         self.hot_24_feed_oper.click_submit_button()
@@ -394,18 +341,11 @@ class Hot24FeedScenarios(object):
         sleep(2)
         self.hot_24_feed_oper.click_submit_button()
 
-
-
-
-
-
-
     # 增加一条新真人播报数据
-    def add_listenli(self, oid, content, view_time):
+    def add_listenli(self, oid, content):
         self.hot_24_feed_oper.input_oid(oid)
         self.hot_24_feed_oper.input_content(content)
-        self.hot_24_feed_oper.click_mark_mode_recommend()
-        self.hot_24_feed_oper.input_view_time(view_time)
+        self.hot_24_feed_oper.click_recall_label()
         sleep(2)
         self.hot_24_feed_oper.click_submit_button()
 
