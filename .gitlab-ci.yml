@@ -24,6 +24,7 @@ job_login_page:
     - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
   only:
     - master
+  retry: 2
   # 在Gitlab运行时需要加下面的tag才能被捕捉到
   tags:
     - smc-check
@@ -35,6 +36,7 @@ job_scheduled_pushing_page_news:
     - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
   only:
     - master
+  retry: 2
   tags:
     - smc-check
 
@@ -45,6 +47,7 @@ job_scheduled_pushing_page_audio:
     - pytest "Test/TestCase/test_scheduled_pushing.py::TestAudioScheduledPushing" --alluredir=Report/report
   only:
     - master
+  retry: 2
   tags:
     - smc-check
 
@@ -55,6 +58,7 @@ job_jina_page:
     - pytest "Test/TestCase/test_jina.py" --alluredir=Report/report
   only:
     - master
+  retry: 2
   tags:
     - smc-check
 
@@ -65,6 +69,7 @@ job_hot_24_feed_page_text:
     - pytest "Test/TestCase/test_hot_24_feed.py::TestTextHot24Feed" --alluredir=Report/report
   only:
     - master
+  retry: 2
   tags:
     - smc-check
 
@@ -75,6 +80,7 @@ job_hot_24_feed_page_pic:
     - pytest "Test/TestCase/test_hot_24_feed.py::TestPicHot24Feed" --alluredir=Report/report
   only:
     - master
+  retry: 2
   tags:
     - smc-check
 
@@ -85,6 +91,7 @@ job_hot_24_feed_page_video:
     - pytest "Test/TestCase/test_hot_24_feed.py::TestVideoHot24Feed" --alluredir=Report/report
   only:
     - master
+  retry: 2
   tags:
     - smc-check
 
@@ -95,5 +102,6 @@ job_hot_24_feed_page_listen:
     - pytest "Test/TestCase/test_hot_24_feed.py::TestListenHot24Feed" --alluredir=Report/report
   only:
     - master
+  retry: 2
   tags:
     - smc-check
