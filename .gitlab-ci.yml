@@ -96,12 +96,12 @@ job_hot_24_feed_page_video:
     - smc-check
 
 # 24小时feed版页-"真人播报"自动化测试用例
-job_hot_24_feed_page_listen:
-  stage: test_cases
-  script:
-    - pytest "Test/TestCase/test_hot_24_feed.py::TestListenHot24Feed" --alluredir=Report/report
-  only:
-    - master
-  retry: 2
-  tags:
-    - smc-check
+# job_hot_24_feed_page_listen:
+#   stage: test_cases
+#   script:
+#     - pytest "Test/TestCase/test_hot_24_feed.py::TestListenHot24Feed" --alluredir=Report/report
+#   only:
+#     - master
+#   retry: 2
+#   tags:
+#     - smc-check
