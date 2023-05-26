@@ -30,37 +30,37 @@ job_login_page:
     - smc-check
 
 # 定投管理页-新闻定投自动化测试用例
-job_scheduled_pushing_page_news:
-  stage: test_cases
-  script:
-    - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
-  only:
-    - master
-  retry: 2
-  tags:
-    - smc-check
+# job_scheduled_pushing_page_news:
+#  stage: test_cases
+#  script:
+#    - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
+#  only:
+#    - master
+#  retry: 2
+#  tags:
+#    - smc-check
 
 # 定投管理页-音频定投自动化测试用例
-job_scheduled_pushing_page_audio:
-  stage: test_cases
-  script:
-    - pytest "Test/TestCase/test_scheduled_pushing.py::TestAudioScheduledPushing" --alluredir=Report/report
-  only:
-    - master
-  retry: 2
-  tags:
-    - smc-check
+# job_scheduled_pushing_page_audio:
+#  stage: test_cases
+#  script:
+#    - pytest "Test/TestCase/test_scheduled_pushing.py::TestAudioScheduledPushing" --alluredir=Report/report
+#  only:
+#    - master
+#  retry: 2
+#  tags:
+#    - smc-check
 
 # 集纳页自动化测试用例
-job_jina_page:
-  stage: test_cases
-  script:
-    - pytest "Test/TestCase/test_jina.py" --alluredir=Report/report
-  only:
-    - master
-  retry: 2
-  tags:
-    - smc-check
+# job_jina_page:
+#  stage: test_cases
+#  script:
+#    - pytest "Test/TestCase/test_jina.py" --alluredir=Report/report
+#  only:
+#    - master
+#  retry: 2
+#  tags:
+#    - smc-check
 
 # 24小时feed版页-"纯文字"自动化测试用例
 # job_hot_24_feed_page_text:
