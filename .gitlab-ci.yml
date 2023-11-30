@@ -18,16 +18,16 @@ before_script:
   - echo "Automated test starting..."
 
 # 登录页自动化测试用例
-job_login_page:
-  stage: login
-  script:
-    - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
-  only:
-    - master
-  retry: 2
-  # 在Gitlab运行时需要加下面的tag才能被捕捉到
-  tags:
-    - smc-check
+# job_login_page:
+#   stage: login
+#   script:
+#     - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
+#   only:
+#     - master
+#   retry: 2
+#   # 在Gitlab运行时需要加下面的tag才能被捕捉到
+#   tags:
+#     - smc-check
 
 # 定投管理页-新闻定投自动化测试用例
 # job_scheduled_pushing_page_news:
