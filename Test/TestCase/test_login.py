@@ -8,9 +8,10 @@ from selenium.webdriver.chrome.options import Options
 import pytest
 from Test.PageObject import login_page
 from Common.parse_csv import parse_csv
+from Common.parse_yml import parse_yml
 
 data = parse_csv("Data/test_login.csv")
-url = "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com/operation/ssoValidate?returnUrl=/"
+url = parse_yml("Config/login.yml", 'websites', 'loginPage')
 # 在Linux运行时需要添加Chrome options
 chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
@@ -19,7 +20,7 @@ chrome_options.add_argument('blink-settings=imagesEnabled=false')
 
 
 @pytest.mark.parametrize(("username", "password", "status"), data)
-class TestLogin():
+class TestLogin:
     def setup(self):
         self.driver = webdriver.Chrome(options=chrome_options)
         self.driver.maximize_window()
@@ -34,9 +35,9 @@ class TestLogin():
         # TODO: 使用"find_element"方法取到的用户名是空，后续需要研究原因(可能是因为需要sleep?)
         elif status == '1':
             page_source = self.driver.page_source
-            assert "guangyang219579@sohu-inc.com" in page_source
+            assert "autotestsup@sohu-inc.com" in page_source
         else:
-            print("ERROR: Status can only be 0 or 1.")
+            raise "ERROR: Status can only be 0 or 1."
 
     def teardown(self):
         self.driver.quit()

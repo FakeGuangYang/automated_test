@@ -23,7 +23,7 @@ news = "http://" + host + "/operation/delivery/toTargetedDeliveryList?type=news"
 audio = "http://" + host + "/operation/delivery/toTargetedDeliveryList?type=audio"
 
 
-class TestNewsScheduledPushing():
+class TestNewsScheduledPushing:
     def setup(self):
         self.driver = webdriver.Chrome(options=chrome_options())
         self.driver.maximize_window()
@@ -53,7 +53,7 @@ class TestNewsScheduledPushing():
         assert delivery_position == location
         assert table_remark == remark
         # 目前投放时间都是过去的时间因此都为已过期
-        assert status == "已投放:\n已过期"
+        assert status == "已失效:\n已过期"
 
     @pytest.mark.parametrize("new_remark", modify_modal_data[0])
     def test_modify_modal(self, new_remark):
@@ -69,22 +69,9 @@ class TestNewsScheduledPushing():
         # 校验
         assert table_remark == new_remark
         # 目前投放时间都是过去的时间因此都为已过期
-        assert status == "已投放:\n已过期"
+        assert status == "已失效:\n已过期"
 
-    def test_stop_delivery(self):
-        # 进入新闻定投页
-        self.driver.get(news)
-        sleep(5)
-        # 做取消投放操作
-        scheduled_pushing_page.ScheduledPushingScenarios(self.driver).news_data_delivery()
-        sleep(5)
-        # 获取界面数据结果
-        status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_table_status()
-        # 校验
-        # 目前投放时间都是过去的时间因此都为已过期
-        assert status == "待投放:\n已过期"
-
-    def test_continue_delivery(self):
+    def test_news_delivery(self):
         # 进入新闻定投页
         self.driver.get(news)
         sleep(5)
@@ -95,13 +82,13 @@ class TestNewsScheduledPushing():
         status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_table_status()
         # 校验
         # 目前投放时间都是过去的时间因此都为已过期
-        assert status == "已投放:\n已过期"
+        assert status == "已失效:\n已过期"
 
     def teardown(self):
         self.driver.quit()
 
 
-class TestAudioScheduledPushing():
+class TestAudioScheduledPushing:
     def setup(self):
         self.driver = webdriver.Chrome(options=chrome_options())
         self.driver.maximize_window()
@@ -130,7 +117,7 @@ class TestAudioScheduledPushing():
         assert delivery_position == location
         assert table_remark == remark
         # 目前投放时间都是过去的时间因此都为已过期
-        assert status == "已投放:\n已过期"
+        assert status == "待投放:\n已过期"
 
     @pytest.mark.parametrize("new_remark", modify_modal_data[0])
     def test_modify_modal(self, new_remark):
@@ -146,22 +133,9 @@ class TestAudioScheduledPushing():
         # 校验
         assert table_remark == new_remark
         # 目前投放时间都是过去的时间因此都为已过期
-        assert status == "已投放:\n已过期"
-
-    def test_stop_delivery(self):
-        # 进入音频定投页
-        self.driver.get(audio)
-        sleep(5)
-        # 做取消投放操作
-        scheduled_pushing_page.ScheduledPushingScenarios(self.driver).audio_data_delivery()
-        sleep(5)
-        # 获取界面数据结果
-        status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_audio_status()
-        # 校验
-        # 目前投放时间都是过去的时间因此都为已过期
         assert status == "待投放:\n已过期"
 
-    def test_continue_delivery(self):
+    def test_audio_delivery(self):
         # 进入音频定投页
         self.driver.get(audio)
         sleep(5)
@@ -172,7 +146,7 @@ class TestAudioScheduledPushing():
         status = scheduled_pushing_page.ScheduledPushingOper(self.driver).get_audio_status()
         # 校验
         # 目前投放时间都是过去的时间因此都为已过期
-        assert status == "已投放:\n已过期"
+        assert status == "待投放:\n已过期"
 
     def teardown(self):
         self.driver.quit()

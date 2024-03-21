@@ -385,7 +385,7 @@ class ScheduledPushingOper(object):
 
     # 输入操作人
     def input_operator(self):
-        self.scheduled_pushing_page.find_operator().send_keys("guangyang219579")
+        self.scheduled_pushing_page.find_operator().send_keys("autotestsup")
 
     # 点击搜索按钮
     def click_search_content_button(self):
@@ -475,6 +475,8 @@ class ScheduledPushingScenarios(object):
         self.scheduled_pushing_oper.input_delivery_time(delivery_time)
         sleep(3)
         self.scheduled_pushing_oper.click_save_button()
+        sleep(10)
+        self.scheduled_pushing_oper.click_search_content_button()
 
     # 编辑之前新增的数据，只改备注
     def news_modify_modal(self, remark):
@@ -482,10 +484,14 @@ class ScheduledPushingScenarios(object):
         sleep(5)
         self.scheduled_pushing_oper.input_remark(remark)
         self.scheduled_pushing_oper.click_save_button()
+        sleep(10)
+        self.scheduled_pushing_oper.click_search_content_button()
 
-    # 数据投放/取消投放
+    # 数据投放
     def news_data_delivery(self):
         self.scheduled_pushing_oper.click_table_delivery_button()
+        sleep(10)
+        self.scheduled_pushing_oper.click_search_content_button()
 
     """
     以下为音频定投页场景
@@ -507,6 +513,7 @@ class ScheduledPushingScenarios(object):
         self.scheduled_pushing_oper.click_save_button()
         sleep(5)
         self.scheduled_pushing_oper.input_operator()
+        sleep(5)
         self.scheduled_pushing_oper.click_search_content_button()
 
     # 编辑之前新增的数据，只改备注
@@ -518,10 +525,14 @@ class ScheduledPushingScenarios(object):
         sleep(3)
         self.scheduled_pushing_oper.input_remark(remark)
         self.scheduled_pushing_oper.click_save_button()
+        sleep(10)
+        self.scheduled_pushing_oper.click_search_content_button()
 
-    # 数据投放/取消投放
+    # 数据投放
     def audio_data_delivery(self):
         self.scheduled_pushing_oper.input_operator()
         self.scheduled_pushing_oper.click_search_content_button()
         sleep(3)
         self.scheduled_pushing_oper.click_audio_delivery_button()
+        sleep(10)
+        self.scheduled_pushing_oper.click_search_content_button()

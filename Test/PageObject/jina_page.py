@@ -34,7 +34,7 @@ class JinaPage(object):
 
     # "权重"输入框元素
     def find_weight_input(self):
-        ele = self.driver.find_element(By.XPATH, '//label[contains(.,"权重")]/../div/div/div/input')
+        ele = self.driver.find_element(By.XPATH, '//label[text()="权重"]/../div/div/div/input')
         js = "arguments[0].scrollIntoView();"
         self.driver.execute_script(js, ele)
         return ele
@@ -46,25 +46,25 @@ class JinaPage(object):
 
     # 列表"频道类型"元素
     def find_table_channel_type(self, channel_name):
-        path = '//tr[contains(.,"' + channel_name + '")]/td[2]/div/div'
+        path = '//div[text()="' + channel_name + '"]/../../td[2]/div/div'
         ele = self.driver.find_element(By.XPATH, path)
         return ele
 
     # 列表"权重"元素
     def find_table_channel_weight(self, channel_name):
-        path = '//tr[contains(.,"' + channel_name + '")]/td[4]/div'
+        path = '//div[text()="' + channel_name + '"]/../../td[4]/div'
         ele = self.driver.find_element(By.XPATH, path)
         return ele
 
     # 列表"[修改]"按钮元素
     def find_table_channel_modify_button(self, channel_name):
-        path = '//tr[contains(.,"' + channel_name + '")]/td[5]/div/button[contains(.,"修改")]'
+        path = '//div[text()="' + channel_name + '"]/../../td[5]/div/button[contains(.,"修改")]'
         ele = self.driver.find_element(By.XPATH, path)
         return ele
 
     # 列表"[删除]"按钮元素
     def find_table_channel_delete_button(self, channel_name):
-        path = '//tr[contains(.,"' + channel_name + '")]/td[5]/div/span/span/button'
+        path = '//div[text()="' + channel_name + '"]/../../td[5]/div/span/span/button'
         ele = self.driver.find_element(By.XPATH, path)
         return ele
 
@@ -90,7 +90,7 @@ class JinaPage(object):
 
     # 选择刚创建频道元素
     def find_news_channel_button(self, channel_name):
-        path = '//*[@class="el-scrollbar"]/div/ul/li[contains(.,"' + channel_name + '")]'
+        path = '//*[@class="el-scrollbar"]/div/ul/li/span[text()="' + channel_name + '"]/..'
         ele = self.driver.find_element(By.XPATH, path)
         js = "arguments[0].scrollIntoView();"
         self.driver.execute_script(js, ele)
@@ -111,32 +111,37 @@ class JinaPage(object):
 
     # 选择页面左侧的频道
     def find_channel_table_button(self, channel_name):
-        path = '//div[@role="tablist"]/div[contains(.,"' + channel_name + '")]'
+        path = '//div[@role="tablist"]/div[text()="' + channel_name + '(长期)"]'
         ele = self.driver.find_element(By.XPATH, path)
         return ele
 
     # 列表"标题"元素
     def find_table_news_title(self, oid):
-        path = '//tr[contains(.,"' + oid + '")]/td[3]/div'
+        path = '//tr[contains(.,"' + oid + '")]/td[4]/div'
         ele = self.driver.find_element(By.XPATH, path)
         return ele
 
     # 列表"权重"元素
     def find_table_news_weight(self, oid):
-        path = '//tr[contains(.,"' + oid + '")]/td[6]/div'
+        path = '//tr[contains(.,"' + oid + '")]/td[7]/div'
         ele = self.driver.find_element(By.XPATH, path)
         return ele
 
     # 列表"[修改]"按钮元素
     def find_table_news_modify_button(self, oid):
-        path = '//tr[contains(.,"' + oid + '")]/td[10]/div/button'
+        path = '//tr[contains(.,"' + oid + '")]/td[11]/div/button'
         ele = self.driver.find_element(By.XPATH, path)
         return ele
 
     # 列表"[删除]"按钮元素
     def find_table_news_delete_button(self, oid):
-        path = '//tr[contains(.,"' + oid + '")]/td[10]/div/span/span/button'
+        path = '//tr[contains(.,"' + oid + '")]/td[11]/div/span/span/button'
         ele = self.driver.find_element(By.XPATH, path)
+        return ele
+
+    # "[下线频道]"按钮元素
+    def find_offline_channel_button(self):
+        ele = self.driver.find_element(By.ID, "tab-offline")
         return ele
 
 
@@ -213,6 +218,10 @@ class JinaOper(object):
     def click_channel_table_button(self, channel_name):
         self.jina_page.find_channel_table_button(channel_name).click()
 
+    # 点击[下线频道]按钮
+    def click_offline_channel_button(self):
+        self.jina_page.find_offline_channel_button().click()
+
     """
     以下操作用于验证操作结果是否正确
     """
@@ -272,6 +281,7 @@ class JinaScenarios(object):
 
     # 修改新闻
     def modify_news(self, channel_name, oid, weight):
+        self.jina_oper.click_offline_channel_button()
         self.jina_oper.click_channel_table_button(channel_name)
         self.jina_oper.click_news_modify_button(oid)
         sleep(3)
@@ -280,6 +290,7 @@ class JinaScenarios(object):
 
     # 删除新闻
     def delete_news(self, channel_name, oid):
+        self.jina_oper.click_offline_channel_button()
         self.jina_oper.click_channel_table_button(channel_name)
         self.jina_oper.click_news_delete_button(oid)
         sleep(3)

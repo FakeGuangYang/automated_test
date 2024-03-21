@@ -68,7 +68,7 @@ class TestJina():
         news_weight = jina_page.JinaOper(self.driver).get_table_news_weight(oid)
         # 校验
         assert news_title == "这一幕激怒俄罗斯！"
-        assert news_weight == "0"
+        assert news_weight == "权重:0"
 
     @pytest.mark.parametrize(("channel_name", "oid", "news_weight"), [[data[0], data[2], data[3]]])
     def test_modify_news(self, channel_name, oid, news_weight):
@@ -81,7 +81,7 @@ class TestJina():
         # 获取界面数据结果
         weight = jina_page.JinaOper(self.driver).get_table_news_weight(oid)
         # 校验
-        assert weight == news_weight
+        assert weight == "权重:" + news_weight
 
     @pytest.mark.parametrize(("channel_name", "oid"), [[data[0], data[2]]])
     def test_delete_news(self, channel_name, oid):
@@ -91,12 +91,9 @@ class TestJina():
         # 做删除新闻操作
         jina_page.JinaScenarios(self.driver).delete_news(channel_name, oid)
         sleep(5)
-        # 获取界面数据结果
-        try:
+        # 校验
+        with pytest.raises(Exception):
             jina_page.JinaOper(self.driver).get_table_news_weight(oid)
-        except Exception as e:
-            # 校验
-            assert "no such element" in str(e)
 
     @pytest.mark.parametrize("channel_name", [data[0]])
     def test_delete_channel(self, channel_name):
@@ -106,12 +103,9 @@ class TestJina():
         # 做删除频道操作
         jina_page.JinaScenarios(self.driver).delete_channel(channel_name)
         sleep(5)
-        # 获取界面数据结果
-        try:
+        # 校验
+        with pytest.raises(Exception):
             jina_page.JinaOper(self.driver).get_table_channel_weight(channel_name)
-        except Exception as e:
-            # 校验
-            assert "no such element" in str(e)
 
     def teardown(self):
         self.driver.quit()
