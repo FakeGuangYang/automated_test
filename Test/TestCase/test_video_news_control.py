@@ -15,7 +15,7 @@ from time import sleep
 
 # 引用测试数据
 data = parse_csv("../../Data/test_video_news_control_delivery_video.csv")
-# 定投管理页url
+# 视频运营页url
 host = parse_yml("../../Config/login.yml", 'websites', 'host')
 url = "http://" + host + "/operation/videos/video_news_control_all"
 # 停留时间

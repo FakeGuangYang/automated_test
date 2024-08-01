@@ -3,6 +3,7 @@
 # @Author: guangyang219579
 # @File: test_jina.py
 
+import subprocess
 from selenium import webdriver
 import pytest
 from Test.PageObject import jina_page
@@ -11,18 +12,19 @@ from Common.parse_yml import parse_yml
 from Common.login import login
 from Common.chrome_options import chrome_options
 from time import sleep
+from get_script_directory import get_script_directory
 
 # 引用测试数据
-data = parse_csv("Data/test_jina_data.csv")[0]
+data = parse_csv("/Data/test_jina_data.csv")[0]
 # 定投管理页url
-host = parse_yml("Config/login.yml", 'websites', 'host')
-channel = "http://" + host + "/operation/jina/channel/index"
-news = "http://" + host + "/operation/jina/news/index"
+host = parse_yml("/Config/login.yml", 'websites', 'host')
+channel = "http://" + host + "/mrd-operation/jina/channel/index"
+news = "http://" + host + "/mrd-operation/jina/news/index"
 
 
 class TestJina():
     def setup(self):
-        self.driver = webdriver.Chrome(options=chrome_options())
+        self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         login(self.driver)
@@ -35,7 +37,11 @@ class TestJina():
         # 做添加频道操作
         jina_page.JinaScenarios(self.driver).add_channel(channel_name)
         sleep(5)
-        # 获取界面数据结果
+        # # 获取界面数据结果
+        # self.driver.execute_script("window.scrollBy(0, 200);")
+        # res = self.driver.get_screenshot_as_base64()
+        # # 校验结果横坐标是否找到
+        # assert matchImgByTemplate(res, "/ResultPic/add_channel.png")[0] != -1
         channel_type = jina_page.JinaOper(self.driver).get_table_channel_type(channel_name)
         weight = jina_page.JinaOper(self.driver).get_table_channel_weight(channel_name)
         # 校验
@@ -112,4 +118,4 @@ class TestJina():
 
 
 if __name__ == "__main__":
-    pytest.main(['-s', 'test_jina.py'])
+    pytest.main(['-s', 'test_jina.py', "--alluredir=" + get_script_directory() + "/Report/report"])

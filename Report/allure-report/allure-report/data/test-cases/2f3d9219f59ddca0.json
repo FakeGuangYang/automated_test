@@ -1,0 +1,101 @@
+{
+  "uid" : "2f3d9219f59ddca0",
+  "name" : "test_add_channel[自动化测试]",
+  "fullName" : "test_jina.TestJina#test_add_channel",
+  "historyId" : "ecdd89022c4a4511af9201e564512dad",
+  "time" : {
+    "start" : 1713865939938,
+    "stop" : 1713865955922,
+    "duration" : 15984
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ {
+    "name" : "_xunit_setup_method_fixture_TestJina",
+    "time" : {
+      "start" : 1713865931476,
+      "stop" : 1713865939937,
+      "duration" : 8461
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "_xunit_setup_method_fixture_TestJina::0",
+    "time" : {
+      "start" : 1713865955927,
+      "stop" : 1713865958118,
+      "duration" : 2191
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "test_jina"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestJina"
+  }, {
+    "name" : "host",
+    "value" : "guangyang219579"
+  }, {
+    "name" : "thread",
+    "value" : "27156-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test_jina"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "channel_name",
+    "value" : "'自动化测试'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "58635589f28e4eb9",
+      "status" : "passed",
+      "time" : {
+        "start" : 1713865459130,
+        "stop" : 1713865474861,
+        "duration" : 15731
+      }
+    }, {
+      "uid" : "31561bb1f732b90c",
+      "status" : "passed",
+      "time" : {
+        "start" : 1713865333855,
+        "stop" : 1713865349138,
+        "duration" : 15283
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "2f3d9219f59ddca0.json",
+  "parameterValues" : [ "'自动化测试'" ]
+}

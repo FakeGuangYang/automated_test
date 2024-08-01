@@ -1,0 +1,25 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "test_jina",
+    "children" : [ {
+      "name" : "TestJina",
+      "children" : [ {
+        "name" : "test_add_channel[自动化测试]",
+        "uid" : "2f3d9219f59ddca0",
+        "parentUid" : "4adc04a1365dcf40808363f668fb7d16",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713865939938,
+          "stop" : 1713865955922,
+          "duration" : 15984
+        },
+        "flaky" : false,
+        "parameters" : [ "'自动化测试'" ]
+      } ],
+      "uid" : "4adc04a1365dcf40808363f668fb7d16"
+    } ],
+    "uid" : "0d856fe88ea735dcecf03a09cb740ab6"
+  } ]
+}

@@ -4,25 +4,20 @@
 # @File: test_login.py
 
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 import pytest
 from Test.PageObject import login_page
 from Common.parse_csv import parse_csv
 from Common.parse_yml import parse_yml
+from Common.chrome_options import chrome_options
 
-data = parse_csv("Data/test_login.csv")
-url = parse_yml("Config/login.yml", 'websites', 'loginPage')
-# 在Linux运行时需要添加Chrome options
-chrome_options = Options()
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--headless')
-chrome_options.add_argument('blink-settings=imagesEnabled=false')
+data = parse_csv("/Data/test_login.csv")
+url = parse_yml("/Config/login.yml", 'websites', 'loginPage')
 
 
 @pytest.mark.parametrize(("username", "password", "status"), data)
 class TestLogin:
     def setup(self):
-        self.driver = webdriver.Chrome(options=chrome_options)
+        self.driver = webdriver.Chrome(options=chrome_options())
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         self.driver.get(url)

@@ -22,17 +22,17 @@ class VideoOperationPage(object):
 
     # "newsid搜索框"元素
     def find_search_newsid_input(self):
-        ele = self.driver.find_element(By.ID, 'newsid')
+        ele = self.driver.find_element(By.XPATH, '//label[contains(.,"newsId")]/../div/div/input')
         return ele
 
     # "搜索按钮"元素
     def find_search_content_button(self):
-        ele = self.driver.find_element(By.ID, 'search_content')
+        ele = self.driver.find_element(By.XPATH, '//span[contains(.,"搜索")]/parent::button')
         return ele
 
     # "添加按钮"元素
     def find_add_content_button(self):
-        ele = self.driver.find_element(By.ID, 'add_content')
+        ele = self.driver.find_element(By.XPATH, '//span[contains(.,"添加")]/parent::button')
         return ele
 
     """

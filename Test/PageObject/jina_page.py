@@ -44,6 +44,13 @@ class JinaPage(object):
         ele = self.driver.find_element(By.XPATH, '//button[contains(.,"确 定")]')
         return ele
 
+    # 编辑新闻页面"[确定]"按钮元素
+    def find_modify_news_submit_button(self):
+        ele = self.driver.find_element(By.XPATH,
+                                       '//*[@aria-label="编辑新闻"]/div[@class="el-dialog__footer"]/'
+                                       'div/button[contains(.,"确 定")]')
+        return ele
+
     # 列表"频道类型"元素
     def find_table_channel_type(self, channel_name):
         path = '//div[text()="' + channel_name + '"]/../../td[2]/div/div'
@@ -177,6 +184,10 @@ class JinaOper(object):
     def click_channel_submit_button(self):
         self.jina_page.find_channel_submit_button().click()
 
+    # 点击编辑新闻页面[确定]按钮
+    def click_modify_news_submit_button(self):
+        self.jina_page.find_modify_news_submit_button().click()
+
     # 点击频道[修改]按钮
     def click_channel_modify_button(self, channel_name):
         self.jina_page.find_table_channel_modify_button(channel_name).click()
@@ -286,7 +297,7 @@ class JinaScenarios(object):
         self.jina_oper.click_news_modify_button(oid)
         sleep(3)
         self.jina_oper.input_weight(weight)
-        self.jina_oper.click_channel_submit_button()
+        self.jina_oper.click_modify_news_submit_button()
 
     # 删除新闻
     def delete_news(self, channel_name, oid):

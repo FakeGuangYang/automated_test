@@ -12,20 +12,21 @@ from Common.delivery_time import delivery_time
 from Common.login import login
 from Common.chrome_options import chrome_options
 from time import sleep
+from get_script_directory import get_script_directory
 
 # 引用测试数据
-add_news_modal_data = parse_csv("Data/test_scheduled_pushing_news_add_modal.csv")
-add_audio_modal_data = parse_csv("Data/test_scheduled_pushing_audio_add_modal.csv")
-modify_modal_data = parse_csv("Data/test_scheduled_pushing_modify_modal.csv")
+add_news_modal_data = parse_csv("/Data/test_scheduled_pushing_news_add_modal.csv")
+add_audio_modal_data = parse_csv("/Data/test_scheduled_pushing_audio_add_modal.csv")
+modify_modal_data = parse_csv("/Data/test_scheduled_pushing_modify_modal.csv")
 # 定投管理页url
-host = parse_yml("Config/login.yml", 'websites', 'host')
-news = "http://" + host + "/operation/delivery/toTargetedDeliveryList?type=news"
-audio = "http://" + host + "/operation/delivery/toTargetedDeliveryList?type=audio"
+host = parse_yml("/Config/login.yml", 'websites', 'host')
+news = "http://" + host + "/mrd-operation/delivery/toTargetedDeliveryList?type=news"
+audio = "http://" + host + "/mrd-operation/delivery/toTargetedDeliveryList?type=audio"
 
 
 class TestNewsScheduledPushing:
     def setup(self):
-        self.driver = webdriver.Chrome(options=chrome_options())
+        self.driver = webdriver.Chrome()
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
         login(self.driver)
@@ -49,7 +50,7 @@ class TestNewsScheduledPushing:
         # 校验
         assert content_type == "普通"
         assert table_oid == oid
-        assert title == "【社会主义核心价值观】友善 公民道德的基石"
+        assert title == "一觉醒来，2大TOP16出局！3场4-0，丁俊晖追兵过关，小司机冲首冠"
         assert delivery_position == location
         assert table_remark == remark
         # 目前投放时间都是过去的时间因此都为已过期
@@ -153,4 +154,4 @@ class TestAudioScheduledPushing:
 
 
 if __name__ == "__main__":
-    pytest.main(['-s', 'test_scheduled_pushing.py'])
+    pytest.main(['-s', 'test_scheduled_pushing.py', "--alluredir=" + get_script_directory() + "/Report/report"])

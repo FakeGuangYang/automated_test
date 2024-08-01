@@ -1,7 +1,7 @@
 websites:
-  host: "opt.mrd.sohuno.com:10020"
-  loginPage: "https://sso.sohu-inc.com/login?service=http://opt.mrd.sohuno.com:10020/operation/ssoValidate?returnUrl=/"
+  host: "uattest.mrd.sohuno.com"
+  loginPage: "https://sso.sohu-inc.com/login?service=http://uattest.mrd.sohuno.com/mrd-operation/ssoValidate?returnUrl=/"
 
 loginInfo:
   username: autotestsup
-  password: Autotest!23
+  password: Autotest!@3

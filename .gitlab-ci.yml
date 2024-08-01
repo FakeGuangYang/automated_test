@@ -21,6 +21,8 @@ before_script:
 job_login_page:
   stage: login
   script:
+    - 'sed -i "1i 10.18.75.5 opt.mrd.sohuno.com" /etc/hosts'
+    - 'echo "Added opt.mrd.sohuno.com to /etc/hosts"'
     - pytest "Test/TestCase/test_login.py" --alluredir=Report/report
   only:
     - master
@@ -33,6 +35,8 @@ job_login_page:
 job_scheduled_pushing_page_news:
   stage: test_cases
   script:
+    - 'sed -i "1i 10.18.75.5 opt.mrd.sohuno.com" /etc/hosts'
+    - 'echo "Added opt.mrd.sohuno.com to /etc/hosts"'
     - pytest "Test/TestCase/test_scheduled_pushing.py::TestNewsScheduledPushing" --alluredir=Report/report
   only:
     - master
@@ -44,6 +48,7 @@ job_scheduled_pushing_page_news:
 job_scheduled_pushing_page_audio:
   stage: test_cases
   script:
+    -
     - pytest "Test/TestCase/test_scheduled_pushing.py::TestAudioScheduledPushing" --alluredir=Report/report
   only:
     - master

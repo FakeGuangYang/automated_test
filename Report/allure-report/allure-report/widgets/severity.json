@@ -1,0 +1,11 @@
+[ {
+  "uid" : "2f3d9219f59ddca0",
+  "name" : "test_add_channel[自动化测试]",
+  "time" : {
+    "start" : 1713865939938,
+    "stop" : 1713865955922,
+    "duration" : 15984
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

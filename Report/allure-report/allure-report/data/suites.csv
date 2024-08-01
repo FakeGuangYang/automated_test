@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Apr 23 17:52:19 CST 2024","Tue Apr 23 17:52:35 CST 2024","15984","","test_jina","TestJina","","","test_add_channel[自动化测试]",""

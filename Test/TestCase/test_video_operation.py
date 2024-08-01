@@ -28,7 +28,7 @@ password = parse_yml("../../Config/login.yml", 'loginInfo', 'password')
 sleep_time = 2
 
 
-class TestNewsScheduledPushing():
+class TestNewsScheduledPushing:
     def setup(self):
         self.driver = webdriver.Chrome()
         self.driver.maximize_window()
@@ -46,7 +46,7 @@ class TestNewsScheduledPushing():
                                                                                   priority_value)
             sleep(sleep_time)
         except Exception as e:
-            print("Except: ", e)
+            print("Except: " + e)
         # 获取页面数据结果
         table_newsid = video_operation_page.VideoOperationOper(self.driver).get_table_newsid()
         title = video_operation_page.VideoOperationOper(self.driver).get_table_title()

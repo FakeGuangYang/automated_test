@@ -1,0 +1,83 @@
+{
+  "uid" : "58635589f28e4eb9",
+  "name" : "test_add_channel[自动化测试]",
+  "fullName" : "test_jina.TestJina#test_add_channel",
+  "historyId" : "ecdd89022c4a4511af9201e564512dad",
+  "time" : {
+    "start" : 1713865459130,
+    "stop" : 1713865474861,
+    "duration" : 15731
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ {
+    "name" : "_xunit_setup_method_fixture_TestJina",
+    "time" : {
+      "start" : 1713865449643,
+      "stop" : 1713865459129,
+      "duration" : 9486
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "_xunit_setup_method_fixture_TestJina::0",
+    "time" : {
+      "start" : 1713865474873,
+      "stop" : 1713865477060,
+      "duration" : 2187
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "test_jina"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestJina"
+  }, {
+    "name" : "host",
+    "value" : "guangyang219579"
+  }, {
+    "name" : "thread",
+    "value" : "3824-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test_jina"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "channel_name",
+    "value" : "'自动化测试'"
+  } ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "58635589f28e4eb9.json",
+  "parameterValues" : [ "'自动化测试'" ]
+}

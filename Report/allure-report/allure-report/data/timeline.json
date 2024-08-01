@@ -1,0 +1,25 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "guangyang219579",
+    "children" : [ {
+      "name" : "27156-MainThread",
+      "children" : [ {
+        "name" : "test_add_channel[自动化测试]",
+        "uid" : "2f3d9219f59ddca0",
+        "parentUid" : "888f46bd3f23187f3a94016a36d51db8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713865939938,
+          "stop" : 1713865955922,
+          "duration" : 15984
+        },
+        "flaky" : false,
+        "parameters" : [ "'自动化测试'" ]
+      } ],
+      "uid" : "888f46bd3f23187f3a94016a36d51db8"
+    } ],
+    "uid" : "4edbf2161f7b90eb5f93e48979f2e192"
+  } ]
+}
